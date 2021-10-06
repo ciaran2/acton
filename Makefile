@@ -1,3 +1,19 @@
+# Wondering what .otemp is about?
+# Our .o files are produced in a two step process in order to achieve:
+# - partial linking
+# - debug symbols on Mac OS X using clang
+# First we compile a .c file to .otemp by using cc. The -c argument tells cc to
+# not link the output. We then issue ld to link the .otemp file with any
+# potential libraries in a relocatable way (-r). The same partial linking can be
+# achieved in a single cc call, however, that will produce a .o file without
+# debug symbols on Mac OS x. clang on Mac is very helpful and automatically runs
+# dsymutil, which separates debug symbols found in .o files into a separate
+# .dSYM directory. This is actually a good thing when building an executable but
+# we are just building a relocatable .o file and would still like the debug
+# symbols in there. We only want the separate .dSYM for the final executable
+# produced by actonc. Using two separate calls to cc and ld prevents the
+# automatic use of dsymutil.
+
 include common.mk
 CHANGELOG_VERSION=$(shell grep '^\#\# \[[0-9]' CHANGELOG.md | sed 's/\#\# \[\([^]]\{1,\}\)].*/\1/' | head -n1)
 
@@ -195,16 +211,20 @@ lib/libActonDB.a: $(BACKEND_OFILES)
 
 
 # /rts --------------------------------------------------
-rts/rts.o: rts/rts.c rts/rts.h
+rts/rts.o: rts/rts.otemp
+	ld -r -o $@ $< $(LDFLAGS) $(LDLIBS)
+
+rts/rts.otemp: rts/rts.c rts/rts.h
 	$(CC) $(CFLAGS) -Wno-int-to-void-pointer-cast \
 		-Wno-unused-result \
-		$(LDLIBS) \
 		-c -O3 $< -o $@
 
-rts/rts-debug.o: rts/rts.c rts/rts.h
+rts/rts-debug.o: rts/rts-debug.otemp
+	ld -r -o $@ $< $(LDFLAGS) $(LDLIBS)
+
+rts/rts-debug.otemp: rts/rts.c rts/rts.h
 	$(CC) $(CFLAGS) -DRTS_DEBUG -Wno-int-to-void-pointer-cast \
 		-Wno-unused-result \
-		$(LDLIBS) \
 		-c -O3 $< -o $@
 
 rts/empty.o: rts/empty.c
