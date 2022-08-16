@@ -61,8 +61,14 @@ $R net$$DNS$lookup_a$local (net$$DNS __self__, $str name, $function on_resolve, 
 
     int r = uv_getaddrinfo(get_uv_loop(), req, net$$DNS$lookup_a__on_resolve, from$str(name), NULL, hints);
     // TODO: use on_error callback instead!
-    if (r != 0)
-        $RAISE((($BaseException)$RuntimeError$new(to$str("Unable to run DNS query"))));
+    if (r != 0) {
+        char errmsg[1024] = "Unable to run DNS query: ";
+        uv_strerror_r(r, errmsg + strlen(errmsg), sizeof(errmsg)-strlen(errmsg));
+        log_warn(errmsg);
+        on_error->$class->__call__(on_error, name, to$str(errmsg));
+        // TODO: free()
+        return $R_CONT(c$cont, $None);
+    }
 
     return $R_CONT(c$cont, $None);
 }
@@ -86,8 +92,7 @@ void net$$DNS$lookup_aaaa__on_resolve (uv_getaddrinfo_t *req, int status, struct
     struct addrinfo *rp;
     char addr[40] = {'\0'};
     for (rp = dns_res; rp != NULL; rp = rp->ai_next) {
-        //uv_ip6_name((struct sockaddr_in6*) rp->ai_addr, addr, 39);
-        uv_ip6_name((struct sockaddr_in6*)(rp->ai_addr), addr, 39);
+        uv_ip6_name((struct sockaddr_in6 *)rp->ai_addr, addr, 39);
         $Sequence$list$witness->$class->append($Sequence$list$witness, $res, to$str(addr));
     }
 
@@ -115,9 +120,14 @@ $R net$$DNS$lookup_aaaa$local (net$$DNS __self__, $str name, $function on_resolv
     req->data = cb_data;
 
     int r = uv_getaddrinfo(get_uv_loop(), req, net$$DNS$lookup_aaaa__on_resolve, from$str(name), NULL, hints);
-    // TODO: use on_error callback instead!
-    if (r != 0)
-        $RAISE((($BaseException)$RuntimeError$new(to$str("Unable to run DNS query"))));
+    if (r != 0) {
+        char errmsg[1024] = "Unable to run DNS query: ";
+        uv_strerror_r(r, errmsg + strlen(errmsg), sizeof(errmsg)-strlen(errmsg));
+        log_warn(errmsg);
+        on_error->$class->__call__(on_error, name, to$str(errmsg));
+        // TODO: free()
+        return $R_CONT(c$cont, $None);
+    }
 
     return $R_CONT(c$cont, $None);
 }
