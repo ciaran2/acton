@@ -119,8 +119,7 @@ jobs:
           apt-get update
           apt-get install -qy automake autopoint bison bzip2 curl git gcc haskell-stack libtool make pkg-config procps python3
           apt-get install -qy libprotobuf-c-dev zlib1g-dev
-      - name: "Upgrade stack on old distributions"
-        if: ${{ (matrix.os == 'ubuntu') && (matrix.version == '20.04') }}
+      - name: "Upgrade stack to work with GHC 9.2"
         run: |
           stack upgrade
           echo "PATH=~/.local/bin:$PATH" >> $GITHUB_ENV
