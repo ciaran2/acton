@@ -46,7 +46,7 @@ void $l$1contD___serialize__ ($l$1cont self, $Serial$state state) {
 $l$1cont $l$1contD___deserialize__ ($l$1cont self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct $l$1cont));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct $l$1cont), $l$1contG_methods.$GCdescr);
             self->$class = &$l$1contG_methods;
             return self;
         }
@@ -57,12 +57,13 @@ $l$1cont $l$1contD___deserialize__ ($l$1cont self, $Serial$state state) {
     return self;
 }
 $l$1cont $l$1contG_new(B_Env p$1, B_str p$2) {
-    $l$1cont $tmp = malloc(sizeof(struct $l$1cont));
+    $l$1cont $tmp = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct $l$1cont), $l$1contG_methods.$GCdescr);
     $tmp->$class = &$l$1contG_methods;
     $l$1contG_methods.__init__($tmp, p$1, p$2);
     return $tmp;
 }
 struct $l$1contG_class $l$1contG_methods;
+GC_word $l$1contD_gcbm[GC_BITMAP_SIZE(struct $l$1cont)];
 
 B_NoneType $l$2contD___init__ ($l$2cont p$self, B_Env self, $action cb) {
     p$self->self = self;
@@ -81,7 +82,7 @@ void $l$2contD___serialize__ ($l$2cont self, $Serial$state state) {
 $l$2cont $l$2contD___deserialize__ ($l$2cont self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct $l$2cont));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct $l$2cont), $l$2contG_methods.$GCdescr);
             self->$class = &$l$2contG_methods;
             return self;
         }
@@ -92,12 +93,13 @@ $l$2cont $l$2contD___deserialize__ ($l$2cont self, $Serial$state state) {
     return self;
 }
 $l$2cont $l$2contG_new(B_Env p$1, $action p$2) {
-    $l$2cont $tmp = malloc(sizeof(struct $l$2cont));
+    $l$2cont $tmp = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct $l$2cont), $l$2contG_methods.$GCdescr);
     $tmp->$class = &$l$2contG_methods;
     $l$2contG_methods.__init__($tmp, p$1, p$2);
     return $tmp;
 }
 struct $l$2contG_class $l$2contG_methods;
+GC_word $l$2contD_gcbm[GC_BITMAP_SIZE(struct $l$2cont)];
 
 B_NoneType $l$3contD___init__ ($l$3cont p$self, B_Env self, B_int n) {
     p$self->self = self;
@@ -116,7 +118,7 @@ void $l$3contD___serialize__ ($l$3cont self, $Serial$state state) {
 $l$3cont $l$3contD___deserialize__ ($l$3cont self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct $l$3cont));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct $l$3cont), $l$3contG_methods.$GCdescr);
             self->$class = &$l$3contG_methods;
             return self;
         }
@@ -127,12 +129,13 @@ $l$3cont $l$3contD___deserialize__ ($l$3cont self, $Serial$state state) {
     return self;
 }
 $l$3cont $l$3contG_new(B_Env p$1, B_int p$2) {
-    $l$3cont $tmp = malloc(sizeof(struct $l$3cont));
+    $l$3cont $tmp = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct $l$3cont), $l$3contG_methods.$GCdescr);
     $tmp->$class = &$l$3contG_methods;
     $l$3contG_methods.__init__($tmp, p$1, p$2);
     return $tmp;
 }
 struct $l$3contG_class $l$3contG_methods;
+GC_word $l$3contD_gcbm[GC_BITMAP_SIZE(struct $l$3cont)];
 B_NoneType B_WorldAuthD___init__ (B_WorldAuth self) {
     return B_None;
 }
@@ -141,7 +144,7 @@ void B_WorldAuthD___serialize__ (B_WorldAuth self, $Serial$state state) {
 B_WorldAuth B_WorldAuthD___deserialize__ (B_WorldAuth self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct B_WorldAuth));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_WorldAuth), B_WorldAuthG_methods.$GCdescr);
             self->$class = &B_WorldAuthG_methods;
             return self;
         }
@@ -150,6 +153,7 @@ B_WorldAuth B_WorldAuthD___deserialize__ (B_WorldAuth self, $Serial$state state)
     return self;
 }
 struct B_WorldAuthG_class B_WorldAuthG_methods;
+GC_word B_WorldAuthD_gcbm[GC_BITMAP_SIZE(struct B_WorldAuth)];
 B_Msg B_Env$stdout_write (B_Env self, B_str s) {
     return $ASYNC((($Actor)self), (($Cont)$l$1contG_new(((B_Env)self), s)));
 }
@@ -164,7 +168,7 @@ B_Msg B_Env$exit (B_Env self, B_int n) {
 
 
 B_WorldAuth B_WorldAuthG_new() {
-    B_WorldAuth $tmp = malloc(sizeof(struct B_WorldAuth));
+    B_WorldAuth $tmp = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_WorldAuth), B_WorldAuthG_methods.$GCdescr);
     $tmp->$class = &B_WorldAuthG_methods;
     B_WorldAuthG_methods.__init__($tmp);
     return $tmp;
@@ -221,7 +225,7 @@ void B_EnvD___serialize__ (B_Env self, $Serial$state state) {
 B_Env B_EnvD___deserialize__ (B_Env self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct B_Env));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_Env), B_EnvG_methods.$GCdescr);
             self->$class = &B_EnvG_methods;
             return self;
         }
@@ -238,6 +242,7 @@ B_Env B_EnvG_newact(B_WorldAuth token, B_list p$1) {
     return $tmp;
 }
 struct B_EnvG_class B_EnvG_methods;
+GC_word B_EnvD_gcbm[GC_BITMAP_SIZE(struct B_Env)];
 
 
 int $done$ = 0;
@@ -247,7 +252,9 @@ void D___init__ () {
     ///////////////////////////////////////////////////////////////////////////////////////
     // START GENERATED __builtin__.act D___init__
     {
-        $l$1contG_methods.$GCINFO = "$l$1cont";
+        memset($l$1contD_gcbm, 0xFF, sizeof($l$1contD_gcbm));
+        $l$1contG_methods.$GCdescr = GC_make_descriptor($l$1contD_gcbm, GC_WORD_LEN(struct $l$1cont));
+        $l$1contG_methods.$name = "$l$1cont";
         $l$1contG_methods.$superclass = ($SuperG_class)&$ContG_methods;
         $l$1contG_methods.__init__ = $l$1contD___init__;
         $l$1contG_methods.__call__ = $l$1contD___call__;
@@ -256,7 +263,9 @@ void D___init__ () {
         $register(&$l$1contG_methods);
     }
     {
-        $l$2contG_methods.$GCINFO = "$l$2cont";
+        memset($l$2contD_gcbm, 0xFF, sizeof($l$2contD_gcbm));
+        $l$2contG_methods.$GCdescr = GC_make_descriptor($l$2contD_gcbm, GC_WORD_LEN(struct $l$2cont));
+        $l$2contG_methods.$name = "$l$2cont";
         $l$2contG_methods.$superclass = ($SuperG_class)&$ContG_methods;
         $l$2contG_methods.__init__ = $l$2contD___init__;
         $l$2contG_methods.__call__ = $l$2contD___call__;
@@ -265,7 +274,9 @@ void D___init__ () {
         $register(&$l$2contG_methods);
     }
     {
-        $l$3contG_methods.$GCINFO = "$l$3cont";
+        memset($l$3contD_gcbm, 0xFF, sizeof($l$3contD_gcbm));
+        $l$3contG_methods.$GCdescr = GC_make_descriptor($l$3contD_gcbm, GC_WORD_LEN(struct $l$3cont));
+        $l$3contG_methods.$name = "$l$3cont";
         $l$3contG_methods.$superclass = ($SuperG_class)&$ContG_methods;
         $l$3contG_methods.__init__ = $l$3contD___init__;
         $l$3contG_methods.__call__ = $l$3contD___call__;
@@ -274,7 +285,9 @@ void D___init__ () {
         $register(&$l$3contG_methods);
     }
     {
-        B_WorldAuthG_methods.$GCINFO = "B_WorldAuth";
+        memset(B_WorldAuthD_gcbm, 0xFF, sizeof(B_WorldAuthD_gcbm));
+        B_WorldAuthG_methods.$GCdescr = GC_make_descriptor(B_WorldAuthD_gcbm, GC_WORD_LEN(struct B_WorldAuth));
+        B_WorldAuthG_methods.$name = "B_WorldAuth";
         B_WorldAuthG_methods.$superclass = ($SuperG_class)&B_valueG_methods;
         ;
         B_WorldAuthG_methods.__init__ = B_WorldAuthD___init__;
@@ -283,7 +296,9 @@ void D___init__ () {
         $register(&B_WorldAuthG_methods);
     }
     {
-        B_EnvG_methods.$GCINFO = "B_Env";
+        memset(B_EnvD_gcbm, 0xFF, sizeof(B_EnvD_gcbm));
+        B_EnvG_methods.$GCdescr = GC_make_descriptor(B_EnvD_gcbm, GC_WORD_LEN(struct B_Env));
+        B_EnvG_methods.$name = "B_Env";
         B_EnvG_methods.$superclass = ($SuperG_class)&$ActorG_methods;
         B_EnvG_methods.__bool__ = (B_bool (*) (B_Env))$ActorG_methods.__bool__;
         B_EnvG_methods.__str__ = (B_str (*) (B_Env))$ActorG_methods.__str__;

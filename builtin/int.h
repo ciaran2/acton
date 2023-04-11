@@ -4,6 +4,7 @@ struct B_int {
     struct B_intG_class *$class;
     zz_struct val;
 };
+extern GC_word B_intD_gcbm[GC_BITMAP_SIZE(struct B_int)];
 
 extern struct B_IntegralD_int *B_IntegralD_intG_witness;
 extern struct B_HashableD_int *B_HashableD_intG_witness;

@@ -51,7 +51,8 @@ extern struct $ConstContG_class $ConstContG_methods;
 #define $Lock                   volatile atomic_flag
 
 struct B_MsgG_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     void (*__init__)(B_Msg, $Actor, $Cont, time_t, $WORD);
@@ -72,9 +73,11 @@ struct B_Msg {
     $WORD B_value;
     $long $globkey;
 };
+extern GC_word B_MsgD_gcbm[GC_BITMAP_SIZE(struct B_Msg)];
 
 struct $ActorG_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     void (*__init__)($Actor);
@@ -97,9 +100,11 @@ struct $Actor {
     $long $globkey;
     $int64 $affinity;
 };
+extern GC_word $ActorD_gcbm[GC_BITMAP_SIZE(struct $Actor)];
 
 struct $CatcherG_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     void (*__init__)($Catcher, $Cont);
@@ -114,10 +119,12 @@ struct $Catcher {
     $Catcher $next;
     $Cont $cont;
 };
+extern GC_word $CatcherD_gcbm[GC_BITMAP_SIZE(struct $Catcher)];
 
 
 struct $ConstContG_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     void (*__init__)($ConstCont, $WORD, $Cont);
@@ -133,6 +140,7 @@ struct $ConstCont {
     $WORD val;
     $Cont cont;
 };
+extern GC_word $ConstContD_gcbm[GC_BITMAP_SIZE(struct $ConstCont)];
 $Cont $CONSTCONT($WORD, $Cont);
 
 B_Msg $ASYNC($Actor, $Cont);

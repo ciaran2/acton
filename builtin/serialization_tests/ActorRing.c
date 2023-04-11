@@ -45,6 +45,7 @@ $R lambda$1D___call__(lambda$1 $this, B_Msg _ignore) {
 }
 
 struct lambda$1G_class lambda$1G_methods = {
+    0,
     "lambda$1",
     UNASSIGNED,
     NULL,
@@ -94,6 +95,7 @@ $R lambda$2D___call__(lambda$2 $this, $Cont c$1) {
 }
 
 struct lambda$2G_class lambda$2G_methods = {
+    0,
     "lambda$2",
     UNASSIGNED,
     NULL,
@@ -160,6 +162,7 @@ $R Act$act(Act self, B_int from, B_list table, $Cont cont$0) {
 }
 
 struct ActG_class ActG_methods = {
+    0,
     "Act",
     UNASSIGNED,
     NULL,
@@ -209,6 +212,7 @@ $R lambda$3D___call__(lambda$3 $this, Act $res) {
 }
 
 struct lambda$3G_class lambda$3G_methods = {
+    0,
     "lambda$3",
     UNASSIGNED,
     NULL,
@@ -251,6 +255,7 @@ $R lambda$4D___call__(lambda$4 $this, $WORD _ignore) {
 }
 
 struct lambda$4G_class lambda$4G_methods = {
+    0,
     "lambda$4",
     UNASSIGNED,
     NULL,
@@ -311,6 +316,7 @@ Root RootD___deserialize__(B_NoneType state) {
 }
 
 struct RootG_class RootG_methods = {
+    0,
     "Root",
     UNASSIGNED,
     NULL,
@@ -322,7 +328,7 @@ struct RootG_class RootG_methods = {
 };
 
 $R RootG_new(B_Env env, $Cont cont) {
-    Root $tmp = malloc(sizeof(struct Root));
+    Root $tmp = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct Root), RootG_methods.$GCdescr);
     $tmp->$class = &RootG_methods;
     return RootG_methods.__init__($tmp, env, $CONSTCONT($tmp, cont));
 }

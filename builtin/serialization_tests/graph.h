@@ -7,7 +7,8 @@ struct $Node;
 typedef struct $Node *$Node;
 
 struct $NodeG_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     void (*__init__)($Node, B_list);
@@ -21,6 +22,7 @@ struct $Node {
   struct $NodeG_class *$class;
   B_list nbors; // list of Nodes
 };
+extern GC_word $NodeD_gcbm[GC_BITMAP_SIZE(struct $Node)];
 
 extern struct $NodeG_class $NodeG_methods;
 
@@ -31,7 +33,8 @@ struct $IntNode;
 typedef struct $IntNode *$IntNode;
 
 struct $IntNodeG_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     void (*__init__)($IntNode, B_list, B_int);
@@ -46,6 +49,7 @@ struct $IntNode {
   B_list nbors; // list of Nodes
   B_int ival;
 };
+extern GC_word $IntNodeD_gcbm[GC_BITMAP_SIZE(struct $IntNode)];
 
 extern struct $IntNodeG_class $IntNodeG_methods;
 
@@ -56,7 +60,8 @@ struct $FloatNode;
 typedef struct $FloatNode *$FloatNode;
 
 struct $FloatNodeG_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     void (*__init__)($FloatNode, B_list, B_float);
@@ -71,6 +76,7 @@ struct $FloatNode {
   B_list nbors; // list of Nodes
   B_float fval;
 };
+extern GC_word $FloatNodeD_gcbm[GC_BITMAP_SIZE(struct $FloatNode)];
 
 extern struct $FloatNodeG_class $FloatNodeG_methods;
 
@@ -79,7 +85,8 @@ extern struct $FloatNodeG_class $FloatNodeG_methods;
 typedef struct $Graph *$Graph;
 
 struct $GraphG_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     void (*__init__)($Graph, B_list);
@@ -93,6 +100,7 @@ struct $Graph {
   struct $GraphG_class *$class;
   B_list nodes; 
 };
+extern GC_word $GraphD_gcbm[GC_BITMAP_SIZE(struct $Graph)];
 
 extern struct $GraphG_class $GraphG_methods;
 

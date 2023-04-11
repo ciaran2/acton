@@ -1,3 +1,4 @@
+#include "gc/gc_typed.h"
 /*
 Building project in /Users/sydow/acton/builtin/ty
   Compiling __builtin__.act for release in stub mode
@@ -306,7 +307,8 @@ typedef struct B_ContainerD_bytes *B_ContainerD_bytes;
 typedef struct B_TimesD_bytes *B_TimesD_bytes;
 typedef struct B_HashableD_bytes *B_HashableD_bytes;
 struct B_valueG_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_value);
@@ -319,8 +321,10 @@ struct B_valueG_class {
 struct B_value {
     struct B_valueG_class *$class;
 };
+extern GC_word B_valueD_gcbm[GC_BITMAP_SIZE(struct B_value)];
 struct B_objectG_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_object);
@@ -333,8 +337,10 @@ struct B_objectG_class {
 struct B_object {
     struct B_objectG_class *$class;
 };
+extern GC_word B_objectD_gcbm[GC_BITMAP_SIZE(struct B_object)];
 struct B_atomG_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_atom);
@@ -347,8 +353,10 @@ struct B_atomG_class {
 struct B_atom {
     struct B_atomG_class *$class;
 };
+extern GC_word B_atomD_gcbm[GC_BITMAP_SIZE(struct B_atom)];
 struct B_intG_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_int, B_atom);
@@ -359,7 +367,8 @@ struct B_intG_class {
     B_str (*__repr__) (B_int);
 };
 struct B_i64G_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_i64, B_atom);
@@ -370,7 +379,8 @@ struct B_i64G_class {
     B_str (*__repr__) (B_i64);
 };
 struct B_i32G_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_i32, B_atom);
@@ -381,7 +391,8 @@ struct B_i32G_class {
     B_str (*__repr__) (B_i32);
 };
 struct B_i16G_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_i16, B_atom);
@@ -392,7 +403,8 @@ struct B_i16G_class {
     B_str (*__repr__) (B_i16);
 };
 struct B_u64G_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_u64, B_atom);
@@ -403,7 +415,8 @@ struct B_u64G_class {
     B_str (*__repr__) (B_u64);
 };
 struct B_u32G_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_u32, B_atom);
@@ -414,7 +427,8 @@ struct B_u32G_class {
     B_str (*__repr__) (B_u32);
 };
 struct B_u16G_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_u16, B_atom);
@@ -425,7 +439,8 @@ struct B_u16G_class {
     B_str (*__repr__) (B_u16);
 };
 struct B_floatG_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_float, B_atom);
@@ -436,7 +451,8 @@ struct B_floatG_class {
     B_str (*__repr__) (B_float);
 };
 struct B_boolG_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_bool, B_value);
@@ -447,7 +463,8 @@ struct B_boolG_class {
     B_str (*__repr__) (B_bool);
 };
 struct B_sliceG_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_slice, B_int, B_int, B_int);
@@ -458,7 +475,8 @@ struct B_sliceG_class {
     B_str (*__repr__) (B_slice);
 };
 struct B_listG_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_list, B_Iterable, $WORD);
@@ -473,7 +491,8 @@ struct B_listG_class {
     $WORD (*pop) (B_list, B_int);
 };
 struct B_rangeG_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_range, B_int, B_int, B_int);
@@ -484,7 +503,8 @@ struct B_rangeG_class {
     B_str (*__repr__) (B_range);
 };
 struct B_IteratorG_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_Iterator);
@@ -498,8 +518,10 @@ struct B_IteratorG_class {
 struct B_Iterator {
     struct B_IteratorG_class *$class;
 };
+extern GC_word B_IteratorD_gcbm[GC_BITMAP_SIZE(struct B_Iterator)];
 struct B_IterableG_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_Iterable);
@@ -513,8 +535,10 @@ struct B_IterableG_class {
 struct B_Iterable {
     struct B_IterableG_class *$class;
 };
+extern GC_word B_IterableD_gcbm[GC_BITMAP_SIZE(struct B_Iterable)];
 struct B_strG_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_str, B_value);
@@ -559,7 +583,8 @@ struct B_strG_class {
     B_str (*zfill) (B_str, B_int);
 };
 struct B_bytesG_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_bytes, B_Iterable, $WORD);
@@ -603,7 +628,8 @@ struct B_bytesG_class {
     B_bytes (*zfill) (B_bytes, B_int);
 };
 struct B_bytearrayG_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_bytearray, B_bytes);
@@ -648,7 +674,8 @@ struct B_bytearrayG_class {
 };
 /*
 struct B_MsgG_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_Msg);
@@ -661,9 +688,11 @@ struct B_MsgG_class {
 struct B_Msg {
     struct B_MsgG_class *$class;
 };
+extern GC_word B_MsgD_gcbm[GC_BITMAP_SIZE(struct B_Msg)];
 */
 struct B_BaseExceptionG_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_BaseException, B_str);
@@ -677,8 +706,10 @@ struct B_BaseException {
     struct B_BaseExceptionG_class *$class;
     B_str error_message;
 };
+extern GC_word B_BaseExceptionD_gcbm[GC_BITMAP_SIZE(struct B_BaseException)];
 struct B_SystemExitG_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_SystemExit, B_str);
@@ -692,8 +723,10 @@ struct B_SystemExit {
     struct B_SystemExitG_class *$class;
     B_str error_message;
 };
+extern GC_word B_SystemExitD_gcbm[GC_BITMAP_SIZE(struct B_SystemExit)];
 struct B_KeyboardInterruptG_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_KeyboardInterrupt, B_str);
@@ -707,8 +740,10 @@ struct B_KeyboardInterrupt {
     struct B_KeyboardInterruptG_class *$class;
     B_str error_message;
 };
+extern GC_word B_KeyboardInterruptD_gcbm[GC_BITMAP_SIZE(struct B_KeyboardInterrupt)];
 struct B_ExceptionG_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_Exception, B_str);
@@ -722,8 +757,10 @@ struct B_Exception {
     struct B_ExceptionG_class *$class;
     B_str error_message;
 };
+extern GC_word B_ExceptionD_gcbm[GC_BITMAP_SIZE(struct B_Exception)];
 struct B_AssertionErrorG_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_AssertionError, B_str);
@@ -737,8 +774,10 @@ struct B_AssertionError {
     struct B_AssertionErrorG_class *$class;
     B_str error_message;
 };
+extern GC_word B_AssertionErrorD_gcbm[GC_BITMAP_SIZE(struct B_AssertionError)];
 struct B_LookupErrorG_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_LookupError, B_str);
@@ -752,8 +791,10 @@ struct B_LookupError {
     struct B_LookupErrorG_class *$class;
     B_str error_message;
 };
+extern GC_word B_LookupErrorD_gcbm[GC_BITMAP_SIZE(struct B_LookupError)];
 struct B_IndexErrorG_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_IndexError, B_str);
@@ -767,8 +808,10 @@ struct B_IndexError {
     struct B_IndexErrorG_class *$class;
     B_str error_message;
 };
+extern GC_word B_IndexErrorD_gcbm[GC_BITMAP_SIZE(struct B_IndexError)];
 struct B_KeyErrorG_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_KeyError, B_str);
@@ -782,8 +825,10 @@ struct B_KeyError {
     struct B_KeyErrorG_class *$class;
     B_str error_message;
 };
+extern GC_word B_KeyErrorD_gcbm[GC_BITMAP_SIZE(struct B_KeyError)];
 struct B_MemoryErrorG_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_MemoryError, B_str);
@@ -797,8 +842,10 @@ struct B_MemoryError {
     struct B_MemoryErrorG_class *$class;
     B_str error_message;
 };
+extern GC_word B_MemoryErrorD_gcbm[GC_BITMAP_SIZE(struct B_MemoryError)];
 struct B_OSErrorG_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_OSError, B_str);
@@ -812,8 +859,10 @@ struct B_OSError {
     struct B_OSErrorG_class *$class;
     B_str error_message;
 };
+extern GC_word B_OSErrorD_gcbm[GC_BITMAP_SIZE(struct B_OSError)];
 struct B_RuntimeErrorG_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_RuntimeError, B_str);
@@ -827,8 +876,10 @@ struct B_RuntimeError {
     struct B_RuntimeErrorG_class *$class;
     B_str error_message;
 };
+extern GC_word B_RuntimeErrorD_gcbm[GC_BITMAP_SIZE(struct B_RuntimeError)];
 struct B_NotImplementedErrorG_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_NotImplementedError, B_str);
@@ -842,8 +893,10 @@ struct B_NotImplementedError {
     struct B_NotImplementedErrorG_class *$class;
     B_str error_message;
 };
+extern GC_word B_NotImplementedErrorD_gcbm[GC_BITMAP_SIZE(struct B_NotImplementedError)];
 struct B_ValueErrorG_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_ValueError, B_str);
@@ -857,8 +910,10 @@ struct B_ValueError {
     struct B_ValueErrorG_class *$class;
     B_str error_message;
 };
+extern GC_word B_ValueErrorD_gcbm[GC_BITMAP_SIZE(struct B_ValueError)];
 struct B_IdentityG_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_Identity);
@@ -873,8 +928,10 @@ struct B_IdentityG_class {
 struct B_Identity {
     struct B_IdentityG_class *$class;
 };
+extern GC_word B_IdentityD_gcbm[GC_BITMAP_SIZE(struct B_Identity)];
 struct B_EqG_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_Eq);
@@ -889,8 +946,10 @@ struct B_EqG_class {
 struct B_Eq {
     struct B_EqG_class *$class;
 };
+extern GC_word B_EqD_gcbm[GC_BITMAP_SIZE(struct B_Eq)];
 struct B_OrdG_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_Ord);
@@ -909,8 +968,10 @@ struct B_OrdG_class {
 struct B_Ord {
     struct B_OrdG_class *$class;
 };
+extern GC_word B_OrdD_gcbm[GC_BITMAP_SIZE(struct B_Ord)];
 struct B_LogicalG_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_Logical);
@@ -929,8 +990,10 @@ struct B_LogicalG_class {
 struct B_Logical {
     struct B_LogicalG_class *$class;
 };
+extern GC_word B_LogicalD_gcbm[GC_BITMAP_SIZE(struct B_Logical)];
 struct B_PlusG_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_Plus);
@@ -945,8 +1008,10 @@ struct B_PlusG_class {
 struct B_Plus {
     struct B_PlusG_class *$class;
 };
+extern GC_word B_PlusD_gcbm[GC_BITMAP_SIZE(struct B_Plus)];
 struct B_MinusG_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_Minus);
@@ -961,8 +1026,10 @@ struct B_MinusG_class {
 struct B_Minus {
     struct B_MinusG_class *$class;
 };
+extern GC_word B_MinusD_gcbm[GC_BITMAP_SIZE(struct B_Minus)];
 struct B_TimesG_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_Times);
@@ -979,8 +1046,10 @@ struct B_TimesG_class {
 struct B_Times {
     struct B_TimesG_class *$class;
 };
+extern GC_word B_TimesD_gcbm[GC_BITMAP_SIZE(struct B_Times)];
 struct B_DivG_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_Div);
@@ -995,8 +1064,10 @@ struct B_DivG_class {
 struct B_Div {
     struct B_DivG_class *$class;
 };
+extern GC_word B_DivD_gcbm[GC_BITMAP_SIZE(struct B_Div)];
 struct B_HashableG_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_Hashable);
@@ -1012,8 +1083,10 @@ struct B_HashableG_class {
 struct B_Hashable {
     struct B_HashableG_class *$class;
 };
+extern GC_word B_HashableD_gcbm[GC_BITMAP_SIZE(struct B_Hashable)];
 struct B_complexG_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_complex, B_Number, $WORD);
@@ -1024,7 +1097,8 @@ struct B_complexG_class {
     B_str (*__repr__) (B_complex);
 };
 struct B_dictG_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_dict, B_Hashable, B_Iterable, $WORD);
@@ -1035,7 +1109,8 @@ struct B_dictG_class {
     B_str (*__repr__) (B_dict);
 };
 struct B_setG_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_set, B_Hashable, B_Iterable, $WORD);
@@ -1046,7 +1121,8 @@ struct B_setG_class {
     B_str (*__repr__) (B_set);
 };
 struct B_NumberG_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_Number, B_Minus);
@@ -1074,8 +1150,10 @@ struct B_Number {
     struct B_NumberG_class *$class;
     B_Minus W_Minus;
 };
+extern GC_word B_NumberD_gcbm[GC_BITMAP_SIZE(struct B_Number)];
 struct B_MinusD_NumberG_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_MinusD_Number, B_Number);
@@ -1091,8 +1169,10 @@ struct B_MinusD_Number {
     struct B_MinusD_NumberG_class *$class;
     B_Number W_Number;
 };
+extern GC_word B_MinusD_NumberD_gcbm[GC_BITMAP_SIZE(struct B_MinusD_Number)];
 struct B_RealG_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_Real, B_Minus);
@@ -1125,8 +1205,10 @@ struct B_Real {
     struct B_RealG_class *$class;
     B_Minus W_Minus;
 };
+extern GC_word B_RealD_gcbm[GC_BITMAP_SIZE(struct B_Real)];
 struct B_MinusD_RealG_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_MinusD_Real, B_Real);
@@ -1143,8 +1225,10 @@ struct B_MinusD_Real {
     B_Number W_Number;
     B_Real W_Real;
 };
+extern GC_word B_MinusD_RealD_gcbm[GC_BITMAP_SIZE(struct B_MinusD_Real)];
 struct B_RealFloatG_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_RealFloat, B_Minus);
@@ -1177,8 +1261,10 @@ struct B_RealFloat {
     struct B_RealFloatG_class *$class;
     B_Minus W_Minus;
 };
+extern GC_word B_RealFloatD_gcbm[GC_BITMAP_SIZE(struct B_RealFloat)];
 struct B_MinusD_RealFloatG_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_MinusD_RealFloat, B_RealFloat);
@@ -1196,8 +1282,10 @@ struct B_MinusD_RealFloat {
     B_Real W_Real;
     B_RealFloat W_RealFloat;
 };
+extern GC_word B_MinusD_RealFloatD_gcbm[GC_BITMAP_SIZE(struct B_MinusD_RealFloat)];
 struct B_RationalG_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_Rational, B_Minus);
@@ -1232,8 +1320,10 @@ struct B_Rational {
     struct B_RationalG_class *$class;
     B_Minus W_Minus;
 };
+extern GC_word B_RationalD_gcbm[GC_BITMAP_SIZE(struct B_Rational)];
 struct B_MinusD_RationalG_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_MinusD_Rational, B_Rational);
@@ -1251,8 +1341,10 @@ struct B_MinusD_Rational {
     B_Real W_Real;
     B_Rational W_Rational;
 };
+extern GC_word B_MinusD_RationalD_gcbm[GC_BITMAP_SIZE(struct B_MinusD_Rational)];
 struct B_IntegralG_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_Integral, B_Minus, B_Logical);
@@ -1300,8 +1392,10 @@ struct B_Integral {
     B_Minus W_Minus;
     B_Logical W_Logical;
 };
+extern GC_word B_IntegralD_gcbm[GC_BITMAP_SIZE(struct B_Integral)];
 struct B_MinusD_IntegralG_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_MinusD_Integral, B_Integral);
@@ -1320,8 +1414,10 @@ struct B_MinusD_Integral {
     B_Rational W_Rational;
     B_Integral W_Integral;
 };
+extern GC_word B_MinusD_IntegralD_gcbm[GC_BITMAP_SIZE(struct B_MinusD_Integral)];
 struct B_LogicalD_IntegralG_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_LogicalD_Integral, B_Integral);
@@ -1341,8 +1437,10 @@ struct B_LogicalD_Integral {
     struct B_LogicalD_IntegralG_class *$class;
     B_Integral W_Integral;
 };
+extern GC_word B_LogicalD_IntegralD_gcbm[GC_BITMAP_SIZE(struct B_LogicalD_Integral)];
 struct B_HashableD_boolG_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_HashableD_bool);
@@ -1358,8 +1456,10 @@ struct B_HashableD_boolG_class {
 struct B_HashableD_bool {
     struct B_HashableD_boolG_class *$class;
 };
+extern GC_word B_HashableD_boolD_gcbm[GC_BITMAP_SIZE(struct B_HashableD_bool)];
 struct B_IntegralD_intG_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_IntegralD_int);
@@ -1407,8 +1507,10 @@ struct B_IntegralD_int {
     B_Minus W_Minus;
     B_Logical W_Logical;
 };
+extern GC_word B_IntegralD_intD_gcbm[GC_BITMAP_SIZE(struct B_IntegralD_int)];
 struct B_MinusD_IntegralD_intG_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_MinusD_IntegralD_int, B_Integral);
@@ -1427,8 +1529,10 @@ struct B_MinusD_IntegralD_int {
     B_Rational W_Rational;
     B_Integral W_Integral;
 };
+extern GC_word B_MinusD_IntegralD_intD_gcbm[GC_BITMAP_SIZE(struct B_MinusD_IntegralD_int)];
 struct B_LogicalD_IntegralD_intG_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_LogicalD_IntegralD_int, B_Integral);
@@ -1448,8 +1552,10 @@ struct B_LogicalD_IntegralD_int {
     struct B_LogicalD_IntegralD_intG_class *$class;
     B_Integral W_Integral;
 };
+extern GC_word B_LogicalD_IntegralD_intD_gcbm[GC_BITMAP_SIZE(struct B_LogicalD_IntegralD_int)];
 struct B_DivD_intG_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_DivD_int);
@@ -1464,8 +1570,10 @@ struct B_DivD_intG_class {
 struct B_DivD_int {
     struct B_DivD_intG_class *$class;
 };
+extern GC_word B_DivD_intD_gcbm[GC_BITMAP_SIZE(struct B_DivD_int)];
 struct B_OrdD_intG_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_OrdD_int);
@@ -1484,8 +1592,10 @@ struct B_OrdD_intG_class {
 struct B_OrdD_int {
     struct B_OrdD_intG_class *$class;
 };
+extern GC_word B_OrdD_intD_gcbm[GC_BITMAP_SIZE(struct B_OrdD_int)];
 struct B_HashableD_intG_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_HashableD_int);
@@ -1501,8 +1611,10 @@ struct B_HashableD_intG_class {
 struct B_HashableD_int {
     struct B_HashableD_intG_class *$class;
 };
+extern GC_word B_HashableD_intD_gcbm[GC_BITMAP_SIZE(struct B_HashableD_int)];
 struct B_IntegralD_i64G_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_IntegralD_i64);
@@ -1550,8 +1662,10 @@ struct B_IntegralD_i64 {
     B_Minus W_Minus;
     B_Logical W_Logical;
 };
+extern GC_word B_IntegralD_i64D_gcbm[GC_BITMAP_SIZE(struct B_IntegralD_i64)];
 struct B_MinusD_IntegralD_i64G_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_MinusD_IntegralD_i64, B_Integral);
@@ -1570,8 +1684,10 @@ struct B_MinusD_IntegralD_i64 {
     B_Rational W_Rational;
     B_Integral W_Integral;
 };
+extern GC_word B_MinusD_IntegralD_i64D_gcbm[GC_BITMAP_SIZE(struct B_MinusD_IntegralD_i64)];
 struct B_LogicalD_IntegralD_i64G_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_LogicalD_IntegralD_i64, B_Integral);
@@ -1591,8 +1707,10 @@ struct B_LogicalD_IntegralD_i64 {
     struct B_LogicalD_IntegralD_i64G_class *$class;
     B_Integral W_Integral;
 };
+extern GC_word B_LogicalD_IntegralD_i64D_gcbm[GC_BITMAP_SIZE(struct B_LogicalD_IntegralD_i64)];
 struct B_DivD_i64G_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_DivD_i64);
@@ -1607,8 +1725,10 @@ struct B_DivD_i64G_class {
 struct B_DivD_i64 {
     struct B_DivD_i64G_class *$class;
 };
+extern GC_word B_DivD_i64D_gcbm[GC_BITMAP_SIZE(struct B_DivD_i64)];
 struct B_OrdD_i64G_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_OrdD_i64);
@@ -1627,8 +1747,10 @@ struct B_OrdD_i64G_class {
 struct B_OrdD_i64 {
     struct B_OrdD_i64G_class *$class;
 };
+extern GC_word B_OrdD_i64D_gcbm[GC_BITMAP_SIZE(struct B_OrdD_i64)];
 struct B_HashableD_i64G_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_HashableD_i64);
@@ -1644,6 +1766,7 @@ struct B_HashableD_i64G_class {
 struct B_HashableD_i64 {
     struct B_HashableD_i64G_class *$class;
 };
+extern GC_word B_HashableD_i64D_gcbm[GC_BITMAP_SIZE(struct B_HashableD_i64)];
 
 
 
@@ -1652,7 +1775,8 @@ struct B_HashableD_i64 {
 
 
 struct B_IntegralD_i32G_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_IntegralD_i32);
@@ -1700,8 +1824,10 @@ struct B_IntegralD_i32 {
     B_Minus W_Minus;
     B_Logical W_Logical;
 };
+extern GC_word B_IntegralD_i32D_gcbm[GC_BITMAP_SIZE(struct B_IntegralD_i32)];
 struct B_MinusD_IntegralD_i32G_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_MinusD_IntegralD_i32, B_Integral);
@@ -1720,8 +1846,10 @@ struct B_MinusD_IntegralD_i32 {
     B_Rational W_Rational;
     B_Integral W_Integral;
 };
+extern GC_word B_MinusD_IntegralD_i32D_gcbm[GC_BITMAP_SIZE(struct B_MinusD_IntegralD_i32)];
 struct B_LogicalD_IntegralD_i32G_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_LogicalD_IntegralD_i32, B_Integral);
@@ -1741,8 +1869,10 @@ struct B_LogicalD_IntegralD_i32 {
     struct B_LogicalD_IntegralD_i32G_class *$class;
     B_Integral W_Integral;
 };
+extern GC_word B_LogicalD_IntegralD_i32D_gcbm[GC_BITMAP_SIZE(struct B_LogicalD_IntegralD_i32)];
 struct B_DivD_i32G_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_DivD_i32);
@@ -1757,8 +1887,10 @@ struct B_DivD_i32G_class {
 struct B_DivD_i32 {
     struct B_DivD_i32G_class *$class;
 };
+extern GC_word B_DivD_i32D_gcbm[GC_BITMAP_SIZE(struct B_DivD_i32)];
 struct B_OrdD_i32G_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_OrdD_i32);
@@ -1777,8 +1909,10 @@ struct B_OrdD_i32G_class {
 struct B_OrdD_i32 {
     struct B_OrdD_i32G_class *$class;
 };
+extern GC_word B_OrdD_i32D_gcbm[GC_BITMAP_SIZE(struct B_OrdD_i32)];
 struct B_HashableD_i32G_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_HashableD_i32);
@@ -1794,6 +1928,7 @@ struct B_HashableD_i32G_class {
 struct B_HashableD_i32 {
     struct B_HashableD_i32G_class *$class;
 };
+extern GC_word B_HashableD_i32D_gcbm[GC_BITMAP_SIZE(struct B_HashableD_i32)];
 
 
 
@@ -1802,7 +1937,8 @@ struct B_HashableD_i32 {
 
 
 struct B_IntegralD_i16G_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_IntegralD_i16);
@@ -1850,8 +1986,10 @@ struct B_IntegralD_i16 {
     B_Minus W_Minus;
     B_Logical W_Logical;
 };
+extern GC_word B_IntegralD_i16D_gcbm[GC_BITMAP_SIZE(struct B_IntegralD_i16)];
 struct B_MinusD_IntegralD_i16G_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_MinusD_IntegralD_i16, B_Integral);
@@ -1870,8 +2008,10 @@ struct B_MinusD_IntegralD_i16 {
     B_Rational W_Rational;
     B_Integral W_Integral;
 };
+extern GC_word B_MinusD_IntegralD_i16D_gcbm[GC_BITMAP_SIZE(struct B_MinusD_IntegralD_i16)];
 struct B_LogicalD_IntegralD_i16G_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_LogicalD_IntegralD_i16, B_Integral);
@@ -1891,8 +2031,10 @@ struct B_LogicalD_IntegralD_i16 {
     struct B_LogicalD_IntegralD_i16G_class *$class;
     B_Integral W_Integral;
 };
+extern GC_word B_LogicalD_IntegralD_i16D_gcbm[GC_BITMAP_SIZE(struct B_LogicalD_IntegralD_i16)];
 struct B_DivD_i16G_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_DivD_i16);
@@ -1907,8 +2049,10 @@ struct B_DivD_i16G_class {
 struct B_DivD_i16 {
     struct B_DivD_i16G_class *$class;
 };
+extern GC_word B_DivD_i16D_gcbm[GC_BITMAP_SIZE(struct B_DivD_i16)];
 struct B_OrdD_i16G_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_OrdD_i16);
@@ -1927,8 +2071,10 @@ struct B_OrdD_i16G_class {
 struct B_OrdD_i16 {
     struct B_OrdD_i16G_class *$class;
 };
+extern GC_word B_OrdD_i16D_gcbm[GC_BITMAP_SIZE(struct B_OrdD_i16)];
 struct B_HashableD_i16G_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_HashableD_i16);
@@ -1944,6 +2090,7 @@ struct B_HashableD_i16G_class {
 struct B_HashableD_i16 {
     struct B_HashableD_i16G_class *$class;
 };
+extern GC_word B_HashableD_i16D_gcbm[GC_BITMAP_SIZE(struct B_HashableD_i16)];
 
 
 
@@ -1952,7 +2099,8 @@ struct B_HashableD_i16 {
 
 
 struct B_IntegralD_u64G_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_IntegralD_u64);
@@ -2000,8 +2148,10 @@ struct B_IntegralD_u64 {
     B_Minus W_Minus;
     B_Logical W_Logical;
 };
+extern GC_word B_IntegralD_u64D_gcbm[GC_BITMAP_SIZE(struct B_IntegralD_u64)];
 struct B_MinusD_IntegralD_u64G_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_MinusD_IntegralD_u64, B_Integral);
@@ -2020,8 +2170,10 @@ struct B_MinusD_IntegralD_u64 {
     B_Rational W_Rational;
     B_Integral W_Integral;
 };
+extern GC_word B_MinusD_IntegralD_u64D_gcbm[GC_BITMAP_SIZE(struct B_MinusD_IntegralD_u64)];
 struct B_LogicalD_IntegralD_u64G_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_LogicalD_IntegralD_u64, B_Integral);
@@ -2041,8 +2193,10 @@ struct B_LogicalD_IntegralD_u64 {
     struct B_LogicalD_IntegralD_u64G_class *$class;
     B_Integral W_Integral;
 };
+extern GC_word B_LogicalD_IntegralD_u64D_gcbm[GC_BITMAP_SIZE(struct B_LogicalD_IntegralD_u64)];
 struct B_DivD_u64G_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_DivD_u64);
@@ -2057,8 +2211,10 @@ struct B_DivD_u64G_class {
 struct B_DivD_u64 {
     struct B_DivD_u64G_class *$class;
 };
+extern GC_word B_DivD_u64D_gcbm[GC_BITMAP_SIZE(struct B_DivD_u64)];
 struct B_OrdD_u64G_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_OrdD_u64);
@@ -2077,8 +2233,10 @@ struct B_OrdD_u64G_class {
 struct B_OrdD_u64 {
     struct B_OrdD_u64G_class *$class;
 };
+extern GC_word B_OrdD_u64D_gcbm[GC_BITMAP_SIZE(struct B_OrdD_u64)];
 struct B_HashableD_u64G_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_HashableD_u64);
@@ -2094,6 +2252,7 @@ struct B_HashableD_u64G_class {
 struct B_HashableD_u64 {
     struct B_HashableD_u64G_class *$class;
 };
+extern GC_word B_HashableD_u64D_gcbm[GC_BITMAP_SIZE(struct B_HashableD_u64)];
 
 
 
@@ -2101,7 +2260,8 @@ struct B_HashableD_u64 {
 
 
 struct B_IntegralD_u32G_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_IntegralD_u32);
@@ -2149,8 +2309,10 @@ struct B_IntegralD_u32 {
     B_Minus W_Minus;
     B_Logical W_Logical;
 };
+extern GC_word B_IntegralD_u32D_gcbm[GC_BITMAP_SIZE(struct B_IntegralD_u32)];
 struct B_MinusD_IntegralD_u32G_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_MinusD_IntegralD_u32, B_Integral);
@@ -2169,8 +2331,10 @@ struct B_MinusD_IntegralD_u32 {
     B_Rational W_Rational;
     B_Integral W_Integral;
 };
+extern GC_word B_MinusD_IntegralD_u32D_gcbm[GC_BITMAP_SIZE(struct B_MinusD_IntegralD_u32)];
 struct B_LogicalD_IntegralD_u32G_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_LogicalD_IntegralD_u32, B_Integral);
@@ -2190,8 +2354,10 @@ struct B_LogicalD_IntegralD_u32 {
     struct B_LogicalD_IntegralD_u32G_class *$class;
     B_Integral W_Integral;
 };
+extern GC_word B_LogicalD_IntegralD_u32D_gcbm[GC_BITMAP_SIZE(struct B_LogicalD_IntegralD_u32)];
 struct B_DivD_u32G_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_DivD_u32);
@@ -2206,8 +2372,10 @@ struct B_DivD_u32G_class {
 struct B_DivD_u32 {
     struct B_DivD_u32G_class *$class;
 };
+extern GC_word B_DivD_u32D_gcbm[GC_BITMAP_SIZE(struct B_DivD_u32)];
 struct B_OrdD_u32G_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_OrdD_u32);
@@ -2226,8 +2394,10 @@ struct B_OrdD_u32G_class {
 struct B_OrdD_u32 {
     struct B_OrdD_u32G_class *$class;
 };
+extern GC_word B_OrdD_u32D_gcbm[GC_BITMAP_SIZE(struct B_OrdD_u32)];
 struct B_HashableD_u32G_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_HashableD_u32);
@@ -2243,6 +2413,7 @@ struct B_HashableD_u32G_class {
 struct B_HashableD_u32 {
     struct B_HashableD_u32G_class *$class;
 };
+extern GC_word B_HashableD_u32D_gcbm[GC_BITMAP_SIZE(struct B_HashableD_u32)];
 
 
 
@@ -2250,7 +2421,8 @@ struct B_HashableD_u32 {
 
 
 struct B_IntegralD_u16G_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_IntegralD_u16);
@@ -2298,8 +2470,10 @@ struct B_IntegralD_u16 {
     B_Minus W_Minus;
     B_Logical W_Logical;
 };
+extern GC_word B_IntegralD_u16D_gcbm[GC_BITMAP_SIZE(struct B_IntegralD_u16)];
 struct B_MinusD_IntegralD_u16G_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_MinusD_IntegralD_u16, B_Integral);
@@ -2318,8 +2492,10 @@ struct B_MinusD_IntegralD_u16 {
     B_Rational W_Rational;
     B_Integral W_Integral;
 };
+extern GC_word B_MinusD_IntegralD_u16D_gcbm[GC_BITMAP_SIZE(struct B_MinusD_IntegralD_u16)];
 struct B_LogicalD_IntegralD_u16G_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_LogicalD_IntegralD_u16, B_Integral);
@@ -2339,8 +2515,10 @@ struct B_LogicalD_IntegralD_u16 {
     struct B_LogicalD_IntegralD_u16G_class *$class;
     B_Integral W_Integral;
 };
+extern GC_word B_LogicalD_IntegralD_u16D_gcbm[GC_BITMAP_SIZE(struct B_LogicalD_IntegralD_u16)];
 struct B_DivD_u16G_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_DivD_u16);
@@ -2355,8 +2533,10 @@ struct B_DivD_u16G_class {
 struct B_DivD_u16 {
     struct B_DivD_u16G_class *$class;
 };
+extern GC_word B_DivD_u16D_gcbm[GC_BITMAP_SIZE(struct B_DivD_u16)];
 struct B_OrdD_u16G_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_OrdD_u16);
@@ -2375,8 +2555,10 @@ struct B_OrdD_u16G_class {
 struct B_OrdD_u16 {
     struct B_OrdD_u16G_class *$class;
 };
+extern GC_word B_OrdD_u16D_gcbm[GC_BITMAP_SIZE(struct B_OrdD_u16)];
 struct B_HashableD_u16G_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_HashableD_u16);
@@ -2392,6 +2574,7 @@ struct B_HashableD_u16G_class {
 struct B_HashableD_u16 {
     struct B_HashableD_u16G_class *$class;
 };
+extern GC_word B_HashableD_u16D_gcbm[GC_BITMAP_SIZE(struct B_HashableD_u16)];
 
 
 
@@ -2400,7 +2583,8 @@ struct B_HashableD_u16 {
 
 
 struct B_RealFloatD_floatG_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_RealFloatD_float);
@@ -2433,8 +2617,10 @@ struct B_RealFloatD_float {
     struct B_RealFloatD_floatG_class *$class;
     B_Minus W_Minus;
 };
+extern GC_word B_RealFloatD_floatD_gcbm[GC_BITMAP_SIZE(struct B_RealFloatD_float)];
 struct B_MinusD_RealFloatD_floatG_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_MinusD_RealFloatD_float, B_RealFloat);
@@ -2452,8 +2638,10 @@ struct B_MinusD_RealFloatD_float {
     B_Real W_Real;
     B_RealFloat W_RealFloat;
 };
+extern GC_word B_MinusD_RealFloatD_floatD_gcbm[GC_BITMAP_SIZE(struct B_MinusD_RealFloatD_float)];
 struct B_DivD_floatG_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_DivD_float);
@@ -2468,8 +2656,10 @@ struct B_DivD_floatG_class {
 struct B_DivD_float {
     struct B_DivD_floatG_class *$class;
 };
+extern GC_word B_DivD_floatD_gcbm[GC_BITMAP_SIZE(struct B_DivD_float)];
 struct B_OrdD_floatG_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_OrdD_float);
@@ -2488,8 +2678,10 @@ struct B_OrdD_floatG_class {
 struct B_OrdD_float {
     struct B_OrdD_floatG_class *$class;
 };
+extern GC_word B_OrdD_floatD_gcbm[GC_BITMAP_SIZE(struct B_OrdD_float)];
 struct B_HashableD_floatG_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_HashableD_float);
@@ -2505,8 +2697,10 @@ struct B_HashableD_floatG_class {
 struct B_HashableD_float {
     struct B_HashableD_floatG_class *$class;
 };
+extern GC_word B_HashableD_floatD_gcbm[GC_BITMAP_SIZE(struct B_HashableD_float)];
 struct B_NumberD_complexG_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_NumberD_complex);
@@ -2534,8 +2728,10 @@ struct B_NumberD_complex {
     struct B_NumberD_complexG_class *$class;
     B_Minus W_Minus;
 };
+extern GC_word B_NumberD_complexD_gcbm[GC_BITMAP_SIZE(struct B_NumberD_complex)];
 struct B_MinusD_NumberD_complexG_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_MinusD_NumberD_complex, B_Number);
@@ -2551,8 +2747,10 @@ struct B_MinusD_NumberD_complex {
     struct B_MinusD_NumberD_complexG_class *$class;
     B_Number W_Number;
 };
+extern GC_word B_MinusD_NumberD_complexD_gcbm[GC_BITMAP_SIZE(struct B_MinusD_NumberD_complex)];
 struct B_DivD_complexG_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_DivD_complex);
@@ -2567,8 +2765,10 @@ struct B_DivD_complexG_class {
 struct B_DivD_complex {
     struct B_DivD_complexG_class *$class;
 };
+extern GC_word B_DivD_complexD_gcbm[GC_BITMAP_SIZE(struct B_DivD_complex)];
 struct B_EqD_complexG_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_EqD_complex);
@@ -2583,8 +2783,10 @@ struct B_EqD_complexG_class {
 struct B_EqD_complex {
     struct B_EqD_complexG_class *$class;
 };
+extern GC_word B_EqD_complexD_gcbm[GC_BITMAP_SIZE(struct B_EqD_complex)];
 struct B_HashableD_complexG_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_HashableD_complex);
@@ -2600,8 +2802,10 @@ struct B_HashableD_complexG_class {
 struct B_HashableD_complex {
     struct B_HashableD_complexG_class *$class;
 };
+extern GC_word B_HashableD_complexD_gcbm[GC_BITMAP_SIZE(struct B_HashableD_complex)];
 struct B_IndexedG_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_Indexed, B_Eq);
@@ -2618,8 +2822,10 @@ struct B_Indexed {
     struct B_IndexedG_class *$class;
     B_Eq W_EqD_AD_Indexed;
 };
+extern GC_word B_IndexedD_gcbm[GC_BITMAP_SIZE(struct B_Indexed)];
 struct B_SliceableG_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_Sliceable);
@@ -2639,8 +2845,10 @@ struct B_Sliceable {
     struct B_SliceableG_class *$class;
     B_Eq W_EqD_AD_Indexed;
 };
+extern GC_word B_SliceableD_gcbm[GC_BITMAP_SIZE(struct B_Sliceable)];
 struct B_CollectionG_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_Collection);
@@ -2656,8 +2864,10 @@ struct B_CollectionG_class {
 struct B_Collection {
     struct B_CollectionG_class *$class;
 };
+extern GC_word B_CollectionD_gcbm[GC_BITMAP_SIZE(struct B_Collection)];
 struct B_ContainerG_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_Container, B_Eq);
@@ -2676,8 +2886,10 @@ struct B_Container {
     struct B_ContainerG_class *$class;
     B_Eq W_EqD_AD_Container;
 };
+extern GC_word B_ContainerD_gcbm[GC_BITMAP_SIZE(struct B_Container)];
 struct B_SequenceG_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_Sequence, B_Collection, B_Times);
@@ -2703,8 +2915,10 @@ struct B_Sequence {
     B_Collection W_Collection;
     B_Times W_Times;
 };
+extern GC_word B_SequenceD_gcbm[GC_BITMAP_SIZE(struct B_Sequence)];
 struct B_CollectionD_SequenceG_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_CollectionD_Sequence, B_Sequence);
@@ -2721,8 +2935,10 @@ struct B_CollectionD_Sequence {
     struct B_CollectionD_SequenceG_class *$class;
     B_Sequence W_Sequence;
 };
+extern GC_word B_CollectionD_SequenceD_gcbm[GC_BITMAP_SIZE(struct B_CollectionD_Sequence)];
 struct B_TimesD_SequenceG_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_TimesD_Sequence, B_Sequence);
@@ -2740,8 +2956,10 @@ struct B_TimesD_Sequence {
     struct B_TimesD_SequenceG_class *$class;
     B_Sequence W_Sequence;
 };
+extern GC_word B_TimesD_SequenceD_gcbm[GC_BITMAP_SIZE(struct B_TimesD_Sequence)];
 struct B_MappingG_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_Mapping, B_Eq, B_Indexed);
@@ -2769,8 +2987,10 @@ struct B_Mapping {
     B_Eq W_EqD_AD_Mapping;
     B_Indexed W_Indexed;
 };
+extern GC_word B_MappingD_gcbm[GC_BITMAP_SIZE(struct B_Mapping)];
 struct B_IndexedD_MappingG_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_IndexedD_Mapping, B_Eq, B_Mapping);
@@ -2789,8 +3009,10 @@ struct B_IndexedD_Mapping {
     B_Eq W_EqD_AD_Mapping;
     B_Mapping W_Mapping;
 };
+extern GC_word B_IndexedD_MappingD_gcbm[GC_BITMAP_SIZE(struct B_IndexedD_Mapping)];
 struct B_SetG_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_Set, B_Eq, B_Ord, B_Logical, B_Minus);
@@ -2817,8 +3039,10 @@ struct B_Set {
     B_Logical W_Logical;
     B_Minus W_Minus;
 };
+extern GC_word B_SetD_gcbm[GC_BITMAP_SIZE(struct B_Set)];
 struct B_OrdD_SetG_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_OrdD_Set, B_Eq, B_Set);
@@ -2839,8 +3063,10 @@ struct B_OrdD_Set {
     B_Eq W_EqD_AD_Set;
     B_Set W_Set;
 };
+extern GC_word B_OrdD_SetD_gcbm[GC_BITMAP_SIZE(struct B_OrdD_Set)];
 struct B_LogicalD_SetG_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_LogicalD_Set, B_Eq, B_Set);
@@ -2861,8 +3087,10 @@ struct B_LogicalD_Set {
     B_Eq W_EqD_AD_Set;
     B_Set W_Set;
 };
+extern GC_word B_LogicalD_SetD_gcbm[GC_BITMAP_SIZE(struct B_LogicalD_Set)];
 struct B_MinusD_SetG_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_MinusD_Set, B_Eq, B_Set);
@@ -2879,8 +3107,10 @@ struct B_MinusD_Set {
     B_Eq W_EqD_AD_Set;
     B_Set W_Set;
 };
+extern GC_word B_MinusD_SetD_gcbm[GC_BITMAP_SIZE(struct B_MinusD_Set)];
 struct B_SequenceD_listG_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_SequenceD_list);
@@ -2906,8 +3136,10 @@ struct B_SequenceD_list {
     B_Collection W_Collection;
     B_Times W_Times;
 };
+extern GC_word B_SequenceD_listD_gcbm[GC_BITMAP_SIZE(struct B_SequenceD_list)];
 struct B_CollectionD_SequenceD_listG_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_CollectionD_SequenceD_list, B_Sequence);
@@ -2924,8 +3156,10 @@ struct B_CollectionD_SequenceD_list {
     struct B_CollectionD_SequenceD_listG_class *$class;
     B_Sequence W_Sequence;
 };
+extern GC_word B_CollectionD_SequenceD_listD_gcbm[GC_BITMAP_SIZE(struct B_CollectionD_SequenceD_list)];
 struct B_TimesD_SequenceD_listG_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_TimesD_SequenceD_list, B_Sequence);
@@ -2943,8 +3177,10 @@ struct B_TimesD_SequenceD_list {
     struct B_TimesD_SequenceD_listG_class *$class;
     B_Sequence W_Sequence;
 };
+extern GC_word B_TimesD_SequenceD_listD_gcbm[GC_BITMAP_SIZE(struct B_TimesD_SequenceD_list)];
 struct B_ContainerD_listG_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_ContainerD_list, B_Eq);
@@ -2964,8 +3200,10 @@ struct B_ContainerD_list {
     B_Eq W_EqD_AD_Container;
     B_Eq W_EqD_AD_ContainerD_list;
 };
+extern GC_word B_ContainerD_listD_gcbm[GC_BITMAP_SIZE(struct B_ContainerD_list)];
 struct B_OrdD_listG_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_OrdD_list, B_Ord);
@@ -2985,8 +3223,10 @@ struct B_OrdD_list {
     struct B_OrdD_listG_class *$class;
     B_Ord W_OrdD_AD_OrdD_list;
 };
+extern GC_word B_OrdD_listD_gcbm[GC_BITMAP_SIZE(struct B_OrdD_list)];
 struct B_MappingD_dictG_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_MappingD_dict, B_Hashable);
@@ -3015,8 +3255,10 @@ struct B_MappingD_dict {
     B_Indexed W_Indexed;
     B_Hashable W_HashableD_AD_MappingD_dict;
 };
+extern GC_word B_MappingD_dictD_gcbm[GC_BITMAP_SIZE(struct B_MappingD_dict)];
 struct B_IndexedD_MappingD_dictG_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_IndexedD_MappingD_dict, B_Hashable, B_Mapping);
@@ -3036,8 +3278,10 @@ struct B_IndexedD_MappingD_dict {
     B_Mapping W_Mapping;
     B_Hashable W_HashableD_AD_MappingD_dict;
 };
+extern GC_word B_IndexedD_MappingD_dictD_gcbm[GC_BITMAP_SIZE(struct B_IndexedD_MappingD_dict)];
 struct B_OrdD_dictG_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_OrdD_dict, B_Hashable, B_Eq);
@@ -3058,8 +3302,10 @@ struct B_OrdD_dict {
     B_Hashable W_HashableD_AD_OrdD_dict;
     B_Eq W_EqD_BD_OrdD_dict;
 };
+extern GC_word B_OrdD_dictD_gcbm[GC_BITMAP_SIZE(struct B_OrdD_dict)];
 struct B_SetD_setG_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_SetD_set, B_Hashable);
@@ -3087,8 +3333,10 @@ struct B_SetD_set {
     B_Minus W_Minus;
     B_Hashable W_HashableD_AD_SetD_set;
 };
+extern GC_word B_SetD_setD_gcbm[GC_BITMAP_SIZE(struct B_SetD_set)];
 struct B_OrdD_SetD_setG_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_OrdD_SetD_set, B_Hashable, B_Set);
@@ -3110,8 +3358,10 @@ struct B_OrdD_SetD_set {
     B_Set W_Set;
     B_Hashable W_HashableD_AD_SetD_set;
 };
+extern GC_word B_OrdD_SetD_setD_gcbm[GC_BITMAP_SIZE(struct B_OrdD_SetD_set)];
 struct B_LogicalD_SetD_setG_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_LogicalD_SetD_set, B_Hashable, B_Set);
@@ -3133,8 +3383,10 @@ struct B_LogicalD_SetD_set {
     B_Set W_Set;
     B_Hashable W_HashableD_AD_SetD_set;
 };
+extern GC_word B_LogicalD_SetD_setD_gcbm[GC_BITMAP_SIZE(struct B_LogicalD_SetD_set)];
 struct B_MinusD_SetD_setG_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_MinusD_SetD_set, B_Hashable, B_Set);
@@ -3152,8 +3404,10 @@ struct B_MinusD_SetD_set {
     B_Set W_Set;
     B_Hashable W_HashableD_AD_SetD_set;
 };
+extern GC_word B_MinusD_SetD_setD_gcbm[GC_BITMAP_SIZE(struct B_MinusD_SetD_set)];
 struct B_IterableD_IteratorG_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_IterableD_Iterator);
@@ -3167,8 +3421,10 @@ struct B_IterableD_IteratorG_class {
 struct B_IterableD_Iterator {
     struct B_IterableD_IteratorG_class *$class;
 };
+extern GC_word B_IterableD_IteratorD_gcbm[GC_BITMAP_SIZE(struct B_IterableD_Iterator)];
 struct B_IterableD_rangeG_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_IterableD_range);
@@ -3182,8 +3438,10 @@ struct B_IterableD_rangeG_class {
 struct B_IterableD_range {
     struct B_IterableD_rangeG_class *$class;
 };
+extern GC_word B_IterableD_rangeD_gcbm[GC_BITMAP_SIZE(struct B_IterableD_range)];
 struct B_OrdD_strG_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_OrdD_str);
@@ -3202,8 +3460,10 @@ struct B_OrdD_strG_class {
 struct B_OrdD_str {
     struct B_OrdD_strG_class *$class;
 };
+extern GC_word B_OrdD_strD_gcbm[GC_BITMAP_SIZE(struct B_OrdD_str)];
 struct B_ContainerD_strG_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_ContainerD_str);
@@ -3222,8 +3482,10 @@ struct B_ContainerD_str {
     struct B_ContainerD_strG_class *$class;
     B_Eq W_EqD_AD_Container;
 };
+extern GC_word B_ContainerD_strD_gcbm[GC_BITMAP_SIZE(struct B_ContainerD_str)];
 struct B_SliceableD_strG_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_SliceableD_str);
@@ -3243,8 +3505,10 @@ struct B_SliceableD_str {
     struct B_SliceableD_strG_class *$class;
     B_Eq W_EqD_AD_Indexed;
 };
+extern GC_word B_SliceableD_strD_gcbm[GC_BITMAP_SIZE(struct B_SliceableD_str)];
 struct B_TimesD_strG_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_TimesD_str);
@@ -3261,8 +3525,10 @@ struct B_TimesD_strG_class {
 struct B_TimesD_str {
     struct B_TimesD_strG_class *$class;
 };
+extern GC_word B_TimesD_strD_gcbm[GC_BITMAP_SIZE(struct B_TimesD_str)];
 struct B_HashableD_strG_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_HashableD_str);
@@ -3278,8 +3544,10 @@ struct B_HashableD_strG_class {
 struct B_HashableD_str {
     struct B_HashableD_strG_class *$class;
 };
+extern GC_word B_HashableD_strD_gcbm[GC_BITMAP_SIZE(struct B_HashableD_str)];
 struct B_OrdD_bytearrayG_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_OrdD_bytearray);
@@ -3298,8 +3566,10 @@ struct B_OrdD_bytearrayG_class {
 struct B_OrdD_bytearray {
     struct B_OrdD_bytearrayG_class *$class;
 };
+extern GC_word B_OrdD_bytearrayD_gcbm[GC_BITMAP_SIZE(struct B_OrdD_bytearray)];
 struct B_SequenceD_bytearrayG_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_SequenceD_bytearray);
@@ -3325,8 +3595,10 @@ struct B_SequenceD_bytearray {
     B_Collection W_Collection;
     B_Times W_Times;
 };
+extern GC_word B_SequenceD_bytearrayD_gcbm[GC_BITMAP_SIZE(struct B_SequenceD_bytearray)];
 struct B_CollectionD_SequenceD_bytearrayG_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_CollectionD_SequenceD_bytearray, B_Sequence);
@@ -3343,8 +3615,10 @@ struct B_CollectionD_SequenceD_bytearray {
     struct B_CollectionD_SequenceD_bytearrayG_class *$class;
     B_Sequence W_Sequence;
 };
+extern GC_word B_CollectionD_SequenceD_bytearrayD_gcbm[GC_BITMAP_SIZE(struct B_CollectionD_SequenceD_bytearray)];
 struct B_TimesD_SequenceD_bytearrayG_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_TimesD_SequenceD_bytearray, B_Sequence);
@@ -3362,8 +3636,10 @@ struct B_TimesD_SequenceD_bytearray {
     struct B_TimesD_SequenceD_bytearrayG_class *$class;
     B_Sequence W_Sequence;
 };
+extern GC_word B_TimesD_SequenceD_bytearrayD_gcbm[GC_BITMAP_SIZE(struct B_TimesD_SequenceD_bytearray)];
 struct B_ContainerD_bytearrayG_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_ContainerD_bytearray);
@@ -3382,8 +3658,10 @@ struct B_ContainerD_bytearray {
     struct B_ContainerD_bytearrayG_class *$class;
     B_Eq W_EqD_AD_Container;
 };
+extern GC_word B_ContainerD_bytearrayD_gcbm[GC_BITMAP_SIZE(struct B_ContainerD_bytearray)];
 struct B_OrdD_bytesG_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_OrdD_bytes);
@@ -3402,8 +3680,10 @@ struct B_OrdD_bytesG_class {
 struct B_OrdD_bytes {
     struct B_OrdD_bytesG_class *$class;
 };
+extern GC_word B_OrdD_bytesD_gcbm[GC_BITMAP_SIZE(struct B_OrdD_bytes)];
 struct B_SliceableD_bytesG_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_SliceableD_bytes);
@@ -3423,8 +3703,10 @@ struct B_SliceableD_bytes {
     struct B_SliceableD_bytesG_class *$class;
     B_Eq W_EqD_AD_Indexed;
 };
+extern GC_word B_SliceableD_bytesD_gcbm[GC_BITMAP_SIZE(struct B_SliceableD_bytes)];
 struct B_ContainerD_bytesG_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_ContainerD_bytes);
@@ -3443,8 +3725,10 @@ struct B_ContainerD_bytes {
     struct B_ContainerD_bytesG_class *$class;
     B_Eq W_EqD_AD_Container;
 };
+extern GC_word B_ContainerD_bytesD_gcbm[GC_BITMAP_SIZE(struct B_ContainerD_bytes)];
 struct B_TimesD_bytesG_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_TimesD_bytes);
@@ -3461,8 +3745,10 @@ struct B_TimesD_bytesG_class {
 struct B_TimesD_bytes {
     struct B_TimesD_bytesG_class *$class;
 };
+extern GC_word B_TimesD_bytesD_gcbm[GC_BITMAP_SIZE(struct B_TimesD_bytes)];
 struct B_HashableD_bytesG_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_HashableD_bytes);
@@ -3478,6 +3764,7 @@ struct B_HashableD_bytesG_class {
 struct B_HashableD_bytes {
     struct B_HashableD_bytesG_class *$class;
 };
+extern GC_word B_HashableD_bytesD_gcbm[GC_BITMAP_SIZE(struct B_HashableD_bytes)];
 extern struct B_valueG_class B_valueG_methods;
 B_value B_valueG_new();
 extern struct B_objectG_class B_objectG_methods;
@@ -3795,7 +4082,8 @@ typedef struct B_L_6proc *B_L_6proc;
 typedef struct B_WorldAuth *B_WorldAuth;
 typedef struct B_Env *B_Env;
 struct B_L_1procG_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_L_1proc, B_Env, B_str);
@@ -3812,8 +4100,10 @@ struct B_L_1proc {
     B_Env self;
     B_str s;
 };
+extern GC_word B_L_1procD_gcbm[GC_BITMAP_SIZE(struct B_L_1proc)];
 struct B_L_2procG_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_L_2proc, B_Env, $action);
@@ -3830,8 +4120,10 @@ struct B_L_2proc {
     B_Env self;
     $action cb;
 };
+extern GC_word B_L_2procD_gcbm[GC_BITMAP_SIZE(struct B_L_2proc)];
 struct B_L_3procG_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_L_3proc, B_Env, B_int);
@@ -3848,9 +4140,11 @@ struct B_L_3proc {
     B_Env self;
     B_int n;
 };
+extern GC_word B_L_3procD_gcbm[GC_BITMAP_SIZE(struct B_L_3proc)];
 $R B_L_4C_1cont (B_Env, $Cont, B_NoneType);
 struct B_L_5ContG_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_L_5Cont, B_Env, $Cont);
@@ -3866,8 +4160,10 @@ struct B_L_5Cont {
     B_Env G_act;
     $Cont C_cont;
 };
+extern GC_word B_L_5ContD_gcbm[GC_BITMAP_SIZE(struct B_L_5Cont)];
 struct B_L_6procG_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_L_6proc, B_Env, B_WorldAuth, B_list);
@@ -3885,8 +4181,10 @@ struct B_L_6proc {
     B_WorldAuth token;
     B_list args;
 };
+extern GC_word B_L_6procD_gcbm[GC_BITMAP_SIZE(struct B_L_6proc)];
 struct B_WorldAuthG_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_WorldAuth);
@@ -3899,8 +4197,10 @@ struct B_WorldAuthG_class {
 struct B_WorldAuth {
     struct B_WorldAuthG_class *$class;
 };
+extern GC_word B_WorldAuthD_gcbm[GC_BITMAP_SIZE(struct B_WorldAuth)];
 struct B_EnvG_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     $R (*__init__) (B_Env, $Cont, B_WorldAuth, B_list);
@@ -3933,6 +4233,7 @@ struct B_Env {
     B_WorldAuth auth;
     B_list argv;
 };
+extern GC_word B_EnvD_gcbm[GC_BITMAP_SIZE(struct B_Env)];
 $R B_EnvG_newact ($Cont, B_WorldAuth, B_list);
 extern struct B_L_1procG_class B_L_1procG_methods;
 B_L_1proc B_L_1procG_new(B_Env, B_str);

@@ -476,6 +476,7 @@ struct B_DivD_int B_DivD_int_instance;
 struct B_HashableD_int B_HashableD_int_instance;
 /*
 struct B_IntegralD_intG_class B_IntegralD_intG_methods = {
+    0,
     "B_IntegralD_int",
     UNASSIGNED,
     ($SuperG_class)&B_IntegralG_methods,
@@ -545,6 +546,7 @@ struct B_LogicalD_IntegralD_int B_LogicalD_IntegralD_int_instance = {&B_LogicalD
 B_LogicalD_IntegralD_int B_LogicalD_IntegralD_intG_witness = &B_LogicalD_IntegralD_int_instance;
 /*
 struct B_MinusD_IntegralD_intG_class B_MinusD_IntegralD_intG_methods = {
+    0,
     "B_MinusD_IntegralD_int",
     UNASSIGNED,
     ($SuperG_class)&B_MinusG_methods,
@@ -562,6 +564,7 @@ struct B_MinusD_IntegralD_int B_MinusD_IntegralD_int_instance = {&B_MinusD_Integ
 B_MinusD_IntegralD_int B_MinusD_IntegralD_intG_witness = &B_MinusD_IntegralD_int_instance;
 /*
 struct B_OrdD_intG_class B_OrdD_intG_methods = {
+    0,
     "B_OrdD_int",
     UNASSIGNED,
     ($SuperG_class)&B_OrdG_methods,
@@ -583,6 +586,7 @@ struct B_OrdD_int B_OrdD_int_instance = {&B_OrdD_intG_methods};
 B_OrdD_int B_OrdD_intG_witness = &B_OrdD_int_instance;
 /*
 struct B_DivD_intG_class B_DivD_intG_methods = {
+    0,
     "B_DivD_int",
     UNASSIGNED,
     ($SuperG_class)&B_DivG_methods,
@@ -600,6 +604,7 @@ struct B_DivD_int B_DivD_int_instance = {&B_DivD_intG_methods};
 B_DivD_int B_DivD_intG_witness = &B_DivD_int_instance;
 /*
 struct B_HashableD_intG_class B_HashableD_intG_methods = {
+    0,
     "B_HashableD_int",
     UNASSIGNED,
     ($SuperG_class)&B_HashableG_methods,

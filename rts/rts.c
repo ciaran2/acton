@@ -230,7 +230,7 @@ pthread_cond_t rts_exit_signal = PTHREAD_COND_INITIALIZER;
 void pin_actor_affinity() {
     $Actor a = ($Actor)pthread_getspecific(self_key);
     int i = (int)pthread_getspecific(pkey_wtid);
-    log_debug("Pinning affinity for %s actor %ld to current WT %d", a->$class->$GCINFO, a->$globkey, i);
+    log_debug("Pinning affinity for %s actor %ld to current WT %d", a->$class->$name, a->$globkey, i);
     a->$affinity = i;
 }
 
@@ -348,7 +348,7 @@ void $ActorD___init__($Actor a) {
     atomic_flag_clear(&a->B_Msg_lock);
     a->$globkey = get_next_key();
     a->$affinity = 0;
-    rtsd_printf("# New Actor %ld at %p of class %s", a->$globkey, a, a->$class->$GCINFO);
+    rtsd_printf("# New Actor %ld at %p of class %s", a->$globkey, a, a->$class->$name);
 }
 
 B_bool $ActorD___bool__($Actor self) {
@@ -357,7 +357,7 @@ B_bool $ActorD___bool__($Actor self) {
 
 B_str $ActorD___str__($Actor self) {
   char *s;
-  asprintf(&s,"<$Actor %ld %s at %p>", self->$globkey, self->$class->$GCINFO, self);
+  asprintf(&s,"<$Actor %ld %s at %p>", self->$globkey, self->$class->$name, self);
   return to$str(s);
 }
 
@@ -463,6 +463,7 @@ $Cont $CONSTCONT($WORD val, $Cont cont){
 ////////////////////////////////////////////////////////////////////////////////////////
 
 struct B_MsgG_class B_MsgG_methods = {
+    0,
     MSG_HEADER,
     UNASSIGNED,
     NULL,
@@ -475,6 +476,7 @@ struct B_MsgG_class B_MsgG_methods = {
 };
 
 struct $ActorG_class $ActorG_methods = {
+    0,
     ACTOR_HEADER,
     UNASSIGNED,
     NULL,
@@ -488,6 +490,7 @@ struct $ActorG_class $ActorG_methods = {
 };
 
 struct $CatcherG_class $CatcherG_methods = {
+    0,
     CATCHER_HEADER,
     UNASSIGNED,
     NULL,
@@ -500,6 +503,7 @@ struct $CatcherG_class $CatcherG_methods = {
 };
 
 struct $ConstContG_class $ConstContG_methods = {
+    0,
     "$ConstCont",
     UNASSIGNED,
     NULL,
@@ -703,6 +707,7 @@ $Cont $Done__deserialize__($Cont self, $Serial$state state) {
 }
 
 struct $ContG_class $DoneG_methods = {
+    0,
     "$Done",
     UNASSIGNED,
     NULL,
@@ -743,6 +748,7 @@ $Cont $Fail__deserialize__($Cont self, $Serial$state state) {
 }
 
 struct $ContG_class $FailG_methods = {
+    0,
     "$Fail",
     UNASSIGNED,
     NULL,
@@ -764,6 +770,7 @@ $R $InitRootD___call__ ($Cont $this, $WORD val) {
 }
 
 struct $ContG_class $InitRootG_methods = {
+    0,
     "$InitRoot",
     UNASSIGNED,
     NULL,
@@ -1163,7 +1170,7 @@ void deserialize_system(snode_t *actors_start) {
             B_Msg msg = (B_Msg)$GET_METHODS(head->class_id)->__deserialize__(NULL, NULL);
             msg->$globkey = key;
             B_dictD_setitem(globdict, (B_Hashable)B_HashableD_intG_witness, to$int(key), msg);
-            rtsd_printf("# Allocated Msg %p = %ld of class %s = %d", msg, msg->$globkey, msg->$class->$GCINFO, msg->$class->$class_id);
+            rtsd_printf("# Allocated Msg %p = %ld of class %s = %d", msg, msg->$globkey, msg->$class->$name, msg->$class->$class_id);
             if (key < min_key)
                 min_key = key;
         }
@@ -1180,7 +1187,7 @@ void deserialize_system(snode_t *actors_start) {
             $Actor act = ($Actor)$GET_METHODS(head->class_id)->__deserialize__(NULL, NULL);
             act->$globkey = key;
             B_dictD_setitem(globdict, (B_Hashable)B_HashableD_intG_witness, to$int(key), act);
-            rtsd_printf("# Allocated Actor %p = %ld of class %s = %d", act, act->$globkey, act->$class->$GCINFO, act->$class->$class_id);
+            rtsd_printf("# Allocated Actor %p = %ld of class %s = %d", act, act->$globkey, act->$class->$name, act->$class->$class_id);
             if (key < min_key)
                 min_key = key;
         }
@@ -1198,7 +1205,7 @@ void deserialize_system(snode_t *actors_start) {
             int blob_size = r2->last_blob_size;
             $ROW row = extract_row(blob, blob_size);
             B_Msg msg = (B_Msg)B_dictD_get(globdict, (B_Hashable)B_HashableD_intG_witness, to$int(key), NULL);
-            rtsd_printf("####### Deserializing msg %p = %ld of class %s = %d", msg, msg->$globkey, msg->$class->$GCINFO, msg->$class->$class_id);
+            rtsd_printf("####### Deserializing msg %p = %ld of class %s = %d", msg, msg->$globkey, msg->$class->$name, msg->$class->$class_id);
             print_rows(row);
             $glob_deserialize(($Serializable)msg, row, try_globdict);
             print_msg(msg);
@@ -1215,7 +1222,7 @@ void deserialize_system(snode_t *actors_start) {
             int blob_size = r2->last_blob_size;
             $ROW row = extract_row(blob, blob_size);
             $Actor act = ($Actor)B_dictD_get(globdict, (B_Hashable)B_HashableD_intG_witness, to$int(key), NULL);
-            rtsd_printf("####### Deserializing actor %p = %ld of class %s = %d", act, act->$globkey, act->$class->$GCINFO, act->$class->$class_id);
+            rtsd_printf("####### Deserializing actor %p = %ld of class %s = %d", act, act->$globkey, act->$class->$name, act->$class->$class_id);
             print_rows(row);
             $glob_deserialize(($Serializable)act, row, try_globdict);
 
@@ -1252,7 +1259,7 @@ void deserialize_system(snode_t *actors_start) {
         db_row_t* r = (db_row_t*) node->value;
         long key = (long)r->key;
         $Actor act = ($Actor)B_dictD_get(globdict, (B_Hashable)B_HashableD_intG_witness, to$int(key), NULL);
-        rtsd_printf("####### Resuming actor %p = %ld of class %s = %d", act, act->$globkey, act->$class->$GCINFO, act->$class->$class_id);
+        rtsd_printf("####### Resuming actor %p = %ld of class %s = %d", act, act->$globkey, act->$class->$name, act->$class->$class_id);
         act->$class->__resume__(act);
     }
 
@@ -1526,7 +1533,7 @@ void wt_work_cb(uv_check_t *ev) {
         clock_gettime(CLOCK_MONOTONIC, &ts1);
         wt_stats[wtid].state = WT_Working;
 
-        rtsd_printf("## Running actor %ld : %s", current->$globkey, current->$class->$GCINFO);
+        rtsd_printf("## Running actor %ld : %s", current->$globkey, current->$class->$name);
         $R r = cont->$class->__call__(cont, val);
 
         clock_gettime(CLOCK_MONOTONIC, &ts2);
@@ -1557,10 +1564,10 @@ void wt_work_cb(uv_check_t *ev) {
                 b->$waitsfor = NULL;
                 $Actor c = b->$next;
                 ENQ_ready(b);
-                rtsd_printf("## Waking up actor %ld : %s", b->$globkey, b->$class->$GCINFO);
+                rtsd_printf("## Waking up actor %ld : %s", b->$globkey, b->$class->$name);
                 b = c;
             }
-            rtsd_printf("## DONE actor %ld : %s", current->$globkey, current->$class->$GCINFO);
+            rtsd_printf("## DONE actor %ld : %s", current->$globkey, current->$class->$name);
             if (DEQ_msg(current)) {
                 ENQ_ready(current);
             }
@@ -1569,7 +1576,7 @@ void wt_work_cb(uv_check_t *ev) {
         case $RCONT: {
             m->$cont = r.cont;
             m->B_value = r.value;
-            rtsd_printf("## CONT actor %ld : %s", current->$globkey, current->$class->$GCINFO);
+            rtsd_printf("## CONT actor %ld : %s", current->$globkey, current->$class->$name);
             ENQ_ready(current);
             break;
         }
@@ -1578,7 +1585,7 @@ void wt_work_cb(uv_check_t *ev) {
             if (c) {                            // Normal exception handling
                 m->$cont = c->$cont;
                 m->B_value = r.value;
-                rtsd_printf("## FAIL/handle actor %ld : %s", current->$globkey, current->$class->$GCINFO);
+                rtsd_printf("## FAIL/handle actor %ld : %s", current->$globkey, current->$class->$name);
                 ENQ_ready(current);
             } else {                            // An unhandled exception
                 save_actor_state(current, m);
@@ -1590,10 +1597,10 @@ void wt_work_cb(uv_check_t *ev) {
                     b->$waitsfor = NULL;
                     $Actor c = b->$next;
                     ENQ_ready(b);
-                    rtsd_printf("## Propagating exception to actor %ld : %s", b->$globkey, b->$class->$GCINFO);
+                    rtsd_printf("## Propagating exception to actor %ld : %s", b->$globkey, b->$class->$name);
                     b = c;
                 }
-                rtsd_printf("## FAIL actor %ld : %s", current->$globkey, current->$class->$GCINFO);
+                rtsd_printf("## FAIL actor %ld : %s", current->$globkey, current->$class->$name);
                 if (DEQ_msg(current)) {
                     ENQ_ready(current);
                 }
@@ -1626,15 +1633,15 @@ void wt_work_cb(uv_check_t *ev) {
             m->$cont = r.cont;
             B_Msg x = (B_Msg)r.value;
             if (ADD_waiting(current, x)) {      // x->cont is a proper $Cont: x is still being processed so current was added to x->waiting
-                rtsd_printf("## AWAIT actor %ld : %s", current->$globkey, current->$class->$GCINFO);
+                rtsd_printf("## AWAIT actor %ld : %s", current->$globkey, current->$class->$name);
                 current->$waitsfor = x;
             } else if (EXCEPTIONAL(x)) {        // x->cont == MARK_EXCEPTION: x->value holds the raised exception, current is not in x->waiting
-                rtsd_printf("## AWAIT/fail actor %ld : %s", current->$globkey, current->$class->$GCINFO);
+                rtsd_printf("## AWAIT/fail actor %ld : %s", current->$globkey, current->$class->$name);
                 m->$cont = &$Fail$instance;
                 m->B_value = x->B_value;
                 ENQ_ready(current);
             } else {                            // x->cont == MARK_RESULT: x->value holds the final response, current is not in x->waiting
-                rtsd_printf("## AWAIT/wakeup actor %ld : %s", current->$globkey, current->$class->$GCINFO);
+                rtsd_printf("## AWAIT/wakeup actor %ld : %s", current->$globkey, current->$class->$name);
                 m->B_value = x->B_value;
                 ENQ_ready(current);
             }

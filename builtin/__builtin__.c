@@ -1,3 +1,4 @@
+#include "gc/gc_typed.h"
 /*
 Building project in /Users/sydow/acton/builtin/ty
   Compiling __builtin__.act for release in stub mode
@@ -15,7 +16,7 @@ void B_valueD___serialize__ (B_value self, $Serial$state state) {
 B_value B_valueD___deserialize__ (B_value self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct B_value));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_value), B_valueG_methods.$GCdescr);
             self->$class = &B_valueG_methods;
             return self;
         }
@@ -24,18 +25,19 @@ B_value B_valueD___deserialize__ (B_value self, $Serial$state state) {
     return self;
 }
 B_value B_valueG_new() {
-    B_value $tmp = malloc(sizeof(struct B_value));
+    B_value $tmp = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_value), B_valueG_methods.$GCdescr);
     $tmp->$class = &B_valueG_methods;
     B_valueG_methods.__init__($tmp);
     return $tmp;
 }
 struct B_valueG_class B_valueG_methods;
+GC_word B_valueD_gcbm[GC_BITMAP_SIZE(struct B_value)];
 void B_objectD___serialize__ (B_object self, $Serial$state state) {
 }
 B_object B_objectD___deserialize__ (B_object self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct B_object));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_object), B_objectG_methods.$GCdescr);
             self->$class = &B_objectG_methods;
             return self;
         }
@@ -44,18 +46,19 @@ B_object B_objectD___deserialize__ (B_object self, $Serial$state state) {
     return self;
 }
 B_object B_objectG_new() {
-    B_object $tmp = malloc(sizeof(struct B_object));
+    B_object $tmp = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_object), B_objectG_methods.$GCdescr);
     $tmp->$class = &B_objectG_methods;
     B_objectG_methods.__init__($tmp);
     return $tmp;
 }
 struct B_objectG_class B_objectG_methods;
+GC_word B_objectD_gcbm[GC_BITMAP_SIZE(struct B_object)];
 void B_atomD___serialize__ (B_atom self, $Serial$state state) {
 }
 B_atom B_atomD___deserialize__ (B_atom self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct B_atom));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_atom), B_atomG_methods.$GCdescr);
             self->$class = &B_atomG_methods;
             return self;
         }
@@ -65,13 +68,14 @@ B_atom B_atomD___deserialize__ (B_atom self, $Serial$state state) {
 }
 /*
 B_atom B_atomG_new() {
-    B_atom $tmp = malloc(sizeof(struct B_atom));
+    B_atom $tmp = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_atom), B_atomG_methods.$GCdescr);
     $tmp->$class = &B_atomG_methods;
     B_atomG_methods.__init__($tmp);
     return $tmp;
 }
 */
 struct B_atomG_class B_atomG_methods;
+GC_word B_atomD_gcbm[GC_BITMAP_SIZE(struct B_atom)];
 /*
 B_NoneType B_intD___init__ (B_int self, B_atom val);
 void B_intD___serialize__ (B_int self, $Serial$state state) {
@@ -79,7 +83,7 @@ void B_intD___serialize__ (B_int self, $Serial$state state) {
 B_int B_intD___deserialize__ (B_int self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct B_int));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_int), B_intG_methods.$GCdescr);
             self->$class = &B_intG_methods;
             return self;
         }
@@ -88,13 +92,14 @@ B_int B_intD___deserialize__ (B_int self, $Serial$state state) {
     return self;
 }
 B_int B_intG_new(B_atom G_1) {
-    B_int $tmp = malloc(sizeof(struct B_int));
+    B_int $tmp = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_int), B_intG_methods.$GCdescr);
     $tmp->$class = &B_intG_methods;
     B_intG_methods.__init__($tmp, G_1);
     return $tmp;
 }
 */
 struct B_intG_class B_intG_methods;
+GC_word B_intD_gcbm[GC_BITMAP_SIZE(struct B_int)];
 /*
 B_NoneType B_i64D___init__ (B_i64 self, B_atom val);
 void B_i64D___serialize__ (B_i64 self, $Serial$state state){
@@ -102,7 +107,7 @@ void B_i64D___serialize__ (B_i64 self, $Serial$state state){
 B_i64 B_i64D___deserialize__ (B_i64 self, $Serial$state state); {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct B_i64));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_i64), B_i64G_methods.$GCdescr);
             self->$class = &B_i64G_methods;
             return self;
         }
@@ -111,18 +116,24 @@ B_i64 B_i64D___deserialize__ (B_i64 self, $Serial$state state); {
     return self;
 }
 B_i64 B_i64G_new(B_atom G_1) {
-    B_i64 $tmp = malloc(sizeof(struct B_i64));
+    B_i64 $tmp = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_i64), B_i64G_methods.$GCdescr);
     $tmp->$class = &B_i64G_methods;
     B_i64G_methods.__init__($tmp, G_1);
     return $tmp;
 }
 */
 struct B_i64G_class B_i64G_methods;
+GC_word B_i64D_gcbm[GC_BITMAP_SIZE(struct B_i64)];
 struct B_i32G_class B_i32G_methods;
+GC_word B_i32D_gcbm[GC_BITMAP_SIZE(struct B_i32)];
 struct B_i16G_class B_i16G_methods;
+GC_word B_i16D_gcbm[GC_BITMAP_SIZE(struct B_i16)];
 struct B_u64G_class B_u64G_methods;
+GC_word B_u64D_gcbm[GC_BITMAP_SIZE(struct B_u64)];
 struct B_u32G_class B_u32G_methods;
+GC_word B_u32D_gcbm[GC_BITMAP_SIZE(struct B_u32)];
 struct B_u16G_class B_u16G_methods;
+GC_word B_u16D_gcbm[GC_BITMAP_SIZE(struct B_u16)];
 /*
 B_NoneType B_floatD___init__ (B_float self, B_atom val);
 void B_floatD___serialize__ (B_float self, $Serial$state state) {
@@ -130,7 +141,7 @@ void B_floatD___serialize__ (B_float self, $Serial$state state) {
 B_float B_floatD___deserialize__ (B_float self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct B_float));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_float), B_floatG_methods.$GCdescr);
             self->$class = &B_floatG_methods;
             return self;
         }
@@ -139,13 +150,14 @@ B_float B_floatD___deserialize__ (B_float self, $Serial$state state) {
     return self;
 }
 B_float B_floatG_new(B_atom G_1) {
-    B_float $tmp = malloc(sizeof(struct B_float));
+    B_float $tmp = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_float), B_floatG_methods.$GCdescr);
     $tmp->$class = &B_floatG_methods;
     B_floatG_methods.__init__($tmp, G_1);
     return $tmp;
 }
 */
 struct B_floatG_class B_floatG_methods;
+GC_word B_floatD_gcbm[GC_BITMAP_SIZE(struct B_float)];
 /*
 B_NoneType B_boolD___init__ (B_bool self, B_value val);
 void B_boolD___serialize__ (B_bool self, $Serial$state state) {
@@ -153,7 +165,7 @@ void B_boolD___serialize__ (B_bool self, $Serial$state state) {
 B_bool B_boolD___deserialize__ (B_bool self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct B_bool));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_bool), B_boolG_methods.$GCdescr);
             self->$class = &B_boolG_methods;
             return self;
         }
@@ -162,13 +174,14 @@ B_bool B_boolD___deserialize__ (B_bool self, $Serial$state state) {
     return self;
 }
 B_bool B_boolG_new(B_value G_1) {
-    B_bool $tmp = malloc(sizeof(struct B_bool));
+    B_bool $tmp = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_bool), B_boolG_methods.$GCdescr);
     $tmp->$class = &B_boolG_methods;
     B_boolG_methods.__init__($tmp, G_1);
     return $tmp;
 }
 */
 struct B_boolG_class B_boolG_methods;
+GC_word B_boolD_gcbm[GC_BITMAP_SIZE(struct B_bool)];
 /*
 B_NoneType B_sliceD___init__ (B_slice self, B_int start, B_int stop, B_int step);
 void B_sliceD___serialize__ (B_slice self, $Serial$state state) {
@@ -176,7 +189,7 @@ void B_sliceD___serialize__ (B_slice self, $Serial$state state) {
 B_slice B_sliceD___deserialize__ (B_slice self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct B_slice));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_slice), B_sliceG_methods.$GCdescr);
             self->$class = &B_sliceG_methods;
             return self;
         }
@@ -185,13 +198,14 @@ B_slice B_sliceD___deserialize__ (B_slice self, $Serial$state state) {
     return self;
 }
 B_slice B_sliceG_new(B_int G_1, B_int G_2, B_int G_3) {
-    B_slice $tmp = malloc(sizeof(struct B_slice));
+    B_slice $tmp = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_slice), B_sliceG_methods.$GCdescr);
     $tmp->$class = &B_sliceG_methods;
     B_sliceG_methods.__init__($tmp, G_1, G_2, G_3);
     return $tmp;
 }
 */
 struct B_sliceG_class B_sliceG_methods;
+GC_word B_sliceD_gcbm[GC_BITMAP_SIZE(struct B_slice)];
 /*
 B_NoneType B_listD___init__ (B_list self, B_Iterable W_IterableE_62, $WORD val);
 B_list B_listD_copy (B_list self);
@@ -200,7 +214,7 @@ void B_listD___serialize__ (B_list self, $Serial$state state) {
 B_list B_listD___deserialize__ (B_list self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct B_list));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_list), B_listG_methods.$GCdescr);
             self->$class = &B_listG_methods;
             return self;
         }
@@ -209,13 +223,14 @@ B_list B_listD___deserialize__ (B_list self, $Serial$state state) {
     return self;
 }
 B_list B_listG_new(B_Iterable G_1, $WORD G_2) {
-    B_list $tmp = malloc(sizeof(struct B_list));
+    B_list $tmp = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_list), B_listG_methods.$GCdescr);
     $tmp->$class = &B_listG_methods;
     B_listG_methods.__init__($tmp, G_1, G_2);
     return $tmp;
 }
 */
 struct B_listG_class B_listG_methods;
+GC_word B_listD_gcbm[GC_BITMAP_SIZE(struct B_list)];
 /*
 B_NoneType B_rangeD___init__ (B_range self, B_int start, B_int stop, B_int step);
 void B_rangeD___serialize__ (B_range self, $Serial$state state) {
@@ -223,7 +238,7 @@ void B_rangeD___serialize__ (B_range self, $Serial$state state) {
 B_range B_rangeD___deserialize__ (B_range self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct B_range));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_range), B_rangeG_methods.$GCdescr);
             self->$class = &B_rangeG_methods;
             return self;
         }
@@ -232,19 +247,20 @@ B_range B_rangeD___deserialize__ (B_range self, $Serial$state state) {
     return self;
 }
 B_range B_rangeG_new(B_int G_1, B_int G_2, B_int G_3) {
-    B_range $tmp = malloc(sizeof(struct B_range));
+    B_range $tmp = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_range), B_rangeG_methods.$GCdescr);
     $tmp->$class = &B_rangeG_methods;
     B_rangeG_methods.__init__($tmp, G_1, G_2, G_3);
     return $tmp;
 }
 */
 struct B_rangeG_class B_rangeG_methods;
+GC_word B_rangeD_gcbm[GC_BITMAP_SIZE(struct B_range)];
 void B_IteratorD___serialize__ (B_Iterator self, $Serial$state state) {
 }
 B_Iterator B_IteratorD___deserialize__ (B_Iterator self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct B_Iterator));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_Iterator), B_IteratorG_methods.$GCdescr);
             self->$class = &B_IteratorG_methods;
             return self;
         }
@@ -253,6 +269,7 @@ B_Iterator B_IteratorD___deserialize__ (B_Iterator self, $Serial$state state) {
     return self;
 }
 struct B_IteratorG_class B_IteratorG_methods;
+GC_word B_IteratorD_gcbm[GC_BITMAP_SIZE(struct B_Iterator)];
 B_NoneType B_IterableD___init__ (B_Iterable W_self) {
     return B_None;
 }
@@ -261,7 +278,7 @@ void B_IterableD___serialize__ (B_Iterable self, $Serial$state state) {
 B_Iterable B_IterableD___deserialize__ (B_Iterable self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct B_Iterable));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_Iterable), B_IterableG_methods.$GCdescr);
             self->$class = &B_IterableG_methods;
             return self;
         }
@@ -270,6 +287,7 @@ B_Iterable B_IterableD___deserialize__ (B_Iterable self, $Serial$state state) {
     return self;
 }
 struct B_IterableG_class B_IterableG_methods;
+GC_word B_IterableD_gcbm[GC_BITMAP_SIZE(struct B_Iterable)];
 B_NoneType B_strD___init__ (B_str self, B_value val);
 B_str B_strD_capitalize (B_str self);
 B_str B_strD_center (B_str self, B_int width, B_str fillchar);
@@ -311,7 +329,7 @@ void B_strD___serialize__ (B_str self, $Serial$state state) {
 B_str B_strD___deserialize__ (B_str self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct B_str));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_str), B_strG_methods.$GCdescr);
             self->$class = &B_strG_methods;
             return self;
         }
@@ -320,13 +338,14 @@ B_str B_strD___deserialize__ (B_str self, $Serial$state state) {
     return self;
 }
 B_str B_strG_new(B_value G_1) {
-    B_str $tmp = malloc(sizeof(struct B_str));
+    B_str $tmp = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_str), B_strG_methods.$GCdescr);
     $tmp->$class = &B_strG_methods;
     B_strG_methods.__init__($tmp, G_1);
     return $tmp;
 }
 */
 struct B_strG_class B_strG_methods;
+GC_word B_strD_gcbm[GC_BITMAP_SIZE(struct B_str)];
 B_NoneType B_bytesD___init__ (B_bytes self, B_Iterable W_IterableE_226, $WORD iterable);
 B_bytes B_bytesD_capitalize (B_bytes self);
 B_bytes B_bytesD_center (B_bytes self, B_int width, B_bytes fillchar);
@@ -367,7 +386,7 @@ void B_bytesD___serialize__ (B_bytes self, $Serial$state state) {
 B_bytes B_bytesD___deserialize__ (B_bytes self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct B_bytes));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_bytes), B_bytesG_methods.$GCdescr);
             self->$class = &B_bytesG_methods;
             return self;
         }
@@ -376,13 +395,14 @@ B_bytes B_bytesD___deserialize__ (B_bytes self, $Serial$state state) {
     return self;
 }
 B_bytes B_bytesG_new(B_Iterable G_1, $WORD G_2) {
-    B_bytes $tmp = malloc(sizeof(struct B_bytes));
+    B_bytes $tmp = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_bytes), B_bytesG_methods.$GCdescr);
     $tmp->$class = &B_bytesG_methods;
     B_bytesG_methods.__init__($tmp, G_1, G_2);
     return $tmp;
 }
 */
 struct B_bytesG_class B_bytesG_methods;
+GC_word B_bytesD_gcbm[GC_BITMAP_SIZE(struct B_bytes)];
 B_NoneType B_bytearrayD___init__ (B_bytearray self, B_bytes val);
 B_bytearray B_bytearrayD_capitalize (B_bytearray self);
 B_bytearray B_bytearrayD_center (B_bytearray self, B_int width, B_bytearray fillchar);
@@ -423,7 +443,7 @@ void B_bytearrayD___serialize__ (B_bytearray self, $Serial$state state) {
 B_bytearray B_bytearrayD___deserialize__ (B_bytearray self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct B_bytearray));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_bytearray), B_bytearrayG_methods.$GCdescr);
             self->$class = &B_bytearrayG_methods;
             return self;
         }
@@ -432,20 +452,21 @@ B_bytearray B_bytearrayD___deserialize__ (B_bytearray self, $Serial$state state)
     return self;
 }
 B_bytearray B_bytearrayG_new(B_bytes G_1) {
-    B_bytearray $tmp = malloc(sizeof(struct B_bytearray));
+    B_bytearray $tmp = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_bytearray), B_bytearrayG_methods.$GCdescr);
     $tmp->$class = &B_bytearrayG_methods;
     B_bytearrayG_methods.__init__($tmp, G_1);
     return $tmp;
 }
 */
 struct B_bytearrayG_class B_bytearrayG_methods;
+GC_word B_bytearrayD_gcbm[GC_BITMAP_SIZE(struct B_bytearray)];
 /*
 void B_MsgD___serialize__ (B_Msg self, $Serial$state state) {
 }
 B_Msg B_MsgD___deserialize__ (B_Msg self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct B_Msg));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_Msg), B_MsgG_methods.$GCdescr);
             self->$class = &B_MsgG_methods;
             return self;
         }
@@ -454,12 +475,13 @@ B_Msg B_MsgD___deserialize__ (B_Msg self, $Serial$state state) {
     return self;
 }
 B_Msg B_MsgG_new() {
-    B_Msg $tmp = malloc(sizeof(struct B_Msg));
+    B_Msg $tmp = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_Msg), B_MsgG_methods.$GCdescr);
     $tmp->$class = &B_MsgG_methods;
     B_MsgG_methods.__init__($tmp);
     return $tmp;
 }
 struct B_MsgG_class B_MsgG_methods;
+GC_word B_MsgD_gcbm[GC_BITMAP_SIZE(struct B_Msg)];
 */
 B_NoneType B_BaseExceptionD___init__ (B_BaseException self, B_str msg) {
     self->error_message = msg;
@@ -471,7 +493,7 @@ void B_BaseExceptionD___serialize__ (B_BaseException self, $Serial$state state) 
 B_BaseException B_BaseExceptionD___deserialize__ (B_BaseException self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct B_BaseException));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_BaseException), B_BaseExceptionG_methods.$GCdescr);
             self->$class = &B_BaseExceptionG_methods;
             return self;
         }
@@ -481,19 +503,20 @@ B_BaseException B_BaseExceptionD___deserialize__ (B_BaseException self, $Serial$
     return self;
 }
 B_BaseException B_BaseExceptionG_new(B_str G_1) {
-    B_BaseException $tmp = malloc(sizeof(struct B_BaseException));
+    B_BaseException $tmp = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_BaseException), B_BaseExceptionG_methods.$GCdescr);
     $tmp->$class = &B_BaseExceptionG_methods;
     B_BaseExceptionG_methods.__init__($tmp, G_1);
     return $tmp;
 }
 struct B_BaseExceptionG_class B_BaseExceptionG_methods;
+GC_word B_BaseExceptionD_gcbm[GC_BITMAP_SIZE(struct B_BaseException)];
 void B_SystemExitD___serialize__ (B_SystemExit self, $Serial$state state) {
     $step_serialize(self->error_message, state);
 }
 B_SystemExit B_SystemExitD___deserialize__ (B_SystemExit self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct B_SystemExit));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_SystemExit), B_SystemExitG_methods.$GCdescr);
             self->$class = &B_SystemExitG_methods;
             return self;
         }
@@ -503,19 +526,20 @@ B_SystemExit B_SystemExitD___deserialize__ (B_SystemExit self, $Serial$state sta
     return self;
 }
 B_SystemExit B_SystemExitG_new(B_str G_1) {
-    B_SystemExit $tmp = malloc(sizeof(struct B_SystemExit));
+    B_SystemExit $tmp = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_SystemExit), B_SystemExitG_methods.$GCdescr);
     $tmp->$class = &B_SystemExitG_methods;
     B_SystemExitG_methods.__init__($tmp, G_1);
     return $tmp;
 }
 struct B_SystemExitG_class B_SystemExitG_methods;
+GC_word B_SystemExitD_gcbm[GC_BITMAP_SIZE(struct B_SystemExit)];
 void B_KeyboardInterruptD___serialize__ (B_KeyboardInterrupt self, $Serial$state state) {
     $step_serialize(self->error_message, state);
 }
 B_KeyboardInterrupt B_KeyboardInterruptD___deserialize__ (B_KeyboardInterrupt self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct B_KeyboardInterrupt));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_KeyboardInterrupt), B_KeyboardInterruptG_methods.$GCdescr);
             self->$class = &B_KeyboardInterruptG_methods;
             return self;
         }
@@ -525,19 +549,20 @@ B_KeyboardInterrupt B_KeyboardInterruptD___deserialize__ (B_KeyboardInterrupt se
     return self;
 }
 B_KeyboardInterrupt B_KeyboardInterruptG_new(B_str G_1) {
-    B_KeyboardInterrupt $tmp = malloc(sizeof(struct B_KeyboardInterrupt));
+    B_KeyboardInterrupt $tmp = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_KeyboardInterrupt), B_KeyboardInterruptG_methods.$GCdescr);
     $tmp->$class = &B_KeyboardInterruptG_methods;
     B_KeyboardInterruptG_methods.__init__($tmp, G_1);
     return $tmp;
 }
 struct B_KeyboardInterruptG_class B_KeyboardInterruptG_methods;
+GC_word B_KeyboardInterruptD_gcbm[GC_BITMAP_SIZE(struct B_KeyboardInterrupt)];
 void B_ExceptionD___serialize__ (B_Exception self, $Serial$state state) {
     $step_serialize(self->error_message, state);
 }
 B_Exception B_ExceptionD___deserialize__ (B_Exception self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct B_Exception));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_Exception), B_ExceptionG_methods.$GCdescr);
             self->$class = &B_ExceptionG_methods;
             return self;
         }
@@ -547,19 +572,20 @@ B_Exception B_ExceptionD___deserialize__ (B_Exception self, $Serial$state state)
     return self;
 }
 B_Exception B_ExceptionG_new(B_str G_1) {
-    B_Exception $tmp = malloc(sizeof(struct B_Exception));
+    B_Exception $tmp = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_Exception), B_ExceptionG_methods.$GCdescr);
     $tmp->$class = &B_ExceptionG_methods;
     B_ExceptionG_methods.__init__($tmp, G_1);
     return $tmp;
 }
 struct B_ExceptionG_class B_ExceptionG_methods;
+GC_word B_ExceptionD_gcbm[GC_BITMAP_SIZE(struct B_Exception)];
 void B_AssertionErrorD___serialize__ (B_AssertionError self, $Serial$state state) {
     $step_serialize(self->error_message, state);
 }
 B_AssertionError B_AssertionErrorD___deserialize__ (B_AssertionError self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct B_AssertionError));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_AssertionError), B_AssertionErrorG_methods.$GCdescr);
             self->$class = &B_AssertionErrorG_methods;
             return self;
         }
@@ -569,19 +595,20 @@ B_AssertionError B_AssertionErrorD___deserialize__ (B_AssertionError self, $Seri
     return self;
 }
 B_AssertionError B_AssertionErrorG_new(B_str G_1) {
-    B_AssertionError $tmp = malloc(sizeof(struct B_AssertionError));
+    B_AssertionError $tmp = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_AssertionError), B_AssertionErrorG_methods.$GCdescr);
     $tmp->$class = &B_AssertionErrorG_methods;
     B_AssertionErrorG_methods.__init__($tmp, G_1);
     return $tmp;
 }
 struct B_AssertionErrorG_class B_AssertionErrorG_methods;
+GC_word B_AssertionErrorD_gcbm[GC_BITMAP_SIZE(struct B_AssertionError)];
 void B_LookupErrorD___serialize__ (B_LookupError self, $Serial$state state) {
     $step_serialize(self->error_message, state);
 }
 B_LookupError B_LookupErrorD___deserialize__ (B_LookupError self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct B_LookupError));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_LookupError), B_LookupErrorG_methods.$GCdescr);
             self->$class = &B_LookupErrorG_methods;
             return self;
         }
@@ -591,19 +618,20 @@ B_LookupError B_LookupErrorD___deserialize__ (B_LookupError self, $Serial$state 
     return self;
 }
 B_LookupError B_LookupErrorG_new(B_str G_1) {
-    B_LookupError $tmp = malloc(sizeof(struct B_LookupError));
+    B_LookupError $tmp = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_LookupError), B_LookupErrorG_methods.$GCdescr);
     $tmp->$class = &B_LookupErrorG_methods;
     B_LookupErrorG_methods.__init__($tmp, G_1);
     return $tmp;
 }
 struct B_LookupErrorG_class B_LookupErrorG_methods;
+GC_word B_LookupErrorD_gcbm[GC_BITMAP_SIZE(struct B_LookupError)];
 void B_IndexErrorD___serialize__ (B_IndexError self, $Serial$state state) {
     $step_serialize(self->error_message, state);
 }
 B_IndexError B_IndexErrorD___deserialize__ (B_IndexError self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct B_IndexError));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_IndexError), B_IndexErrorG_methods.$GCdescr);
             self->$class = &B_IndexErrorG_methods;
             return self;
         }
@@ -613,19 +641,20 @@ B_IndexError B_IndexErrorD___deserialize__ (B_IndexError self, $Serial$state sta
     return self;
 }
 B_IndexError B_IndexErrorG_new(B_str G_1) {
-    B_IndexError $tmp = malloc(sizeof(struct B_IndexError));
+    B_IndexError $tmp = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_IndexError), B_IndexErrorG_methods.$GCdescr);
     $tmp->$class = &B_IndexErrorG_methods;
     B_IndexErrorG_methods.__init__($tmp, G_1);
     return $tmp;
 }
 struct B_IndexErrorG_class B_IndexErrorG_methods;
+GC_word B_IndexErrorD_gcbm[GC_BITMAP_SIZE(struct B_IndexError)];
 void B_KeyErrorD___serialize__ (B_KeyError self, $Serial$state state) {
     $step_serialize(self->error_message, state);
 }
 B_KeyError B_KeyErrorD___deserialize__ (B_KeyError self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct B_KeyError));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_KeyError), B_KeyErrorG_methods.$GCdescr);
             self->$class = &B_KeyErrorG_methods;
             return self;
         }
@@ -635,19 +664,20 @@ B_KeyError B_KeyErrorD___deserialize__ (B_KeyError self, $Serial$state state) {
     return self;
 }
 B_KeyError B_KeyErrorG_new(B_str G_1) {
-    B_KeyError $tmp = malloc(sizeof(struct B_KeyError));
+    B_KeyError $tmp = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_KeyError), B_KeyErrorG_methods.$GCdescr);
     $tmp->$class = &B_KeyErrorG_methods;
     B_KeyErrorG_methods.__init__($tmp, G_1);
     return $tmp;
 }
 struct B_KeyErrorG_class B_KeyErrorG_methods;
+GC_word B_KeyErrorD_gcbm[GC_BITMAP_SIZE(struct B_KeyError)];
 void B_MemoryErrorD___serialize__ (B_MemoryError self, $Serial$state state) {
     $step_serialize(self->error_message, state);
 }
 B_MemoryError B_MemoryErrorD___deserialize__ (B_MemoryError self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct B_MemoryError));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_MemoryError), B_MemoryErrorG_methods.$GCdescr);
             self->$class = &B_MemoryErrorG_methods;
             return self;
         }
@@ -657,19 +687,20 @@ B_MemoryError B_MemoryErrorD___deserialize__ (B_MemoryError self, $Serial$state 
     return self;
 }
 B_MemoryError B_MemoryErrorG_new(B_str G_1) {
-    B_MemoryError $tmp = malloc(sizeof(struct B_MemoryError));
+    B_MemoryError $tmp = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_MemoryError), B_MemoryErrorG_methods.$GCdescr);
     $tmp->$class = &B_MemoryErrorG_methods;
     B_MemoryErrorG_methods.__init__($tmp, G_1);
     return $tmp;
 }
 struct B_MemoryErrorG_class B_MemoryErrorG_methods;
+GC_word B_MemoryErrorD_gcbm[GC_BITMAP_SIZE(struct B_MemoryError)];
 void B_OSErrorD___serialize__ (B_OSError self, $Serial$state state) {
     $step_serialize(self->error_message, state);
 }
 B_OSError B_OSErrorD___deserialize__ (B_OSError self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct B_OSError));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_OSError), B_OSErrorG_methods.$GCdescr);
             self->$class = &B_OSErrorG_methods;
             return self;
         }
@@ -679,19 +710,20 @@ B_OSError B_OSErrorD___deserialize__ (B_OSError self, $Serial$state state) {
     return self;
 }
 B_OSError B_OSErrorG_new(B_str G_1) {
-    B_OSError $tmp = malloc(sizeof(struct B_OSError));
+    B_OSError $tmp = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_OSError), B_OSErrorG_methods.$GCdescr);
     $tmp->$class = &B_OSErrorG_methods;
     B_OSErrorG_methods.__init__($tmp, G_1);
     return $tmp;
 }
 struct B_OSErrorG_class B_OSErrorG_methods;
+GC_word B_OSErrorD_gcbm[GC_BITMAP_SIZE(struct B_OSError)];
 void B_RuntimeErrorD___serialize__ (B_RuntimeError self, $Serial$state state) {
     $step_serialize(self->error_message, state);
 }
 B_RuntimeError B_RuntimeErrorD___deserialize__ (B_RuntimeError self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct B_RuntimeError));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_RuntimeError), B_RuntimeErrorG_methods.$GCdescr);
             self->$class = &B_RuntimeErrorG_methods;
             return self;
         }
@@ -701,19 +733,20 @@ B_RuntimeError B_RuntimeErrorD___deserialize__ (B_RuntimeError self, $Serial$sta
     return self;
 }
 B_RuntimeError B_RuntimeErrorG_new(B_str G_1) {
-    B_RuntimeError $tmp = malloc(sizeof(struct B_RuntimeError));
+    B_RuntimeError $tmp = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_RuntimeError), B_RuntimeErrorG_methods.$GCdescr);
     $tmp->$class = &B_RuntimeErrorG_methods;
     B_RuntimeErrorG_methods.__init__($tmp, G_1);
     return $tmp;
 }
 struct B_RuntimeErrorG_class B_RuntimeErrorG_methods;
+GC_word B_RuntimeErrorD_gcbm[GC_BITMAP_SIZE(struct B_RuntimeError)];
 void B_NotImplementedErrorD___serialize__ (B_NotImplementedError self, $Serial$state state) {
     $step_serialize(self->error_message, state);
 }
 B_NotImplementedError B_NotImplementedErrorD___deserialize__ (B_NotImplementedError self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct B_NotImplementedError));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_NotImplementedError), B_NotImplementedErrorG_methods.$GCdescr);
             self->$class = &B_NotImplementedErrorG_methods;
             return self;
         }
@@ -723,19 +756,20 @@ B_NotImplementedError B_NotImplementedErrorD___deserialize__ (B_NotImplementedEr
     return self;
 }
 B_NotImplementedError B_NotImplementedErrorG_new(B_str G_1) {
-    B_NotImplementedError $tmp = malloc(sizeof(struct B_NotImplementedError));
+    B_NotImplementedError $tmp = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_NotImplementedError), B_NotImplementedErrorG_methods.$GCdescr);
     $tmp->$class = &B_NotImplementedErrorG_methods;
     B_NotImplementedErrorG_methods.__init__($tmp, G_1);
     return $tmp;
 }
 struct B_NotImplementedErrorG_class B_NotImplementedErrorG_methods;
+GC_word B_NotImplementedErrorD_gcbm[GC_BITMAP_SIZE(struct B_NotImplementedError)];
 void B_ValueErrorD___serialize__ (B_ValueError self, $Serial$state state) {
     $step_serialize(self->error_message, state);
 }
 B_ValueError B_ValueErrorD___deserialize__ (B_ValueError self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct B_ValueError));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_ValueError), B_ValueErrorG_methods.$GCdescr);
             self->$class = &B_ValueErrorG_methods;
             return self;
         }
@@ -745,12 +779,13 @@ B_ValueError B_ValueErrorD___deserialize__ (B_ValueError self, $Serial$state sta
     return self;
 }
 B_ValueError B_ValueErrorG_new(B_str G_1) {
-    B_ValueError $tmp = malloc(sizeof(struct B_ValueError));
+    B_ValueError $tmp = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_ValueError), B_ValueErrorG_methods.$GCdescr);
     $tmp->$class = &B_ValueErrorG_methods;
     B_ValueErrorG_methods.__init__($tmp, G_1);
     return $tmp;
 }
 struct B_ValueErrorG_class B_ValueErrorG_methods;
+GC_word B_ValueErrorD_gcbm[GC_BITMAP_SIZE(struct B_ValueError)];
 B_NoneType B_IdentityD___init__ (B_Identity W_self) {
     return B_None;
 }
@@ -759,7 +794,7 @@ void B_IdentityD___serialize__ (B_Identity self, $Serial$state state) {
 B_Identity B_IdentityD___deserialize__ (B_Identity self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct B_Identity));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_Identity), B_IdentityG_methods.$GCdescr);
             self->$class = &B_IdentityG_methods;
             return self;
         }
@@ -768,6 +803,7 @@ B_Identity B_IdentityD___deserialize__ (B_Identity self, $Serial$state state) {
     return self;
 }
 struct B_IdentityG_class B_IdentityG_methods;
+GC_word B_IdentityD_gcbm[GC_BITMAP_SIZE(struct B_Identity)];
 B_NoneType B_EqD___init__ (B_Eq W_self) {
     return B_None;
 }
@@ -779,7 +815,7 @@ void B_EqD___serialize__ (B_Eq self, $Serial$state state) {
 B_Eq B_EqD___deserialize__ (B_Eq self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct B_Eq));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_Eq), B_EqG_methods.$GCdescr);
             self->$class = &B_EqG_methods;
             return self;
         }
@@ -788,6 +824,7 @@ B_Eq B_EqD___deserialize__ (B_Eq self, $Serial$state state) {
     return self;
 }
 struct B_EqG_class B_EqG_methods;
+GC_word B_EqD_gcbm[GC_BITMAP_SIZE(struct B_Eq)];
 B_NoneType B_OrdD___init__ (B_Ord W_self) {
     ((B_NoneType (*) (B_Eq))B_EqG_methods.__init__)(((B_Eq)W_self));
     return B_None;
@@ -806,7 +843,7 @@ void B_OrdD___serialize__ (B_Ord self, $Serial$state state) {
 B_Ord B_OrdD___deserialize__ (B_Ord self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct B_Ord));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_Ord), B_OrdG_methods.$GCdescr);
             self->$class = &B_OrdG_methods;
             return self;
         }
@@ -815,6 +852,7 @@ B_Ord B_OrdD___deserialize__ (B_Ord self, $Serial$state state) {
     return self;
 }
 struct B_OrdG_class B_OrdG_methods;
+GC_word B_OrdD_gcbm[GC_BITMAP_SIZE(struct B_Ord)];
 B_NoneType B_LogicalD___init__ (B_Logical W_self) {
     return B_None;
 }
@@ -832,7 +870,7 @@ void B_LogicalD___serialize__ (B_Logical self, $Serial$state state) {
 B_Logical B_LogicalD___deserialize__ (B_Logical self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct B_Logical));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_Logical), B_LogicalG_methods.$GCdescr);
             self->$class = &B_LogicalG_methods;
             return self;
         }
@@ -841,6 +879,7 @@ B_Logical B_LogicalD___deserialize__ (B_Logical self, $Serial$state state) {
     return self;
 }
 struct B_LogicalG_class B_LogicalG_methods;
+GC_word B_LogicalD_gcbm[GC_BITMAP_SIZE(struct B_Logical)];
 B_NoneType B_PlusD___init__ (B_Plus W_self) {
     return B_None;
 }
@@ -852,7 +891,7 @@ void B_PlusD___serialize__ (B_Plus self, $Serial$state state) {
 B_Plus B_PlusD___deserialize__ (B_Plus self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct B_Plus));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_Plus), B_PlusG_methods.$GCdescr);
             self->$class = &B_PlusG_methods;
             return self;
         }
@@ -861,6 +900,7 @@ B_Plus B_PlusD___deserialize__ (B_Plus self, $Serial$state state) {
     return self;
 }
 struct B_PlusG_class B_PlusG_methods;
+GC_word B_PlusD_gcbm[GC_BITMAP_SIZE(struct B_Plus)];
 B_NoneType B_MinusD___init__ (B_Minus W_self) {
     return B_None;
 }
@@ -872,7 +912,7 @@ void B_MinusD___serialize__ (B_Minus self, $Serial$state state) {
 B_Minus B_MinusD___deserialize__ (B_Minus self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct B_Minus));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_Minus), B_MinusG_methods.$GCdescr);
             self->$class = &B_MinusG_methods;
             return self;
         }
@@ -881,6 +921,7 @@ B_Minus B_MinusD___deserialize__ (B_Minus self, $Serial$state state) {
     return self;
 }
 struct B_MinusG_class B_MinusG_methods;
+GC_word B_MinusD_gcbm[GC_BITMAP_SIZE(struct B_Minus)];
 B_NoneType B_TimesD___init__ (B_Times W_self) {
     ((B_NoneType (*) (B_Plus))B_PlusG_methods.__init__)(((B_Plus)W_self));
     return B_None;
@@ -893,7 +934,7 @@ void B_TimesD___serialize__ (B_Times self, $Serial$state state) {
 B_Times B_TimesD___deserialize__ (B_Times self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct B_Times));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_Times), B_TimesG_methods.$GCdescr);
             self->$class = &B_TimesG_methods;
             return self;
         }
@@ -902,6 +943,7 @@ B_Times B_TimesD___deserialize__ (B_Times self, $Serial$state state) {
     return self;
 }
 struct B_TimesG_class B_TimesG_methods;
+GC_word B_TimesD_gcbm[GC_BITMAP_SIZE(struct B_Times)];
 B_NoneType B_DivD___init__ (B_Div W_self) {
     return B_None;
 }
@@ -913,7 +955,7 @@ void B_DivD___serialize__ (B_Div self, $Serial$state state) {
 B_Div B_DivD___deserialize__ (B_Div self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct B_Div));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_Div), B_DivG_methods.$GCdescr);
             self->$class = &B_DivG_methods;
             return self;
         }
@@ -922,6 +964,7 @@ B_Div B_DivD___deserialize__ (B_Div self, $Serial$state state) {
     return self;
 }
 struct B_DivG_class B_DivG_methods;
+GC_word B_DivD_gcbm[GC_BITMAP_SIZE(struct B_Div)];
 B_NoneType B_HashableD___init__ (B_Hashable W_self) {
     ((B_NoneType (*) (B_Eq))B_EqG_methods.__init__)(((B_Eq)W_self));
     return B_None;
@@ -931,7 +974,7 @@ void B_HashableD___serialize__ (B_Hashable self, $Serial$state state) {
 B_Hashable B_HashableD___deserialize__ (B_Hashable self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct B_Hashable));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_Hashable), B_HashableG_methods.$GCdescr);
             self->$class = &B_HashableG_methods;
             return self;
         }
@@ -940,6 +983,7 @@ B_Hashable B_HashableD___deserialize__ (B_Hashable self, $Serial$state state) {
     return self;
 }
 struct B_HashableG_class B_HashableG_methods;
+GC_word B_HashableD_gcbm[GC_BITMAP_SIZE(struct B_Hashable)];
 /*
 B_NoneType B_complexD___init__ (B_complex self, B_Number W_NumberE_604, $WORD val);
 void B_complexD___serialize__ (B_complex self, $Serial$state state) {
@@ -947,7 +991,7 @@ void B_complexD___serialize__ (B_complex self, $Serial$state state) {
 B_complex B_complexD___deserialize__ (B_complex self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct B_complex));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_complex), B_complexG_methods.$GCdescr);
             self->$class = &B_complexG_methods;
             return self;
         }
@@ -956,13 +1000,14 @@ B_complex B_complexD___deserialize__ (B_complex self, $Serial$state state) {
     return self;
 }
 B_complex B_complexG_new(B_Number G_1, $WORD G_2) {
-    B_complex $tmp = malloc(sizeof(struct B_complex));
+    B_complex $tmp = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_complex), B_complexG_methods.$GCdescr);
     $tmp->$class = &B_complexG_methods;
     B_complexG_methods.__init__($tmp, G_1, G_2);
     return $tmp;
 }
 */
 struct B_complexG_class B_complexG_methods;
+GC_word B_complexD_gcbm[GC_BITMAP_SIZE(struct B_complex)];
 /*
 B_NoneType B_dictD___init__ (B_dict self, B_Hashable W_HashableD_A, B_Iterable W_IterableE_609, $WORD iterable);
 void B_dictD___serialize__ (B_dict self, $Serial$state state) {
@@ -970,7 +1015,7 @@ void B_dictD___serialize__ (B_dict self, $Serial$state state) {
 B_dict B_dictD___deserialize__ (B_dict self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct B_dict));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_dict), B_dictG_methods.$GCdescr);
             self->$class = &B_dictG_methods;
             return self;
         }
@@ -979,13 +1024,14 @@ B_dict B_dictD___deserialize__ (B_dict self, $Serial$state state) {
     return self;
 }
 B_dict B_dictG_new(B_Hashable G_1, B_Iterable G_2, $WORD G_3) {
-    B_dict $tmp = malloc(sizeof(struct B_dict));
+    B_dict $tmp = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_dict), B_dictG_methods.$GCdescr);
     $tmp->$class = &B_dictG_methods;
     B_dictG_methods.__init__($tmp, G_1, G_2, G_3);
     return $tmp;
 }
 */
 struct B_dictG_class B_dictG_methods;
+GC_word B_dictD_gcbm[GC_BITMAP_SIZE(struct B_dict)];
 /*
 B_NoneType B_setD___init__ (B_set self, B_Hashable W_HashableD_A, B_Iterable W_IterableE_617, $WORD iterable);
 void B_setD___serialize__ (B_set self, $Serial$state state) {
@@ -993,7 +1039,7 @@ void B_setD___serialize__ (B_set self, $Serial$state state) {
 B_set B_setD___deserialize__ (B_set self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct B_set));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_set), B_setG_methods.$GCdescr);
             self->$class = &B_setG_methods;
             return self;
         }
@@ -1002,13 +1048,14 @@ B_set B_setD___deserialize__ (B_set self, $Serial$state state) {
     return self;
 }
 B_set B_setG_new(B_Hashable G_1, B_Iterable G_2, $WORD G_3) {
-    B_set $tmp = malloc(sizeof(struct B_set));
+    B_set $tmp = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_set), B_setG_methods.$GCdescr);
     $tmp->$class = &B_setG_methods;
     B_setG_methods.__init__($tmp, G_1, G_2, G_3);
     return $tmp;
 }
 */
 struct B_setG_class B_setG_methods;
+GC_word B_setD_gcbm[GC_BITMAP_SIZE(struct B_set)];
 B_NoneType B_NumberD___init__ (B_Number W_self, B_Minus W_Minus) {
     ((B_NoneType (*) (B_Times))B_TimesG_methods.__init__)(((B_Times)W_self));
     W_self->W_Minus = W_Minus;
@@ -1023,7 +1070,7 @@ void B_NumberD___serialize__ (B_Number self, $Serial$state state) {
 B_Number B_NumberD___deserialize__ (B_Number self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct B_Number));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_Number), B_NumberG_methods.$GCdescr);
             self->$class = &B_NumberG_methods;
             return self;
         }
@@ -1033,6 +1080,7 @@ B_Number B_NumberD___deserialize__ (B_Number self, $Serial$state state) {
     return self;
 }
 struct B_NumberG_class B_NumberG_methods;
+GC_word B_NumberD_gcbm[GC_BITMAP_SIZE(struct B_Number)];
 B_NoneType B_MinusD_NumberD___init__ (B_MinusD_Number W_self, B_Number W_Number) {
     ((B_NoneType (*) (B_Minus))B_MinusG_methods.__init__)(((B_Minus)W_self));
     W_self->W_Number = W_Number;
@@ -1044,7 +1092,7 @@ void B_MinusD_NumberD___serialize__ (B_MinusD_Number self, $Serial$state state) 
 B_MinusD_Number B_MinusD_NumberD___deserialize__ (B_MinusD_Number self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct B_MinusD_Number));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_MinusD_Number), B_MinusD_NumberG_methods.$GCdescr);
             self->$class = &B_MinusD_NumberG_methods;
             return self;
         }
@@ -1054,6 +1102,7 @@ B_MinusD_Number B_MinusD_NumberD___deserialize__ (B_MinusD_Number self, $Serial$
     return self;
 }
 struct B_MinusD_NumberG_class B_MinusD_NumberG_methods;
+GC_word B_MinusD_NumberD_gcbm[GC_BITMAP_SIZE(struct B_MinusD_Number)];
 B_NoneType B_RealD___init__ (B_Real W_self, B_Minus W_Minus) {
     ((B_NoneType (*) (B_Number, B_Minus))B_NumberG_methods.__init__)(((B_Number)W_self), W_Minus);
     return B_None;
@@ -1064,7 +1113,7 @@ void B_RealD___serialize__ (B_Real self, $Serial$state state) {
 B_Real B_RealD___deserialize__ (B_Real self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct B_Real));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_Real), B_RealG_methods.$GCdescr);
             self->$class = &B_RealG_methods;
             return self;
         }
@@ -1074,6 +1123,7 @@ B_Real B_RealD___deserialize__ (B_Real self, $Serial$state state) {
     return self;
 }
 struct B_RealG_class B_RealG_methods;
+GC_word B_RealD_gcbm[GC_BITMAP_SIZE(struct B_Real)];
 B_NoneType B_MinusD_RealD___init__ (B_MinusD_Real W_self, B_Real W_Real) {
     ((B_NoneType (*) (B_MinusD_Number, B_Number))B_MinusD_NumberG_methods.__init__)(((B_MinusD_Number)W_self), ((B_Number)W_Real));
     W_self->W_Real = W_Real;
@@ -1086,7 +1136,7 @@ void B_MinusD_RealD___serialize__ (B_MinusD_Real self, $Serial$state state) {
 B_MinusD_Real B_MinusD_RealD___deserialize__ (B_MinusD_Real self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct B_MinusD_Real));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_MinusD_Real), B_MinusD_RealG_methods.$GCdescr);
             self->$class = &B_MinusD_RealG_methods;
             return self;
         }
@@ -1097,6 +1147,7 @@ B_MinusD_Real B_MinusD_RealD___deserialize__ (B_MinusD_Real self, $Serial$state 
     return self;
 }
 struct B_MinusD_RealG_class B_MinusD_RealG_methods;
+GC_word B_MinusD_RealD_gcbm[GC_BITMAP_SIZE(struct B_MinusD_Real)];
 B_NoneType B_RealFloatD___init__ (B_RealFloat W_self, B_Minus W_Minus) {
     ((B_NoneType (*) (B_Real, B_Minus))B_RealG_methods.__init__)(((B_Real)W_self), W_Minus);
     return B_None;
@@ -1107,7 +1158,7 @@ void B_RealFloatD___serialize__ (B_RealFloat self, $Serial$state state) {
 B_RealFloat B_RealFloatD___deserialize__ (B_RealFloat self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct B_RealFloat));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_RealFloat), B_RealFloatG_methods.$GCdescr);
             self->$class = &B_RealFloatG_methods;
             return self;
         }
@@ -1117,6 +1168,7 @@ B_RealFloat B_RealFloatD___deserialize__ (B_RealFloat self, $Serial$state state)
     return self;
 }
 struct B_RealFloatG_class B_RealFloatG_methods;
+GC_word B_RealFloatD_gcbm[GC_BITMAP_SIZE(struct B_RealFloat)];
 B_NoneType B_MinusD_RealFloatD___init__ (B_MinusD_RealFloat W_self, B_RealFloat W_RealFloat) {
     ((B_NoneType (*) (B_MinusD_Real, B_Real))B_MinusD_RealG_methods.__init__)(((B_MinusD_Real)W_self), ((B_Real)W_RealFloat));
     W_self->W_RealFloat = W_RealFloat;
@@ -1130,7 +1182,7 @@ void B_MinusD_RealFloatD___serialize__ (B_MinusD_RealFloat self, $Serial$state s
 B_MinusD_RealFloat B_MinusD_RealFloatD___deserialize__ (B_MinusD_RealFloat self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct B_MinusD_RealFloat));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_MinusD_RealFloat), B_MinusD_RealFloatG_methods.$GCdescr);
             self->$class = &B_MinusD_RealFloatG_methods;
             return self;
         }
@@ -1142,6 +1194,7 @@ B_MinusD_RealFloat B_MinusD_RealFloatD___deserialize__ (B_MinusD_RealFloat self,
     return self;
 }
 struct B_MinusD_RealFloatG_class B_MinusD_RealFloatG_methods;
+GC_word B_MinusD_RealFloatD_gcbm[GC_BITMAP_SIZE(struct B_MinusD_RealFloat)];
 B_NoneType B_RationalD___init__ (B_Rational W_self, B_Minus W_Minus) {
     ((B_NoneType (*) (B_Real, B_Minus))B_RealG_methods.__init__)(((B_Real)W_self), W_Minus);
     return B_None;
@@ -1152,7 +1205,7 @@ void B_RationalD___serialize__ (B_Rational self, $Serial$state state) {
 B_Rational B_RationalD___deserialize__ (B_Rational self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct B_Rational));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_Rational), B_RationalG_methods.$GCdescr);
             self->$class = &B_RationalG_methods;
             return self;
         }
@@ -1162,6 +1215,7 @@ B_Rational B_RationalD___deserialize__ (B_Rational self, $Serial$state state) {
     return self;
 }
 struct B_RationalG_class B_RationalG_methods;
+GC_word B_RationalD_gcbm[GC_BITMAP_SIZE(struct B_Rational)];
 B_NoneType B_MinusD_RationalD___init__ (B_MinusD_Rational W_self, B_Rational W_Rational) {
     ((B_NoneType (*) (B_MinusD_Real, B_Real))B_MinusD_RealG_methods.__init__)(((B_MinusD_Real)W_self), ((B_Real)W_Rational));
     W_self->W_Rational = W_Rational;
@@ -1175,7 +1229,7 @@ void B_MinusD_RationalD___serialize__ (B_MinusD_Rational self, $Serial$state sta
 B_MinusD_Rational B_MinusD_RationalD___deserialize__ (B_MinusD_Rational self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct B_MinusD_Rational));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_MinusD_Rational), B_MinusD_RationalG_methods.$GCdescr);
             self->$class = &B_MinusD_RationalG_methods;
             return self;
         }
@@ -1187,6 +1241,7 @@ B_MinusD_Rational B_MinusD_RationalD___deserialize__ (B_MinusD_Rational self, $S
     return self;
 }
 struct B_MinusD_RationalG_class B_MinusD_RationalG_methods;
+GC_word B_MinusD_RationalD_gcbm[GC_BITMAP_SIZE(struct B_MinusD_Rational)];
 B_NoneType B_IntegralD___init__ (B_Integral W_self, B_Minus W_Minus, B_Logical W_Logical) {
     ((B_NoneType (*) (B_Rational, B_Minus))B_RationalG_methods.__init__)(((B_Rational)W_self), W_Minus);
     W_self->W_Logical = W_Logical;
@@ -1211,7 +1266,7 @@ void B_IntegralD___serialize__ (B_Integral self, $Serial$state state) {
 B_Integral B_IntegralD___deserialize__ (B_Integral self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct B_Integral));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_Integral), B_IntegralG_methods.$GCdescr);
             self->$class = &B_IntegralG_methods;
             return self;
         }
@@ -1222,6 +1277,7 @@ B_Integral B_IntegralD___deserialize__ (B_Integral self, $Serial$state state) {
     return self;
 }
 struct B_IntegralG_class B_IntegralG_methods;
+GC_word B_IntegralD_gcbm[GC_BITMAP_SIZE(struct B_Integral)];
 B_NoneType B_MinusD_IntegralD___init__ (B_MinusD_Integral W_self, B_Integral W_Integral) {
     ((B_NoneType (*) (B_MinusD_Rational, B_Rational))B_MinusD_RationalG_methods.__init__)(((B_MinusD_Rational)W_self), ((B_Rational)W_Integral));
     W_self->W_Integral = W_Integral;
@@ -1236,7 +1292,7 @@ void B_MinusD_IntegralD___serialize__ (B_MinusD_Integral self, $Serial$state sta
 B_MinusD_Integral B_MinusD_IntegralD___deserialize__ (B_MinusD_Integral self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct B_MinusD_Integral));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_MinusD_Integral), B_MinusD_IntegralG_methods.$GCdescr);
             self->$class = &B_MinusD_IntegralG_methods;
             return self;
         }
@@ -1249,6 +1305,7 @@ B_MinusD_Integral B_MinusD_IntegralD___deserialize__ (B_MinusD_Integral self, $S
     return self;
 }
 struct B_MinusD_IntegralG_class B_MinusD_IntegralG_methods;
+GC_word B_MinusD_IntegralD_gcbm[GC_BITMAP_SIZE(struct B_MinusD_Integral)];
 B_NoneType B_LogicalD_IntegralD___init__ (B_LogicalD_Integral W_self, B_Integral W_Integral) {
     ((B_NoneType (*) (B_Logical))B_LogicalG_methods.__init__)(((B_Logical)W_self));
     W_self->W_Integral = W_Integral;
@@ -1260,7 +1317,7 @@ void B_LogicalD_IntegralD___serialize__ (B_LogicalD_Integral self, $Serial$state
 B_LogicalD_Integral B_LogicalD_IntegralD___deserialize__ (B_LogicalD_Integral self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct B_LogicalD_Integral));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_LogicalD_Integral), B_LogicalD_IntegralG_methods.$GCdescr);
             self->$class = &B_LogicalD_IntegralG_methods;
             return self;
         }
@@ -1270,6 +1327,7 @@ B_LogicalD_Integral B_LogicalD_IntegralD___deserialize__ (B_LogicalD_Integral se
     return self;
 }
 struct B_LogicalD_IntegralG_class B_LogicalD_IntegralG_methods;
+GC_word B_LogicalD_IntegralD_gcbm[GC_BITMAP_SIZE(struct B_LogicalD_Integral)];
 B_NoneType B_HashableD_boolD___init__ (B_HashableD_bool W_self) {
     ((B_NoneType (*) (B_Hashable))B_HashableG_methods.__init__)(((B_Hashable)W_self));
     return B_None;
@@ -1281,7 +1339,7 @@ void B_HashableD_boolD___serialize__ (B_HashableD_bool self, $Serial$state state
 B_HashableD_bool B_HashableD_boolD___deserialize__ (B_HashableD_bool self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct B_HashableD_bool));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_HashableD_bool), B_HashableD_boolG_methods.$GCdescr);
             self->$class = &B_HashableD_boolG_methods;
             return self;
         }
@@ -1290,12 +1348,13 @@ B_HashableD_bool B_HashableD_boolD___deserialize__ (B_HashableD_bool self, $Seri
     return self;
 }
 B_HashableD_bool B_HashableD_boolG_new() {
-    B_HashableD_bool $tmp = malloc(sizeof(struct B_HashableD_bool));
+    B_HashableD_bool $tmp = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_HashableD_bool), B_HashableD_boolG_methods.$GCdescr);
     $tmp->$class = &B_HashableD_boolG_methods;
     B_HashableD_boolG_methods.__init__($tmp);
     return $tmp;
 }
 struct B_HashableD_boolG_class B_HashableD_boolG_methods;
+GC_word B_HashableD_boolD_gcbm[GC_BITMAP_SIZE(struct B_HashableD_bool)];
 B_NoneType B_IntegralD_intD___init__ (B_IntegralD_int W_self) {
     ((B_NoneType (*) (B_Integral, B_Minus, B_Logical))B_IntegralG_methods.__init__)(((B_Integral)W_self), ((B_Minus)B_MinusD_IntegralD_intG_new(((B_Integral)W_self))), ((B_Logical)B_LogicalD_IntegralD_intG_new(((B_Integral)W_self))));
     return B_None;
@@ -1333,7 +1392,7 @@ void B_IntegralD_intD___serialize__ (B_IntegralD_int self, $Serial$state state) 
 B_IntegralD_int B_IntegralD_intD___deserialize__ (B_IntegralD_int self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct B_IntegralD_int));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_IntegralD_int), B_IntegralD_intG_methods.$GCdescr);
             self->$class = &B_IntegralD_intG_methods;
             return self;
         }
@@ -1344,12 +1403,13 @@ B_IntegralD_int B_IntegralD_intD___deserialize__ (B_IntegralD_int self, $Serial$
     return self;
 }
 B_IntegralD_int B_IntegralD_intG_new() {
-    B_IntegralD_int $tmp = malloc(sizeof(struct B_IntegralD_int));
+    B_IntegralD_int $tmp = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_IntegralD_int), B_IntegralD_intG_methods.$GCdescr);
     $tmp->$class = &B_IntegralD_intG_methods;
     B_IntegralD_intG_methods.__init__($tmp);
     return $tmp;
 }
 struct B_IntegralD_intG_class B_IntegralD_intG_methods;
+GC_word B_IntegralD_intD_gcbm[GC_BITMAP_SIZE(struct B_IntegralD_int)];
 B_NoneType B_MinusD_IntegralD_intD___init__ (B_MinusD_IntegralD_int W_self, B_Integral W_Integral) {
     ((B_NoneType (*) (B_MinusD_Integral, B_Integral))B_MinusD_IntegralG_methods.__init__)(((B_MinusD_Integral)W_self), ((B_Integral)W_Integral));
     return B_None;
@@ -1364,7 +1424,7 @@ void B_MinusD_IntegralD_intD___serialize__ (B_MinusD_IntegralD_int self, $Serial
 B_MinusD_IntegralD_int B_MinusD_IntegralD_intD___deserialize__ (B_MinusD_IntegralD_int self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct B_MinusD_IntegralD_int));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_MinusD_IntegralD_int), B_MinusD_IntegralD_intG_methods.$GCdescr);
             self->$class = &B_MinusD_IntegralD_intG_methods;
             return self;
         }
@@ -1377,12 +1437,13 @@ B_MinusD_IntegralD_int B_MinusD_IntegralD_intD___deserialize__ (B_MinusD_Integra
     return self;
 }
 B_MinusD_IntegralD_int B_MinusD_IntegralD_intG_new(B_Integral G_1) {
-    B_MinusD_IntegralD_int $tmp = malloc(sizeof(struct B_MinusD_IntegralD_int));
+    B_MinusD_IntegralD_int $tmp = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_MinusD_IntegralD_int), B_MinusD_IntegralD_intG_methods.$GCdescr);
     $tmp->$class = &B_MinusD_IntegralD_intG_methods;
     B_MinusD_IntegralD_intG_methods.__init__($tmp, G_1);
     return $tmp;
 }
 struct B_MinusD_IntegralD_intG_class B_MinusD_IntegralD_intG_methods;
+GC_word B_MinusD_IntegralD_intD_gcbm[GC_BITMAP_SIZE(struct B_MinusD_IntegralD_int)];
 B_NoneType B_LogicalD_IntegralD_intD___init__ (B_LogicalD_IntegralD_int W_self, B_Integral W_Integral) {
     ((B_NoneType (*) (B_LogicalD_Integral, B_Integral))B_LogicalD_IntegralG_methods.__init__)(((B_LogicalD_Integral)W_self), ((B_Integral)W_Integral));
     return B_None;
@@ -1396,7 +1457,7 @@ void B_LogicalD_IntegralD_intD___serialize__ (B_LogicalD_IntegralD_int self, $Se
 B_LogicalD_IntegralD_int B_LogicalD_IntegralD_intD___deserialize__ (B_LogicalD_IntegralD_int self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct B_LogicalD_IntegralD_int));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_LogicalD_IntegralD_int), B_LogicalD_IntegralD_intG_methods.$GCdescr);
             self->$class = &B_LogicalD_IntegralD_intG_methods;
             return self;
         }
@@ -1406,12 +1467,13 @@ B_LogicalD_IntegralD_int B_LogicalD_IntegralD_intD___deserialize__ (B_LogicalD_I
     return self;
 }
 B_LogicalD_IntegralD_int B_LogicalD_IntegralD_intG_new(B_Integral G_1) {
-    B_LogicalD_IntegralD_int $tmp = malloc(sizeof(struct B_LogicalD_IntegralD_int));
+    B_LogicalD_IntegralD_int $tmp = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_LogicalD_IntegralD_int), B_LogicalD_IntegralD_intG_methods.$GCdescr);
     $tmp->$class = &B_LogicalD_IntegralD_intG_methods;
     B_LogicalD_IntegralD_intG_methods.__init__($tmp, G_1);
     return $tmp;
 }
 struct B_LogicalD_IntegralD_intG_class B_LogicalD_IntegralD_intG_methods;
+GC_word B_LogicalD_IntegralD_intD_gcbm[GC_BITMAP_SIZE(struct B_LogicalD_IntegralD_int)];
 B_NoneType B_DivD_intD___init__ (B_DivD_int W_self) {
     ((B_NoneType (*) (B_Div))B_DivG_methods.__init__)(((B_Div)W_self));
     return B_None;
@@ -1422,7 +1484,7 @@ void B_DivD_intD___serialize__ (B_DivD_int self, $Serial$state state) {
 B_DivD_int B_DivD_intD___deserialize__ (B_DivD_int self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct B_DivD_int));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_DivD_int), B_DivD_intG_methods.$GCdescr);
             self->$class = &B_DivD_intG_methods;
             return self;
         }
@@ -1431,12 +1493,13 @@ B_DivD_int B_DivD_intD___deserialize__ (B_DivD_int self, $Serial$state state) {
     return self;
 }
 B_DivD_int B_DivD_intG_new() {
-    B_DivD_int $tmp = malloc(sizeof(struct B_DivD_int));
+    B_DivD_int $tmp = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_DivD_int), B_DivD_intG_methods.$GCdescr);
     $tmp->$class = &B_DivD_intG_methods;
     B_DivD_intG_methods.__init__($tmp);
     return $tmp;
 }
 struct B_DivD_intG_class B_DivD_intG_methods;
+GC_word B_DivD_intD_gcbm[GC_BITMAP_SIZE(struct B_DivD_int)];
 B_NoneType B_OrdD_intD___init__ (B_OrdD_int W_self) {
     ((B_NoneType (*) (B_Ord))B_OrdG_methods.__init__)(((B_Ord)W_self));
     return B_None;
@@ -1448,7 +1511,7 @@ void B_OrdD_intD___serialize__ (B_OrdD_int self, $Serial$state state) {
 B_OrdD_int B_OrdD_intD___deserialize__ (B_OrdD_int self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct B_OrdD_int));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_OrdD_int), B_OrdD_intG_methods.$GCdescr);
             self->$class = &B_OrdD_intG_methods;
             return self;
         }
@@ -1457,12 +1520,13 @@ B_OrdD_int B_OrdD_intD___deserialize__ (B_OrdD_int self, $Serial$state state) {
     return self;
 }
 B_OrdD_int B_OrdD_intG_new() {
-    B_OrdD_int $tmp = malloc(sizeof(struct B_OrdD_int));
+    B_OrdD_int $tmp = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_OrdD_int), B_OrdD_intG_methods.$GCdescr);
     $tmp->$class = &B_OrdD_intG_methods;
     B_OrdD_intG_methods.__init__($tmp);
     return $tmp;
 }
 struct B_OrdD_intG_class B_OrdD_intG_methods;
+GC_word B_OrdD_intD_gcbm[GC_BITMAP_SIZE(struct B_OrdD_int)];
 B_NoneType B_HashableD_intD___init__ (B_HashableD_int W_self) {
     ((B_NoneType (*) (B_Hashable))B_HashableG_methods.__init__)(((B_Hashable)W_self));
     return B_None;
@@ -1473,7 +1537,7 @@ void B_HashableD_intD___serialize__ (B_HashableD_int self, $Serial$state state) 
 B_HashableD_int B_HashableD_intD___deserialize__ (B_HashableD_int self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct B_HashableD_int));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_HashableD_int), B_HashableD_intG_methods.$GCdescr);
             self->$class = &B_HashableD_intG_methods;
             return self;
         }
@@ -1485,6 +1549,7 @@ B_HashableD_int B_HashableD_intG_new() {   // manually added
     return $NEW(B_HashableD_int);          //
 }                                          //
 struct B_HashableD_intG_class B_HashableD_intG_methods;
+GC_word B_HashableD_intD_gcbm[GC_BITMAP_SIZE(struct B_HashableD_int)];
 
 
 
@@ -1534,7 +1599,7 @@ void B_IntegralD_i64D___serialize__ (B_IntegralD_i64 self, $Serial$state state) 
 B_IntegralD_i64 B_IntegralD_i64D___deserialize__ (B_IntegralD_i64 self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct B_IntegralD_i64));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_IntegralD_i64), B_IntegralD_i64G_methods.$GCdescr);
             self->$class = &B_IntegralD_i64G_methods;
             return self;
         }
@@ -1545,12 +1610,13 @@ B_IntegralD_i64 B_IntegralD_i64D___deserialize__ (B_IntegralD_i64 self, $Serial$
     return self;
 }
 B_IntegralD_i64 B_IntegralD_i64G_new() {
-    B_IntegralD_i64 $tmp = malloc(sizeof(struct B_IntegralD_i64));
+    B_IntegralD_i64 $tmp = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_IntegralD_i64), B_IntegralD_i64G_methods.$GCdescr);
     $tmp->$class = &B_IntegralD_i64G_methods;
     B_IntegralD_i64G_methods.__init__($tmp);
     return $tmp;
 }
 struct B_IntegralD_i64G_class B_IntegralD_i64G_methods;
+GC_word B_IntegralD_i64D_gcbm[GC_BITMAP_SIZE(struct B_IntegralD_i64)];
 B_NoneType B_MinusD_IntegralD_i64D___init__ (B_MinusD_IntegralD_i64 W_self, B_Integral W_Integral) {
     ((B_NoneType (*) (B_MinusD_Integral, B_Integral))B_MinusD_IntegralG_methods.__init__)(((B_MinusD_Integral)W_self), ((B_Integral)W_Integral));
     return B_None;
@@ -1565,7 +1631,7 @@ void B_MinusD_IntegralD_i64D___serialize__ (B_MinusD_IntegralD_i64 self, $Serial
 B_MinusD_IntegralD_i64 B_MinusD_IntegralD_i64D___deserialize__ (B_MinusD_IntegralD_i64 self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct B_MinusD_IntegralD_i64));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_MinusD_IntegralD_i64), B_MinusD_IntegralD_i64G_methods.$GCdescr);
             self->$class = &B_MinusD_IntegralD_i64G_methods;
             return self;
         }
@@ -1578,12 +1644,13 @@ B_MinusD_IntegralD_i64 B_MinusD_IntegralD_i64D___deserialize__ (B_MinusD_Integra
     return self;
 }
 B_MinusD_IntegralD_i64 B_MinusD_IntegralD_i64G_new(B_Integral G_1) {
-    B_MinusD_IntegralD_i64 $tmp = malloc(sizeof(struct B_MinusD_IntegralD_i64));
+    B_MinusD_IntegralD_i64 $tmp = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_MinusD_IntegralD_i64), B_MinusD_IntegralD_i64G_methods.$GCdescr);
     $tmp->$class = &B_MinusD_IntegralD_i64G_methods;
     B_MinusD_IntegralD_i64G_methods.__init__($tmp, G_1);
     return $tmp;
 }
 struct B_MinusD_IntegralD_i64G_class B_MinusD_IntegralD_i64G_methods;
+GC_word B_MinusD_IntegralD_i64D_gcbm[GC_BITMAP_SIZE(struct B_MinusD_IntegralD_i64)];
 B_NoneType B_LogicalD_IntegralD_i64D___init__ (B_LogicalD_IntegralD_i64 W_self, B_Integral W_Integral) {
     ((B_NoneType (*) (B_LogicalD_Integral, B_Integral))B_LogicalD_IntegralG_methods.__init__)(((B_LogicalD_Integral)W_self), ((B_Integral)W_Integral));
     return B_None;
@@ -1597,7 +1664,7 @@ void B_LogicalD_IntegralD_i64D___serialize__ (B_LogicalD_IntegralD_i64 self, $Se
 B_LogicalD_IntegralD_i64 B_LogicalD_IntegralD_i64D___deserialize__ (B_LogicalD_IntegralD_i64 self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct B_LogicalD_IntegralD_i64));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_LogicalD_IntegralD_i64), B_LogicalD_IntegralD_i64G_methods.$GCdescr);
             self->$class = &B_LogicalD_IntegralD_i64G_methods;
             return self;
         }
@@ -1607,12 +1674,13 @@ B_LogicalD_IntegralD_i64 B_LogicalD_IntegralD_i64D___deserialize__ (B_LogicalD_I
     return self;
 }
 B_LogicalD_IntegralD_i64 B_LogicalD_IntegralD_i64G_new(B_Integral G_1) {
-    B_LogicalD_IntegralD_i64 $tmp = malloc(sizeof(struct B_LogicalD_IntegralD_i64));
+    B_LogicalD_IntegralD_i64 $tmp = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_LogicalD_IntegralD_i64), B_LogicalD_IntegralD_i64G_methods.$GCdescr);
     $tmp->$class = &B_LogicalD_IntegralD_i64G_methods;
     B_LogicalD_IntegralD_i64G_methods.__init__($tmp, G_1);
     return $tmp;
 }
 struct B_LogicalD_IntegralD_i64G_class B_LogicalD_IntegralD_i64G_methods;
+GC_word B_LogicalD_IntegralD_i64D_gcbm[GC_BITMAP_SIZE(struct B_LogicalD_IntegralD_i64)];
 B_NoneType B_DivD_i64D___init__ (B_DivD_i64 W_self) {
     ((B_NoneType (*) (B_Div))B_DivG_methods.__init__)(((B_Div)W_self));
     return B_None;
@@ -1623,7 +1691,7 @@ void B_DivD_i64D___serialize__ (B_DivD_i64 self, $Serial$state state) {
 B_DivD_i64 B_DivD_i64D___deserialize__ (B_DivD_i64 self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct B_DivD_i64));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_DivD_i64), B_DivD_i64G_methods.$GCdescr);
             self->$class = &B_DivD_i64G_methods;
             return self;
         }
@@ -1632,12 +1700,13 @@ B_DivD_i64 B_DivD_i64D___deserialize__ (B_DivD_i64 self, $Serial$state state) {
     return self;
 }
 B_DivD_i64 B_DivD_i64G_new() {
-    B_DivD_i64 $tmp = malloc(sizeof(struct B_DivD_i64));
+    B_DivD_i64 $tmp = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_DivD_i64), B_DivD_i64G_methods.$GCdescr);
     $tmp->$class = &B_DivD_i64G_methods;
     B_DivD_i64G_methods.__init__($tmp);
     return $tmp;
 }
 struct B_DivD_i64G_class B_DivD_i64G_methods;
+GC_word B_DivD_i64D_gcbm[GC_BITMAP_SIZE(struct B_DivD_i64)];
 B_NoneType B_OrdD_i64D___init__ (B_OrdD_i64 W_self) {
     ((B_NoneType (*) (B_Ord))B_OrdG_methods.__init__)(((B_Ord)W_self));
     return B_None;
@@ -1649,7 +1718,7 @@ void B_OrdD_i64D___serialize__ (B_OrdD_i64 self, $Serial$state state) {
 B_OrdD_i64 B_OrdD_i64D___deserialize__ (B_OrdD_i64 self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct B_OrdD_i64));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_OrdD_i64), B_OrdD_i64G_methods.$GCdescr);
             self->$class = &B_OrdD_i64G_methods;
             return self;
         }
@@ -1658,12 +1727,13 @@ B_OrdD_i64 B_OrdD_i64D___deserialize__ (B_OrdD_i64 self, $Serial$state state) {
     return self;
 }
 B_OrdD_i64 B_OrdD_i64G_new() {
-    B_OrdD_i64 $tmp = malloc(sizeof(struct B_OrdD_i64));
+    B_OrdD_i64 $tmp = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_OrdD_i64), B_OrdD_i64G_methods.$GCdescr);
     $tmp->$class = &B_OrdD_i64G_methods;
     B_OrdD_i64G_methods.__init__($tmp);
     return $tmp;
 }
 struct B_OrdD_i64G_class B_OrdD_i64G_methods;
+GC_word B_OrdD_i64D_gcbm[GC_BITMAP_SIZE(struct B_OrdD_i64)];
 B_NoneType B_HashableD_i64D___init__ (B_HashableD_i64 W_self) {
     ((B_NoneType (*) (B_Hashable))B_HashableG_methods.__init__)(((B_Hashable)W_self));
     return B_None;
@@ -1674,7 +1744,7 @@ void B_HashableD_i64D___serialize__ (B_HashableD_i64 self, $Serial$state state) 
 B_HashableD_i64 B_HashableD_i64D___deserialize__ (B_HashableD_i64 self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct B_HashableD_i64));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_HashableD_i64), B_HashableD_i64G_methods.$GCdescr);
             self->$class = &B_HashableD_i64G_methods;
             return self;
         }
@@ -1686,6 +1756,7 @@ B_HashableD_i64 B_HashableD_i64G_new() {   // manually added
     return $NEW(B_HashableD_i64);          //
 }                                          //
 struct B_HashableD_i64G_class B_HashableD_i64G_methods;
+GC_word B_HashableD_i64D_gcbm[GC_BITMAP_SIZE(struct B_HashableD_i64)];
 
 
 
@@ -1734,7 +1805,7 @@ void B_IntegralD_i32D___serialize__ (B_IntegralD_i32 self, $Serial$state state) 
 B_IntegralD_i32 B_IntegralD_i32D___deserialize__ (B_IntegralD_i32 self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct B_IntegralD_i32));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_IntegralD_i32), B_IntegralD_i32G_methods.$GCdescr);
             self->$class = &B_IntegralD_i32G_methods;
             return self;
         }
@@ -1745,12 +1816,13 @@ B_IntegralD_i32 B_IntegralD_i32D___deserialize__ (B_IntegralD_i32 self, $Serial$
     return self;
 }
 B_IntegralD_i32 B_IntegralD_i32G_new() {
-    B_IntegralD_i32 $tmp = malloc(sizeof(struct B_IntegralD_i32));
+    B_IntegralD_i32 $tmp = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_IntegralD_i32), B_IntegralD_i32G_methods.$GCdescr);
     $tmp->$class = &B_IntegralD_i32G_methods;
     B_IntegralD_i32G_methods.__init__($tmp);
     return $tmp;
 }
 struct B_IntegralD_i32G_class B_IntegralD_i32G_methods;
+GC_word B_IntegralD_i32D_gcbm[GC_BITMAP_SIZE(struct B_IntegralD_i32)];
 B_NoneType B_MinusD_IntegralD_i32D___init__ (B_MinusD_IntegralD_i32 W_self, B_Integral W_Integral) {
     ((B_NoneType (*) (B_MinusD_Integral, B_Integral))B_MinusD_IntegralG_methods.__init__)(((B_MinusD_Integral)W_self), ((B_Integral)W_Integral));
     return B_None;
@@ -1765,7 +1837,7 @@ void B_MinusD_IntegralD_i32D___serialize__ (B_MinusD_IntegralD_i32 self, $Serial
 B_MinusD_IntegralD_i32 B_MinusD_IntegralD_i32D___deserialize__ (B_MinusD_IntegralD_i32 self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct B_MinusD_IntegralD_i32));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_MinusD_IntegralD_i32), B_MinusD_IntegralD_i32G_methods.$GCdescr);
             self->$class = &B_MinusD_IntegralD_i32G_methods;
             return self;
         }
@@ -1778,12 +1850,13 @@ B_MinusD_IntegralD_i32 B_MinusD_IntegralD_i32D___deserialize__ (B_MinusD_Integra
     return self;
 }
 B_MinusD_IntegralD_i32 B_MinusD_IntegralD_i32G_new(B_Integral G_1) {
-    B_MinusD_IntegralD_i32 $tmp = malloc(sizeof(struct B_MinusD_IntegralD_i32));
+    B_MinusD_IntegralD_i32 $tmp = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_MinusD_IntegralD_i32), B_MinusD_IntegralD_i32G_methods.$GCdescr);
     $tmp->$class = &B_MinusD_IntegralD_i32G_methods;
     B_MinusD_IntegralD_i32G_methods.__init__($tmp, G_1);
     return $tmp;
 }
 struct B_MinusD_IntegralD_i32G_class B_MinusD_IntegralD_i32G_methods;
+GC_word B_MinusD_IntegralD_i32D_gcbm[GC_BITMAP_SIZE(struct B_MinusD_IntegralD_i32)];
 B_NoneType B_LogicalD_IntegralD_i32D___init__ (B_LogicalD_IntegralD_i32 W_self, B_Integral W_Integral) {
     ((B_NoneType (*) (B_LogicalD_Integral, B_Integral))B_LogicalD_IntegralG_methods.__init__)(((B_LogicalD_Integral)W_self), ((B_Integral)W_Integral));
     return B_None;
@@ -1797,7 +1870,7 @@ void B_LogicalD_IntegralD_i32D___serialize__ (B_LogicalD_IntegralD_i32 self, $Se
 B_LogicalD_IntegralD_i32 B_LogicalD_IntegralD_i32D___deserialize__ (B_LogicalD_IntegralD_i32 self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct B_LogicalD_IntegralD_i32));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_LogicalD_IntegralD_i32), B_LogicalD_IntegralD_i32G_methods.$GCdescr);
             self->$class = &B_LogicalD_IntegralD_i32G_methods;
             return self;
         }
@@ -1807,12 +1880,13 @@ B_LogicalD_IntegralD_i32 B_LogicalD_IntegralD_i32D___deserialize__ (B_LogicalD_I
     return self;
 }
 B_LogicalD_IntegralD_i32 B_LogicalD_IntegralD_i32G_new(B_Integral G_1) {
-    B_LogicalD_IntegralD_i32 $tmp = malloc(sizeof(struct B_LogicalD_IntegralD_i32));
+    B_LogicalD_IntegralD_i32 $tmp = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_LogicalD_IntegralD_i32), B_LogicalD_IntegralD_i32G_methods.$GCdescr);
     $tmp->$class = &B_LogicalD_IntegralD_i32G_methods;
     B_LogicalD_IntegralD_i32G_methods.__init__($tmp, G_1);
     return $tmp;
 }
 struct B_LogicalD_IntegralD_i32G_class B_LogicalD_IntegralD_i32G_methods;
+GC_word B_LogicalD_IntegralD_i32D_gcbm[GC_BITMAP_SIZE(struct B_LogicalD_IntegralD_i32)];
 B_NoneType B_DivD_i32D___init__ (B_DivD_i32 W_self) {
     ((B_NoneType (*) (B_Div))B_DivG_methods.__init__)(((B_Div)W_self));
     return B_None;
@@ -1823,7 +1897,7 @@ void B_DivD_i32D___serialize__ (B_DivD_i32 self, $Serial$state state) {
 B_DivD_i32 B_DivD_i32D___deserialize__ (B_DivD_i32 self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct B_DivD_i32));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_DivD_i32), B_DivD_i32G_methods.$GCdescr);
             self->$class = &B_DivD_i32G_methods;
             return self;
         }
@@ -1832,12 +1906,13 @@ B_DivD_i32 B_DivD_i32D___deserialize__ (B_DivD_i32 self, $Serial$state state) {
     return self;
 }
 B_DivD_i32 B_DivD_i32G_new() {
-    B_DivD_i32 $tmp = malloc(sizeof(struct B_DivD_i32));
+    B_DivD_i32 $tmp = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_DivD_i32), B_DivD_i32G_methods.$GCdescr);
     $tmp->$class = &B_DivD_i32G_methods;
     B_DivD_i32G_methods.__init__($tmp);
     return $tmp;
 }
 struct B_DivD_i32G_class B_DivD_i32G_methods;
+GC_word B_DivD_i32D_gcbm[GC_BITMAP_SIZE(struct B_DivD_i32)];
 B_NoneType B_OrdD_i32D___init__ (B_OrdD_i32 W_self) {
     ((B_NoneType (*) (B_Ord))B_OrdG_methods.__init__)(((B_Ord)W_self));
     return B_None;
@@ -1849,7 +1924,7 @@ void B_OrdD_i32D___serialize__ (B_OrdD_i32 self, $Serial$state state) {
 B_OrdD_i32 B_OrdD_i32D___deserialize__ (B_OrdD_i32 self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct B_OrdD_i32));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_OrdD_i32), B_OrdD_i32G_methods.$GCdescr);
             self->$class = &B_OrdD_i32G_methods;
             return self;
         }
@@ -1858,12 +1933,13 @@ B_OrdD_i32 B_OrdD_i32D___deserialize__ (B_OrdD_i32 self, $Serial$state state) {
     return self;
 }
 B_OrdD_i32 B_OrdD_i32G_new() {
-    B_OrdD_i32 $tmp = malloc(sizeof(struct B_OrdD_i32));
+    B_OrdD_i32 $tmp = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_OrdD_i32), B_OrdD_i32G_methods.$GCdescr);
     $tmp->$class = &B_OrdD_i32G_methods;
     B_OrdD_i32G_methods.__init__($tmp);
     return $tmp;
 }
 struct B_OrdD_i32G_class B_OrdD_i32G_methods;
+GC_word B_OrdD_i32D_gcbm[GC_BITMAP_SIZE(struct B_OrdD_i32)];
 B_NoneType B_HashableD_i32D___init__ (B_HashableD_i32 W_self) {
     ((B_NoneType (*) (B_Hashable))B_HashableG_methods.__init__)(((B_Hashable)W_self));
     return B_None;
@@ -1874,7 +1950,7 @@ void B_HashableD_i32D___serialize__ (B_HashableD_i32 self, $Serial$state state) 
 B_HashableD_i32 B_HashableD_i32D___deserialize__ (B_HashableD_i32 self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct B_HashableD_i32));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_HashableD_i32), B_HashableD_i32G_methods.$GCdescr);
             self->$class = &B_HashableD_i32G_methods;
             return self;
         }
@@ -1886,6 +1962,7 @@ B_HashableD_i32 B_HashableD_i32G_new() {   // manually added
     return $NEW(B_HashableD_i32);          //
 }                                          //
 struct B_HashableD_i32G_class B_HashableD_i32G_methods;
+GC_word B_HashableD_i32D_gcbm[GC_BITMAP_SIZE(struct B_HashableD_i32)];
 
 
 
@@ -1934,7 +2011,7 @@ void B_IntegralD_i16D___serialize__ (B_IntegralD_i16 self, $Serial$state state) 
 B_IntegralD_i16 B_IntegralD_i16D___deserialize__ (B_IntegralD_i16 self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct B_IntegralD_i16));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_IntegralD_i16), B_IntegralD_i16G_methods.$GCdescr);
             self->$class = &B_IntegralD_i16G_methods;
             return self;
         }
@@ -1945,12 +2022,13 @@ B_IntegralD_i16 B_IntegralD_i16D___deserialize__ (B_IntegralD_i16 self, $Serial$
     return self;
 }
 B_IntegralD_i16 B_IntegralD_i16G_new() {
-    B_IntegralD_i16 $tmp = malloc(sizeof(struct B_IntegralD_i16));
+    B_IntegralD_i16 $tmp = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_IntegralD_i16), B_IntegralD_i16G_methods.$GCdescr);
     $tmp->$class = &B_IntegralD_i16G_methods;
     B_IntegralD_i16G_methods.__init__($tmp);
     return $tmp;
 }
 struct B_IntegralD_i16G_class B_IntegralD_i16G_methods;
+GC_word B_IntegralD_i16D_gcbm[GC_BITMAP_SIZE(struct B_IntegralD_i16)];
 B_NoneType B_MinusD_IntegralD_i16D___init__ (B_MinusD_IntegralD_i16 W_self, B_Integral W_Integral) {
     ((B_NoneType (*) (B_MinusD_Integral, B_Integral))B_MinusD_IntegralG_methods.__init__)(((B_MinusD_Integral)W_self), ((B_Integral)W_Integral));
     return B_None;
@@ -1965,7 +2043,7 @@ void B_MinusD_IntegralD_i16D___serialize__ (B_MinusD_IntegralD_i16 self, $Serial
 B_MinusD_IntegralD_i16 B_MinusD_IntegralD_i16D___deserialize__ (B_MinusD_IntegralD_i16 self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct B_MinusD_IntegralD_i16));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_MinusD_IntegralD_i16), B_MinusD_IntegralD_i16G_methods.$GCdescr);
             self->$class = &B_MinusD_IntegralD_i16G_methods;
             return self;
         }
@@ -1978,12 +2056,13 @@ B_MinusD_IntegralD_i16 B_MinusD_IntegralD_i16D___deserialize__ (B_MinusD_Integra
     return self;
 }
 B_MinusD_IntegralD_i16 B_MinusD_IntegralD_i16G_new(B_Integral G_1) {
-    B_MinusD_IntegralD_i16 $tmp = malloc(sizeof(struct B_MinusD_IntegralD_i16));
+    B_MinusD_IntegralD_i16 $tmp = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_MinusD_IntegralD_i16), B_MinusD_IntegralD_i16G_methods.$GCdescr);
     $tmp->$class = &B_MinusD_IntegralD_i16G_methods;
     B_MinusD_IntegralD_i16G_methods.__init__($tmp, G_1);
     return $tmp;
 }
 struct B_MinusD_IntegralD_i16G_class B_MinusD_IntegralD_i16G_methods;
+GC_word B_MinusD_IntegralD_i16D_gcbm[GC_BITMAP_SIZE(struct B_MinusD_IntegralD_i16)];
 B_NoneType B_LogicalD_IntegralD_i16D___init__ (B_LogicalD_IntegralD_i16 W_self, B_Integral W_Integral) {
     ((B_NoneType (*) (B_LogicalD_Integral, B_Integral))B_LogicalD_IntegralG_methods.__init__)(((B_LogicalD_Integral)W_self), ((B_Integral)W_Integral));
     return B_None;
@@ -1997,7 +2076,7 @@ void B_LogicalD_IntegralD_i16D___serialize__ (B_LogicalD_IntegralD_i16 self, $Se
 B_LogicalD_IntegralD_i16 B_LogicalD_IntegralD_i16D___deserialize__ (B_LogicalD_IntegralD_i16 self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct B_LogicalD_IntegralD_i16));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_LogicalD_IntegralD_i16), B_LogicalD_IntegralD_i16G_methods.$GCdescr);
             self->$class = &B_LogicalD_IntegralD_i16G_methods;
             return self;
         }
@@ -2007,12 +2086,13 @@ B_LogicalD_IntegralD_i16 B_LogicalD_IntegralD_i16D___deserialize__ (B_LogicalD_I
     return self;
 }
 B_LogicalD_IntegralD_i16 B_LogicalD_IntegralD_i16G_new(B_Integral G_1) {
-    B_LogicalD_IntegralD_i16 $tmp = malloc(sizeof(struct B_LogicalD_IntegralD_i16));
+    B_LogicalD_IntegralD_i16 $tmp = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_LogicalD_IntegralD_i16), B_LogicalD_IntegralD_i16G_methods.$GCdescr);
     $tmp->$class = &B_LogicalD_IntegralD_i16G_methods;
     B_LogicalD_IntegralD_i16G_methods.__init__($tmp, G_1);
     return $tmp;
 }
 struct B_LogicalD_IntegralD_i16G_class B_LogicalD_IntegralD_i16G_methods;
+GC_word B_LogicalD_IntegralD_i16D_gcbm[GC_BITMAP_SIZE(struct B_LogicalD_IntegralD_i16)];
 B_NoneType B_DivD_i16D___init__ (B_DivD_i16 W_self) {
     ((B_NoneType (*) (B_Div))B_DivG_methods.__init__)(((B_Div)W_self));
     return B_None;
@@ -2023,7 +2103,7 @@ void B_DivD_i16D___serialize__ (B_DivD_i16 self, $Serial$state state) {
 B_DivD_i16 B_DivD_i16D___deserialize__ (B_DivD_i16 self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct B_DivD_i16));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_DivD_i16), B_DivD_i16G_methods.$GCdescr);
             self->$class = &B_DivD_i16G_methods;
             return self;
         }
@@ -2032,12 +2112,13 @@ B_DivD_i16 B_DivD_i16D___deserialize__ (B_DivD_i16 self, $Serial$state state) {
     return self;
 }
 B_DivD_i16 B_DivD_i16G_new() {
-    B_DivD_i16 $tmp = malloc(sizeof(struct B_DivD_i16));
+    B_DivD_i16 $tmp = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_DivD_i16), B_DivD_i16G_methods.$GCdescr);
     $tmp->$class = &B_DivD_i16G_methods;
     B_DivD_i16G_methods.__init__($tmp);
     return $tmp;
 }
 struct B_DivD_i16G_class B_DivD_i16G_methods;
+GC_word B_DivD_i16D_gcbm[GC_BITMAP_SIZE(struct B_DivD_i16)];
 B_NoneType B_OrdD_i16D___init__ (B_OrdD_i16 W_self) {
     ((B_NoneType (*) (B_Ord))B_OrdG_methods.__init__)(((B_Ord)W_self));
     return B_None;
@@ -2049,7 +2130,7 @@ void B_OrdD_i16D___serialize__ (B_OrdD_i16 self, $Serial$state state) {
 B_OrdD_i16 B_OrdD_i16D___deserialize__ (B_OrdD_i16 self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct B_OrdD_i16));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_OrdD_i16), B_OrdD_i16G_methods.$GCdescr);
             self->$class = &B_OrdD_i16G_methods;
             return self;
         }
@@ -2058,12 +2139,13 @@ B_OrdD_i16 B_OrdD_i16D___deserialize__ (B_OrdD_i16 self, $Serial$state state) {
     return self;
 }
 B_OrdD_i16 B_OrdD_i16G_new() {
-    B_OrdD_i16 $tmp = malloc(sizeof(struct B_OrdD_i16));
+    B_OrdD_i16 $tmp = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_OrdD_i16), B_OrdD_i16G_methods.$GCdescr);
     $tmp->$class = &B_OrdD_i16G_methods;
     B_OrdD_i16G_methods.__init__($tmp);
     return $tmp;
 }
 struct B_OrdD_i16G_class B_OrdD_i16G_methods;
+GC_word B_OrdD_i16D_gcbm[GC_BITMAP_SIZE(struct B_OrdD_i16)];
 B_NoneType B_HashableD_i16D___init__ (B_HashableD_i16 W_self) {
     ((B_NoneType (*) (B_Hashable))B_HashableG_methods.__init__)(((B_Hashable)W_self));
     return B_None;
@@ -2074,7 +2156,7 @@ void B_HashableD_i16D___serialize__ (B_HashableD_i16 self, $Serial$state state) 
 B_HashableD_i16 B_HashableD_i16D___deserialize__ (B_HashableD_i16 self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct B_HashableD_i16));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_HashableD_i16), B_HashableD_i16G_methods.$GCdescr);
             self->$class = &B_HashableD_i16G_methods;
             return self;
         }
@@ -2086,6 +2168,7 @@ B_HashableD_i16 B_HashableD_i16G_new() {   // manually added
     return $NEW(B_HashableD_i16);          //
 }                                          //
 struct B_HashableD_i16G_class B_HashableD_i16G_methods;
+GC_word B_HashableD_i16D_gcbm[GC_BITMAP_SIZE(struct B_HashableD_i16)];
 
 
 
@@ -2135,7 +2218,7 @@ void B_IntegralD_u64D___serialize__ (B_IntegralD_u64 self, $Serial$state state) 
 B_IntegralD_u64 B_IntegralD_u64D___deserialize__ (B_IntegralD_u64 self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct B_IntegralD_u64));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_IntegralD_u64), B_IntegralD_u64G_methods.$GCdescr);
             self->$class = &B_IntegralD_u64G_methods;
             return self;
         }
@@ -2146,12 +2229,13 @@ B_IntegralD_u64 B_IntegralD_u64D___deserialize__ (B_IntegralD_u64 self, $Serial$
     return self;
 }
 B_IntegralD_u64 B_IntegralD_u64G_new() {
-    B_IntegralD_u64 $tmp = malloc(sizeof(struct B_IntegralD_u64));
+    B_IntegralD_u64 $tmp = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_IntegralD_u64), B_IntegralD_u64G_methods.$GCdescr);
     $tmp->$class = &B_IntegralD_u64G_methods;
     B_IntegralD_u64G_methods.__init__($tmp);
     return $tmp;
 }
 struct B_IntegralD_u64G_class B_IntegralD_u64G_methods;
+GC_word B_IntegralD_u64D_gcbm[GC_BITMAP_SIZE(struct B_IntegralD_u64)];
 B_NoneType B_MinusD_IntegralD_u64D___init__ (B_MinusD_IntegralD_u64 W_self, B_Integral W_Integral) {
     ((B_NoneType (*) (B_MinusD_Integral, B_Integral))B_MinusD_IntegralG_methods.__init__)(((B_MinusD_Integral)W_self), ((B_Integral)W_Integral));
     return B_None;
@@ -2166,7 +2250,7 @@ void B_MinusD_IntegralD_u64D___serialize__ (B_MinusD_IntegralD_u64 self, $Serial
 B_MinusD_IntegralD_u64 B_MinusD_IntegralD_u64D___deserialize__ (B_MinusD_IntegralD_u64 self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct B_MinusD_IntegralD_u64));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_MinusD_IntegralD_u64), B_MinusD_IntegralD_u64G_methods.$GCdescr);
             self->$class = &B_MinusD_IntegralD_u64G_methods;
             return self;
         }
@@ -2179,12 +2263,13 @@ B_MinusD_IntegralD_u64 B_MinusD_IntegralD_u64D___deserialize__ (B_MinusD_Integra
     return self;
 }
 B_MinusD_IntegralD_u64 B_MinusD_IntegralD_u64G_new(B_Integral G_1) {
-    B_MinusD_IntegralD_u64 $tmp = malloc(sizeof(struct B_MinusD_IntegralD_u64));
+    B_MinusD_IntegralD_u64 $tmp = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_MinusD_IntegralD_u64), B_MinusD_IntegralD_u64G_methods.$GCdescr);
     $tmp->$class = &B_MinusD_IntegralD_u64G_methods;
     B_MinusD_IntegralD_u64G_methods.__init__($tmp, G_1);
     return $tmp;
 }
 struct B_MinusD_IntegralD_u64G_class B_MinusD_IntegralD_u64G_methods;
+GC_word B_MinusD_IntegralD_u64D_gcbm[GC_BITMAP_SIZE(struct B_MinusD_IntegralD_u64)];
 B_NoneType B_LogicalD_IntegralD_u64D___init__ (B_LogicalD_IntegralD_u64 W_self, B_Integral W_Integral) {
     ((B_NoneType (*) (B_LogicalD_Integral, B_Integral))B_LogicalD_IntegralG_methods.__init__)(((B_LogicalD_Integral)W_self), ((B_Integral)W_Integral));
     return B_None;
@@ -2198,7 +2283,7 @@ void B_LogicalD_IntegralD_u64D___serialize__ (B_LogicalD_IntegralD_u64 self, $Se
 B_LogicalD_IntegralD_u64 B_LogicalD_IntegralD_u64D___deserialize__ (B_LogicalD_IntegralD_u64 self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct B_LogicalD_IntegralD_u64));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_LogicalD_IntegralD_u64), B_LogicalD_IntegralD_u64G_methods.$GCdescr);
             self->$class = &B_LogicalD_IntegralD_u64G_methods;
             return self;
         }
@@ -2208,12 +2293,13 @@ B_LogicalD_IntegralD_u64 B_LogicalD_IntegralD_u64D___deserialize__ (B_LogicalD_I
     return self;
 }
 B_LogicalD_IntegralD_u64 B_LogicalD_IntegralD_u64G_new(B_Integral G_1) {
-    B_LogicalD_IntegralD_u64 $tmp = malloc(sizeof(struct B_LogicalD_IntegralD_u64));
+    B_LogicalD_IntegralD_u64 $tmp = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_LogicalD_IntegralD_u64), B_LogicalD_IntegralD_u64G_methods.$GCdescr);
     $tmp->$class = &B_LogicalD_IntegralD_u64G_methods;
     B_LogicalD_IntegralD_u64G_methods.__init__($tmp, G_1);
     return $tmp;
 }
 struct B_LogicalD_IntegralD_u64G_class B_LogicalD_IntegralD_u64G_methods;
+GC_word B_LogicalD_IntegralD_u64D_gcbm[GC_BITMAP_SIZE(struct B_LogicalD_IntegralD_u64)];
 B_NoneType B_DivD_u64D___init__ (B_DivD_u64 W_self) {
     ((B_NoneType (*) (B_Div))B_DivG_methods.__init__)(((B_Div)W_self));
     return B_None;
@@ -2224,7 +2310,7 @@ void B_DivD_u64D___serialize__ (B_DivD_u64 self, $Serial$state state) {
 B_DivD_u64 B_DivD_u64D___deserialize__ (B_DivD_u64 self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct B_DivD_u64));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_DivD_u64), B_DivD_u64G_methods.$GCdescr);
             self->$class = &B_DivD_u64G_methods;
             return self;
         }
@@ -2236,12 +2322,13 @@ B_HashableD_u64 B_HashableD_u64G_new() {   // manually added
     return $NEW(B_HashableD_u64);          //
 }                                          //
 B_DivD_u64 B_DivD_u64G_new() {
-    B_DivD_u64 $tmp = malloc(sizeof(struct B_DivD_u64));
+    B_DivD_u64 $tmp = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_DivD_u64), B_DivD_u64G_methods.$GCdescr);
     $tmp->$class = &B_DivD_u64G_methods;
     B_DivD_u64G_methods.__init__($tmp);
     return $tmp;
 }
 struct B_DivD_u64G_class B_DivD_u64G_methods;
+GC_word B_DivD_u64D_gcbm[GC_BITMAP_SIZE(struct B_DivD_u64)];
 B_NoneType B_OrdD_u64D___init__ (B_OrdD_u64 W_self) {
     ((B_NoneType (*) (B_Ord))B_OrdG_methods.__init__)(((B_Ord)W_self));
     return B_None;
@@ -2253,7 +2340,7 @@ void B_OrdD_u64D___serialize__ (B_OrdD_u64 self, $Serial$state state) {
 B_OrdD_u64 B_OrdD_u64D___deserialize__ (B_OrdD_u64 self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct B_OrdD_u64));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_OrdD_u64), B_OrdD_u64G_methods.$GCdescr);
             self->$class = &B_OrdD_u64G_methods;
             return self;
         }
@@ -2262,12 +2349,13 @@ B_OrdD_u64 B_OrdD_u64D___deserialize__ (B_OrdD_u64 self, $Serial$state state) {
     return self;
 }
 B_OrdD_u64 B_OrdD_u64G_new() {
-    B_OrdD_u64 $tmp = malloc(sizeof(struct B_OrdD_u64));
+    B_OrdD_u64 $tmp = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_OrdD_u64), B_OrdD_u64G_methods.$GCdescr);
     $tmp->$class = &B_OrdD_u64G_methods;
     B_OrdD_u64G_methods.__init__($tmp);
     return $tmp;
 }
 struct B_OrdD_u64G_class B_OrdD_u64G_methods;
+GC_word B_OrdD_u64D_gcbm[GC_BITMAP_SIZE(struct B_OrdD_u64)];
 B_NoneType B_HashableD_u64D___init__ (B_HashableD_u64 W_self) {
     ((B_NoneType (*) (B_Hashable))B_HashableG_methods.__init__)(((B_Hashable)W_self));
     return B_None;
@@ -2278,7 +2366,7 @@ void B_HashableD_u64D___serialize__ (B_HashableD_u64 self, $Serial$state state) 
 B_HashableD_u64 B_HashableD_u64D___deserialize__ (B_HashableD_u64 self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct B_HashableD_u64));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_HashableD_u64), B_HashableD_u64G_methods.$GCdescr);
             self->$class = &B_HashableD_u64G_methods;
             return self;
         }
@@ -2287,6 +2375,7 @@ B_HashableD_u64 B_HashableD_u64D___deserialize__ (B_HashableD_u64 self, $Serial$
     return self;
 }
 struct B_HashableD_u64G_class B_HashableD_u64G_methods;
+GC_word B_HashableD_u64D_gcbm[GC_BITMAP_SIZE(struct B_HashableD_u64)];
 
 
 
@@ -2334,7 +2423,7 @@ void B_IntegralD_u32D___serialize__ (B_IntegralD_u32 self, $Serial$state state) 
 B_IntegralD_u32 B_IntegralD_u32D___deserialize__ (B_IntegralD_u32 self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct B_IntegralD_u32));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_IntegralD_u32), B_IntegralD_u32G_methods.$GCdescr);
             self->$class = &B_IntegralD_u32G_methods;
             return self;
         }
@@ -2345,12 +2434,13 @@ B_IntegralD_u32 B_IntegralD_u32D___deserialize__ (B_IntegralD_u32 self, $Serial$
     return self;
 }
 B_IntegralD_u32 B_IntegralD_u32G_new() {
-    B_IntegralD_u32 $tmp = malloc(sizeof(struct B_IntegralD_u32));
+    B_IntegralD_u32 $tmp = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_IntegralD_u32), B_IntegralD_u32G_methods.$GCdescr);
     $tmp->$class = &B_IntegralD_u32G_methods;
     B_IntegralD_u32G_methods.__init__($tmp);
     return $tmp;
 }
 struct B_IntegralD_u32G_class B_IntegralD_u32G_methods;
+GC_word B_IntegralD_u32D_gcbm[GC_BITMAP_SIZE(struct B_IntegralD_u32)];
 B_NoneType B_MinusD_IntegralD_u32D___init__ (B_MinusD_IntegralD_u32 W_self, B_Integral W_Integral) {
     ((B_NoneType (*) (B_MinusD_Integral, B_Integral))B_MinusD_IntegralG_methods.__init__)(((B_MinusD_Integral)W_self), ((B_Integral)W_Integral));
     return B_None;
@@ -2365,7 +2455,7 @@ void B_MinusD_IntegralD_u32D___serialize__ (B_MinusD_IntegralD_u32 self, $Serial
 B_MinusD_IntegralD_u32 B_MinusD_IntegralD_u32D___deserialize__ (B_MinusD_IntegralD_u32 self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct B_MinusD_IntegralD_u32));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_MinusD_IntegralD_u32), B_MinusD_IntegralD_u32G_methods.$GCdescr);
             self->$class = &B_MinusD_IntegralD_u32G_methods;
             return self;
         }
@@ -2378,12 +2468,13 @@ B_MinusD_IntegralD_u32 B_MinusD_IntegralD_u32D___deserialize__ (B_MinusD_Integra
     return self;
 }
 B_MinusD_IntegralD_u32 B_MinusD_IntegralD_u32G_new(B_Integral G_1) {
-    B_MinusD_IntegralD_u32 $tmp = malloc(sizeof(struct B_MinusD_IntegralD_u32));
+    B_MinusD_IntegralD_u32 $tmp = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_MinusD_IntegralD_u32), B_MinusD_IntegralD_u32G_methods.$GCdescr);
     $tmp->$class = &B_MinusD_IntegralD_u32G_methods;
     B_MinusD_IntegralD_u32G_methods.__init__($tmp, G_1);
     return $tmp;
 }
 struct B_MinusD_IntegralD_u32G_class B_MinusD_IntegralD_u32G_methods;
+GC_word B_MinusD_IntegralD_u32D_gcbm[GC_BITMAP_SIZE(struct B_MinusD_IntegralD_u32)];
 B_NoneType B_LogicalD_IntegralD_u32D___init__ (B_LogicalD_IntegralD_u32 W_self, B_Integral W_Integral) {
     ((B_NoneType (*) (B_LogicalD_Integral, B_Integral))B_LogicalD_IntegralG_methods.__init__)(((B_LogicalD_Integral)W_self), ((B_Integral)W_Integral));
     return B_None;
@@ -2397,7 +2488,7 @@ void B_LogicalD_IntegralD_u32D___serialize__ (B_LogicalD_IntegralD_u32 self, $Se
 B_LogicalD_IntegralD_u32 B_LogicalD_IntegralD_u32D___deserialize__ (B_LogicalD_IntegralD_u32 self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct B_LogicalD_IntegralD_u32));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_LogicalD_IntegralD_u32), B_LogicalD_IntegralD_u32G_methods.$GCdescr);
             self->$class = &B_LogicalD_IntegralD_u32G_methods;
             return self;
         }
@@ -2407,12 +2498,13 @@ B_LogicalD_IntegralD_u32 B_LogicalD_IntegralD_u32D___deserialize__ (B_LogicalD_I
     return self;
 }
 B_LogicalD_IntegralD_u32 B_LogicalD_IntegralD_u32G_new(B_Integral G_1) {
-    B_LogicalD_IntegralD_u32 $tmp = malloc(sizeof(struct B_LogicalD_IntegralD_u32));
+    B_LogicalD_IntegralD_u32 $tmp = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_LogicalD_IntegralD_u32), B_LogicalD_IntegralD_u32G_methods.$GCdescr);
     $tmp->$class = &B_LogicalD_IntegralD_u32G_methods;
     B_LogicalD_IntegralD_u32G_methods.__init__($tmp, G_1);
     return $tmp;
 }
 struct B_LogicalD_IntegralD_u32G_class B_LogicalD_IntegralD_u32G_methods;
+GC_word B_LogicalD_IntegralD_u32D_gcbm[GC_BITMAP_SIZE(struct B_LogicalD_IntegralD_u32)];
 B_NoneType B_DivD_u32D___init__ (B_DivD_u32 W_self) {
     ((B_NoneType (*) (B_Div))B_DivG_methods.__init__)(((B_Div)W_self));
     return B_None;
@@ -2423,7 +2515,7 @@ void B_DivD_u32D___serialize__ (B_DivD_u32 self, $Serial$state state) {
 B_DivD_u32 B_DivD_u32D___deserialize__ (B_DivD_u32 self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct B_DivD_u32));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_DivD_u32), B_DivD_u32G_methods.$GCdescr);
             self->$class = &B_DivD_u32G_methods;
             return self;
         }
@@ -2432,12 +2524,13 @@ B_DivD_u32 B_DivD_u32D___deserialize__ (B_DivD_u32 self, $Serial$state state) {
     return self;
 }
 B_DivD_u32 B_DivD_u32G_new() {
-    B_DivD_u32 $tmp = malloc(sizeof(struct B_DivD_u32));
+    B_DivD_u32 $tmp = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_DivD_u32), B_DivD_u32G_methods.$GCdescr);
     $tmp->$class = &B_DivD_u32G_methods;
     B_DivD_u32G_methods.__init__($tmp);
     return $tmp;
 }
 struct B_DivD_u32G_class B_DivD_u32G_methods;
+GC_word B_DivD_u32D_gcbm[GC_BITMAP_SIZE(struct B_DivD_u32)];
 B_NoneType B_OrdD_u32D___init__ (B_OrdD_u32 W_self) {
     ((B_NoneType (*) (B_Ord))B_OrdG_methods.__init__)(((B_Ord)W_self));
     return B_None;
@@ -2449,7 +2542,7 @@ void B_OrdD_u32D___serialize__ (B_OrdD_u32 self, $Serial$state state) {
 B_OrdD_u32 B_OrdD_u32D___deserialize__ (B_OrdD_u32 self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct B_OrdD_u32));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_OrdD_u32), B_OrdD_u32G_methods.$GCdescr);
             self->$class = &B_OrdD_u32G_methods;
             return self;
         }
@@ -2458,12 +2551,13 @@ B_OrdD_u32 B_OrdD_u32D___deserialize__ (B_OrdD_u32 self, $Serial$state state) {
     return self;
 }
 B_OrdD_u32 B_OrdD_u32G_new() {
-    B_OrdD_u32 $tmp = malloc(sizeof(struct B_OrdD_u32));
+    B_OrdD_u32 $tmp = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_OrdD_u32), B_OrdD_u32G_methods.$GCdescr);
     $tmp->$class = &B_OrdD_u32G_methods;
     B_OrdD_u32G_methods.__init__($tmp);
     return $tmp;
 }
 struct B_OrdD_u32G_class B_OrdD_u32G_methods;
+GC_word B_OrdD_u32D_gcbm[GC_BITMAP_SIZE(struct B_OrdD_u32)];
 B_NoneType B_HashableD_u32D___init__ (B_HashableD_u32 W_self) {
     ((B_NoneType (*) (B_Hashable))B_HashableG_methods.__init__)(((B_Hashable)W_self));
     return B_None;
@@ -2474,7 +2568,7 @@ void B_HashableD_u32D___serialize__ (B_HashableD_u32 self, $Serial$state state) 
 B_HashableD_u32 B_HashableD_u32D___deserialize__ (B_HashableD_u32 self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct B_HashableD_u32));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_HashableD_u32), B_HashableD_u32G_methods.$GCdescr);
             self->$class = &B_HashableD_u32G_methods;
             return self;
         }
@@ -2486,6 +2580,7 @@ B_HashableD_u32 B_HashableD_u32G_new() {   // manually added
     return $NEW(B_HashableD_u32);          //
 }                                          //
 struct B_HashableD_u32G_class B_HashableD_u32G_methods;
+GC_word B_HashableD_u32D_gcbm[GC_BITMAP_SIZE(struct B_HashableD_u32)];
 
 
 
@@ -2534,7 +2629,7 @@ void B_IntegralD_u16D___serialize__ (B_IntegralD_u16 self, $Serial$state state) 
 B_IntegralD_u16 B_IntegralD_u16D___deserialize__ (B_IntegralD_u16 self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct B_IntegralD_u16));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_IntegralD_u16), B_IntegralD_u16G_methods.$GCdescr);
             self->$class = &B_IntegralD_u16G_methods;
             return self;
         }
@@ -2545,12 +2640,13 @@ B_IntegralD_u16 B_IntegralD_u16D___deserialize__ (B_IntegralD_u16 self, $Serial$
     return self;
 }
 B_IntegralD_u16 B_IntegralD_u16G_new() {
-    B_IntegralD_u16 $tmp = malloc(sizeof(struct B_IntegralD_u16));
+    B_IntegralD_u16 $tmp = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_IntegralD_u16), B_IntegralD_u16G_methods.$GCdescr);
     $tmp->$class = &B_IntegralD_u16G_methods;
     B_IntegralD_u16G_methods.__init__($tmp);
     return $tmp;
 }
 struct B_IntegralD_u16G_class B_IntegralD_u16G_methods;
+GC_word B_IntegralD_u16D_gcbm[GC_BITMAP_SIZE(struct B_IntegralD_u16)];
 B_NoneType B_MinusD_IntegralD_u16D___init__ (B_MinusD_IntegralD_u16 W_self, B_Integral W_Integral) {
     ((B_NoneType (*) (B_MinusD_Integral, B_Integral))B_MinusD_IntegralG_methods.__init__)(((B_MinusD_Integral)W_self), ((B_Integral)W_Integral));
     return B_None;
@@ -2565,7 +2661,7 @@ void B_MinusD_IntegralD_u16D___serialize__ (B_MinusD_IntegralD_u16 self, $Serial
 B_MinusD_IntegralD_u16 B_MinusD_IntegralD_u16D___deserialize__ (B_MinusD_IntegralD_u16 self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct B_MinusD_IntegralD_u16));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_MinusD_IntegralD_u16), B_MinusD_IntegralD_u16G_methods.$GCdescr);
             self->$class = &B_MinusD_IntegralD_u16G_methods;
             return self;
         }
@@ -2578,12 +2674,13 @@ B_MinusD_IntegralD_u16 B_MinusD_IntegralD_u16D___deserialize__ (B_MinusD_Integra
     return self;
 }
 B_MinusD_IntegralD_u16 B_MinusD_IntegralD_u16G_new(B_Integral G_1) {
-    B_MinusD_IntegralD_u16 $tmp = malloc(sizeof(struct B_MinusD_IntegralD_u16));
+    B_MinusD_IntegralD_u16 $tmp = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_MinusD_IntegralD_u16), B_MinusD_IntegralD_u16G_methods.$GCdescr);
     $tmp->$class = &B_MinusD_IntegralD_u16G_methods;
     B_MinusD_IntegralD_u16G_methods.__init__($tmp, G_1);
     return $tmp;
 }
 struct B_MinusD_IntegralD_u16G_class B_MinusD_IntegralD_u16G_methods;
+GC_word B_MinusD_IntegralD_u16D_gcbm[GC_BITMAP_SIZE(struct B_MinusD_IntegralD_u16)];
 B_NoneType B_LogicalD_IntegralD_u16D___init__ (B_LogicalD_IntegralD_u16 W_self, B_Integral W_Integral) {
     ((B_NoneType (*) (B_LogicalD_Integral, B_Integral))B_LogicalD_IntegralG_methods.__init__)(((B_LogicalD_Integral)W_self), ((B_Integral)W_Integral));
     return B_None;
@@ -2597,7 +2694,7 @@ void B_LogicalD_IntegralD_u16D___serialize__ (B_LogicalD_IntegralD_u16 self, $Se
 B_LogicalD_IntegralD_u16 B_LogicalD_IntegralD_u16D___deserialize__ (B_LogicalD_IntegralD_u16 self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct B_LogicalD_IntegralD_u16));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_LogicalD_IntegralD_u16), B_LogicalD_IntegralD_u16G_methods.$GCdescr);
             self->$class = &B_LogicalD_IntegralD_u16G_methods;
             return self;
         }
@@ -2607,12 +2704,13 @@ B_LogicalD_IntegralD_u16 B_LogicalD_IntegralD_u16D___deserialize__ (B_LogicalD_I
     return self;
 }
 B_LogicalD_IntegralD_u16 B_LogicalD_IntegralD_u16G_new(B_Integral G_1) {
-    B_LogicalD_IntegralD_u16 $tmp = malloc(sizeof(struct B_LogicalD_IntegralD_u16));
+    B_LogicalD_IntegralD_u16 $tmp = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_LogicalD_IntegralD_u16), B_LogicalD_IntegralD_u16G_methods.$GCdescr);
     $tmp->$class = &B_LogicalD_IntegralD_u16G_methods;
     B_LogicalD_IntegralD_u16G_methods.__init__($tmp, G_1);
     return $tmp;
 }
 struct B_LogicalD_IntegralD_u16G_class B_LogicalD_IntegralD_u16G_methods;
+GC_word B_LogicalD_IntegralD_u16D_gcbm[GC_BITMAP_SIZE(struct B_LogicalD_IntegralD_u16)];
 B_NoneType B_DivD_u16D___init__ (B_DivD_u16 W_self) {
     ((B_NoneType (*) (B_Div))B_DivG_methods.__init__)(((B_Div)W_self));
     return B_None;
@@ -2623,7 +2721,7 @@ void B_DivD_u16D___serialize__ (B_DivD_u16 self, $Serial$state state) {
 B_DivD_u16 B_DivD_u16D___deserialize__ (B_DivD_u16 self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct B_DivD_u16));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_DivD_u16), B_DivD_u16G_methods.$GCdescr);
             self->$class = &B_DivD_u16G_methods;
             return self;
         }
@@ -2632,12 +2730,13 @@ B_DivD_u16 B_DivD_u16D___deserialize__ (B_DivD_u16 self, $Serial$state state) {
     return self;
 }
 B_DivD_u16 B_DivD_u16G_new() {
-    B_DivD_u16 $tmp = malloc(sizeof(struct B_DivD_u16));
+    B_DivD_u16 $tmp = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_DivD_u16), B_DivD_u16G_methods.$GCdescr);
     $tmp->$class = &B_DivD_u16G_methods;
     B_DivD_u16G_methods.__init__($tmp);
     return $tmp;
 }
 struct B_DivD_u16G_class B_DivD_u16G_methods;
+GC_word B_DivD_u16D_gcbm[GC_BITMAP_SIZE(struct B_DivD_u16)];
 B_NoneType B_OrdD_u16D___init__ (B_OrdD_u16 W_self) {
     ((B_NoneType (*) (B_Ord))B_OrdG_methods.__init__)(((B_Ord)W_self));
     return B_None;
@@ -2649,7 +2748,7 @@ void B_OrdD_u16D___serialize__ (B_OrdD_u16 self, $Serial$state state) {
 B_OrdD_u16 B_OrdD_u16D___deserialize__ (B_OrdD_u16 self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct B_OrdD_u16));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_OrdD_u16), B_OrdD_u16G_methods.$GCdescr);
             self->$class = &B_OrdD_u16G_methods;
             return self;
         }
@@ -2658,12 +2757,13 @@ B_OrdD_u16 B_OrdD_u16D___deserialize__ (B_OrdD_u16 self, $Serial$state state) {
     return self;
 }
 B_OrdD_u16 B_OrdD_u16G_new() {
-    B_OrdD_u16 $tmp = malloc(sizeof(struct B_OrdD_u16));
+    B_OrdD_u16 $tmp = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_OrdD_u16), B_OrdD_u16G_methods.$GCdescr);
     $tmp->$class = &B_OrdD_u16G_methods;
     B_OrdD_u16G_methods.__init__($tmp);
     return $tmp;
 }
 struct B_OrdD_u16G_class B_OrdD_u16G_methods;
+GC_word B_OrdD_u16D_gcbm[GC_BITMAP_SIZE(struct B_OrdD_u16)];
 B_NoneType B_HashableD_u16D___init__ (B_HashableD_u16 W_self) {
     ((B_NoneType (*) (B_Hashable))B_HashableG_methods.__init__)(((B_Hashable)W_self));
     return B_None;
@@ -2674,7 +2774,7 @@ void B_HashableD_u16D___serialize__ (B_HashableD_u16 self, $Serial$state state) 
 B_HashableD_u16 B_HashableD_u16D___deserialize__ (B_HashableD_u16 self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct B_HashableD_u16));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_HashableD_u16), B_HashableD_u16G_methods.$GCdescr);
             self->$class = &B_HashableD_u16G_methods;
             return self;
         }
@@ -2686,6 +2786,7 @@ B_HashableD_u16 B_HashableD_u16G_new() {   // manually added
     return $NEW(B_HashableD_u16);          //
 }                                          //
 struct B_HashableD_u16G_class B_HashableD_u16G_methods;
+GC_word B_HashableD_u16D_gcbm[GC_BITMAP_SIZE(struct B_HashableD_u16)];
 
 
 
@@ -2724,7 +2825,7 @@ void B_RealFloatD_floatD___serialize__ (B_RealFloatD_float self, $Serial$state s
 B_RealFloatD_float B_RealFloatD_floatD___deserialize__ (B_RealFloatD_float self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct B_RealFloatD_float));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_RealFloatD_float), B_RealFloatD_floatG_methods.$GCdescr);
             self->$class = &B_RealFloatD_floatG_methods;
             return self;
         }
@@ -2734,12 +2835,13 @@ B_RealFloatD_float B_RealFloatD_floatD___deserialize__ (B_RealFloatD_float self,
     return self;
 }
 B_RealFloatD_float B_RealFloatD_floatG_new() {
-    B_RealFloatD_float $tmp = malloc(sizeof(struct B_RealFloatD_float));
+    B_RealFloatD_float $tmp = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_RealFloatD_float), B_RealFloatD_floatG_methods.$GCdescr);
     $tmp->$class = &B_RealFloatD_floatG_methods;
     B_RealFloatD_floatG_methods.__init__($tmp);
     return $tmp;
 }
 struct B_RealFloatD_floatG_class B_RealFloatD_floatG_methods;
+GC_word B_RealFloatD_floatD_gcbm[GC_BITMAP_SIZE(struct B_RealFloatD_float)];
 B_NoneType B_MinusD_RealFloatD_floatD___init__ (B_MinusD_RealFloatD_float W_self, B_RealFloat W_RealFloat) {
     ((B_NoneType (*) (B_MinusD_RealFloat, B_RealFloat))B_MinusD_RealFloatG_methods.__init__)(((B_MinusD_RealFloat)W_self), ((B_RealFloat)W_RealFloat));
     return B_None;
@@ -2753,7 +2855,7 @@ void B_MinusD_RealFloatD_floatD___serialize__ (B_MinusD_RealFloatD_float self, $
 B_MinusD_RealFloatD_float B_MinusD_RealFloatD_floatD___deserialize__ (B_MinusD_RealFloatD_float self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct B_MinusD_RealFloatD_float));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_MinusD_RealFloatD_float), B_MinusD_RealFloatD_floatG_methods.$GCdescr);
             self->$class = &B_MinusD_RealFloatD_floatG_methods;
             return self;
         }
@@ -2765,12 +2867,13 @@ B_MinusD_RealFloatD_float B_MinusD_RealFloatD_floatD___deserialize__ (B_MinusD_R
     return self;
 }
 B_MinusD_RealFloatD_float B_MinusD_RealFloatD_floatG_new(B_RealFloat G_1) {
-    B_MinusD_RealFloatD_float $tmp = malloc(sizeof(struct B_MinusD_RealFloatD_float));
+    B_MinusD_RealFloatD_float $tmp = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_MinusD_RealFloatD_float), B_MinusD_RealFloatD_floatG_methods.$GCdescr);
     $tmp->$class = &B_MinusD_RealFloatD_floatG_methods;
     B_MinusD_RealFloatD_floatG_methods.__init__($tmp, G_1);
     return $tmp;
 }
 struct B_MinusD_RealFloatD_floatG_class B_MinusD_RealFloatD_floatG_methods;
+GC_word B_MinusD_RealFloatD_floatD_gcbm[GC_BITMAP_SIZE(struct B_MinusD_RealFloatD_float)];
 B_NoneType B_DivD_floatD___init__ (B_DivD_float W_self) {
     ((B_NoneType (*) (B_Div))B_DivG_methods.__init__)(((B_Div)W_self));
     return B_None;
@@ -2781,7 +2884,7 @@ void B_DivD_floatD___serialize__ (B_DivD_float self, $Serial$state state) {
 B_DivD_float B_DivD_floatD___deserialize__ (B_DivD_float self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct B_DivD_float));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_DivD_float), B_DivD_floatG_methods.$GCdescr);
             self->$class = &B_DivD_floatG_methods;
             return self;
         }
@@ -2790,12 +2893,13 @@ B_DivD_float B_DivD_floatD___deserialize__ (B_DivD_float self, $Serial$state sta
     return self;
 }
 B_DivD_float B_DivD_floatG_new() {
-    B_DivD_float $tmp = malloc(sizeof(struct B_DivD_float));
+    B_DivD_float $tmp = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_DivD_float), B_DivD_floatG_methods.$GCdescr);
     $tmp->$class = &B_DivD_floatG_methods;
     B_DivD_floatG_methods.__init__($tmp);
     return $tmp;
 }
 struct B_DivD_floatG_class B_DivD_floatG_methods;
+GC_word B_DivD_floatD_gcbm[GC_BITMAP_SIZE(struct B_DivD_float)];
 B_NoneType B_OrdD_floatD___init__ (B_OrdD_float W_self) {
     ((B_NoneType (*) (B_Ord))B_OrdG_methods.__init__)(((B_Ord)W_self));
     return B_None;
@@ -2807,7 +2911,7 @@ void B_OrdD_floatD___serialize__ (B_OrdD_float self, $Serial$state state) {
 B_OrdD_float B_OrdD_floatD___deserialize__ (B_OrdD_float self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct B_OrdD_float));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_OrdD_float), B_OrdD_floatG_methods.$GCdescr);
             self->$class = &B_OrdD_floatG_methods;
             return self;
         }
@@ -2816,12 +2920,13 @@ B_OrdD_float B_OrdD_floatD___deserialize__ (B_OrdD_float self, $Serial$state sta
     return self;
 }
 B_OrdD_float B_OrdD_floatG_new() {
-    B_OrdD_float $tmp = malloc(sizeof(struct B_OrdD_float));
+    B_OrdD_float $tmp = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_OrdD_float), B_OrdD_floatG_methods.$GCdescr);
     $tmp->$class = &B_OrdD_floatG_methods;
     B_OrdD_floatG_methods.__init__($tmp);
     return $tmp;
 }
 struct B_OrdD_floatG_class B_OrdD_floatG_methods;
+GC_word B_OrdD_floatD_gcbm[GC_BITMAP_SIZE(struct B_OrdD_float)];
 B_NoneType B_HashableD_floatD___init__ (B_HashableD_float W_self) {
     ((B_NoneType (*) (B_Hashable))B_HashableG_methods.__init__)(((B_Hashable)W_self));
     return B_None;
@@ -2832,7 +2937,7 @@ void B_HashableD_floatD___serialize__ (B_HashableD_float self, $Serial$state sta
 B_HashableD_float B_HashableD_floatD___deserialize__ (B_HashableD_float self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct B_HashableD_float));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_HashableD_float), B_HashableD_floatG_methods.$GCdescr);
             self->$class = &B_HashableD_floatG_methods;
             return self;
         }
@@ -2841,6 +2946,7 @@ B_HashableD_float B_HashableD_floatD___deserialize__ (B_HashableD_float self, $S
     return self;
 }
 struct B_HashableD_floatG_class B_HashableD_floatG_methods;
+GC_word B_HashableD_floatD_gcbm[GC_BITMAP_SIZE(struct B_HashableD_float)];
 B_NoneType B_NumberD_complexD___init__ (B_NumberD_complex W_self) {
     ((B_NoneType (*) (B_Number, B_Minus))B_NumberG_methods.__init__)(((B_Number)W_self), ((B_Minus)B_MinusD_NumberD_complexG_new(((B_Number)W_self))));
     return B_None;
@@ -2862,7 +2968,7 @@ void B_NumberD_complexD___serialize__ (B_NumberD_complex self, $Serial$state sta
 B_NumberD_complex B_NumberD_complexD___deserialize__ (B_NumberD_complex self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct B_NumberD_complex));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_NumberD_complex), B_NumberD_complexG_methods.$GCdescr);
             self->$class = &B_NumberD_complexG_methods;
             return self;
         }
@@ -2872,12 +2978,13 @@ B_NumberD_complex B_NumberD_complexD___deserialize__ (B_NumberD_complex self, $S
     return self;
 }
 B_NumberD_complex B_NumberD_complexG_new() {
-    B_NumberD_complex $tmp = malloc(sizeof(struct B_NumberD_complex));
+    B_NumberD_complex $tmp = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_NumberD_complex), B_NumberD_complexG_methods.$GCdescr);
     $tmp->$class = &B_NumberD_complexG_methods;
     B_NumberD_complexG_methods.__init__($tmp);
     return $tmp;
 }
 struct B_NumberD_complexG_class B_NumberD_complexG_methods;
+GC_word B_NumberD_complexD_gcbm[GC_BITMAP_SIZE(struct B_NumberD_complex)];
 B_NoneType B_MinusD_NumberD_complexD___init__ (B_MinusD_NumberD_complex W_self, B_Number W_Number) {
     ((B_NoneType (*) (B_MinusD_Number, B_Number))B_MinusD_NumberG_methods.__init__)(((B_MinusD_Number)W_self), ((B_Number)W_Number));
     return B_None;
@@ -2889,7 +2996,7 @@ void B_MinusD_NumberD_complexD___serialize__ (B_MinusD_NumberD_complex self, $Se
 B_MinusD_NumberD_complex B_MinusD_NumberD_complexD___deserialize__ (B_MinusD_NumberD_complex self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct B_MinusD_NumberD_complex));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_MinusD_NumberD_complex), B_MinusD_NumberD_complexG_methods.$GCdescr);
             self->$class = &B_MinusD_NumberD_complexG_methods;
             return self;
         }
@@ -2899,12 +3006,13 @@ B_MinusD_NumberD_complex B_MinusD_NumberD_complexD___deserialize__ (B_MinusD_Num
     return self;
 }
 B_MinusD_NumberD_complex B_MinusD_NumberD_complexG_new(B_Number G_1) {
-    B_MinusD_NumberD_complex $tmp = malloc(sizeof(struct B_MinusD_NumberD_complex));
+    B_MinusD_NumberD_complex $tmp = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_MinusD_NumberD_complex), B_MinusD_NumberD_complexG_methods.$GCdescr);
     $tmp->$class = &B_MinusD_NumberD_complexG_methods;
     B_MinusD_NumberD_complexG_methods.__init__($tmp, G_1);
     return $tmp;
 }
 struct B_MinusD_NumberD_complexG_class B_MinusD_NumberD_complexG_methods;
+GC_word B_MinusD_NumberD_complexD_gcbm[GC_BITMAP_SIZE(struct B_MinusD_NumberD_complex)];
 B_NoneType B_DivD_complexD___init__ (B_DivD_complex W_self) {
     ((B_NoneType (*) (B_Div))B_DivG_methods.__init__)(((B_Div)W_self));
     return B_None;
@@ -2915,7 +3023,7 @@ void B_DivD_complexD___serialize__ (B_DivD_complex self, $Serial$state state) {
 B_DivD_complex B_DivD_complexD___deserialize__ (B_DivD_complex self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct B_DivD_complex));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_DivD_complex), B_DivD_complexG_methods.$GCdescr);
             self->$class = &B_DivD_complexG_methods;
             return self;
         }
@@ -2924,12 +3032,13 @@ B_DivD_complex B_DivD_complexD___deserialize__ (B_DivD_complex self, $Serial$sta
     return self;
 }
 B_DivD_complex B_DivD_complexG_new() {
-    B_DivD_complex $tmp = malloc(sizeof(struct B_DivD_complex));
+    B_DivD_complex $tmp = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_DivD_complex), B_DivD_complexG_methods.$GCdescr);
     $tmp->$class = &B_DivD_complexG_methods;
     B_DivD_complexG_methods.__init__($tmp);
     return $tmp;
 }
 struct B_DivD_complexG_class B_DivD_complexG_methods;
+GC_word B_DivD_complexD_gcbm[GC_BITMAP_SIZE(struct B_DivD_complex)];
 B_NoneType B_EqD_complexD___init__ (B_EqD_complex W_self) {
     ((B_NoneType (*) (B_Eq))B_EqG_methods.__init__)(((B_Eq)W_self));
     return B_None;
@@ -2940,7 +3049,7 @@ void B_EqD_complexD___serialize__ (B_EqD_complex self, $Serial$state state) {
 B_EqD_complex B_EqD_complexD___deserialize__ (B_EqD_complex self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct B_EqD_complex));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_EqD_complex), B_EqD_complexG_methods.$GCdescr);
             self->$class = &B_EqD_complexG_methods;
             return self;
         }
@@ -2949,12 +3058,13 @@ B_EqD_complex B_EqD_complexD___deserialize__ (B_EqD_complex self, $Serial$state 
     return self;
 }
 B_EqD_complex B_EqD_complexG_new() {
-    B_EqD_complex $tmp = malloc(sizeof(struct B_EqD_complex));
+    B_EqD_complex $tmp = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_EqD_complex), B_EqD_complexG_methods.$GCdescr);
     $tmp->$class = &B_EqD_complexG_methods;
     B_EqD_complexG_methods.__init__($tmp);
     return $tmp;
 }
 struct B_EqD_complexG_class B_EqD_complexG_methods;
+GC_word B_EqD_complexD_gcbm[GC_BITMAP_SIZE(struct B_EqD_complex)];
 B_NoneType B_HashableD_complexD___init__ (B_HashableD_complex W_self) {
     ((B_NoneType (*) (B_Hashable))B_HashableG_methods.__init__)(((B_Hashable)W_self));
     return B_None;
@@ -2965,7 +3075,7 @@ void B_HashableD_complexD___serialize__ (B_HashableD_complex self, $Serial$state
 B_HashableD_complex B_HashableD_complexD___deserialize__ (B_HashableD_complex self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct B_HashableD_complex));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_HashableD_complex), B_HashableD_complexG_methods.$GCdescr);
             self->$class = &B_HashableD_complexG_methods;
             return self;
         }
@@ -2974,6 +3084,7 @@ B_HashableD_complex B_HashableD_complexD___deserialize__ (B_HashableD_complex se
     return self;
 }
 struct B_HashableD_complexG_class B_HashableD_complexG_methods;
+GC_word B_HashableD_complexD_gcbm[GC_BITMAP_SIZE(struct B_HashableD_complex)];
 B_NoneType B_IndexedD___init__ (B_Indexed W_self, B_Eq W_EqD_A) {
     W_self->W_EqD_AD_Indexed = W_EqD_A;
     return B_None;
@@ -2984,7 +3095,7 @@ void B_IndexedD___serialize__ (B_Indexed self, $Serial$state state) {
 B_Indexed B_IndexedD___deserialize__ (B_Indexed self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct B_Indexed));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_Indexed), B_IndexedG_methods.$GCdescr);
             self->$class = &B_IndexedG_methods;
             return self;
         }
@@ -2994,6 +3105,7 @@ B_Indexed B_IndexedD___deserialize__ (B_Indexed self, $Serial$state state) {
     return self;
 }
 struct B_IndexedG_class B_IndexedG_methods;
+GC_word B_IndexedD_gcbm[GC_BITMAP_SIZE(struct B_Indexed)];
 B_NoneType B_SliceableD___init__ (B_Sliceable W_self) {
     B_Eq W_333 = ((B_Eq)B_OrdD_intG_new());
     ((B_NoneType (*) (B_Indexed, B_Eq))B_IndexedG_methods.__init__)(((B_Indexed)W_self), W_333);
@@ -3005,7 +3117,7 @@ void B_SliceableD___serialize__ (B_Sliceable self, $Serial$state state) {
 B_Sliceable B_SliceableD___deserialize__ (B_Sliceable self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct B_Sliceable));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_Sliceable), B_SliceableG_methods.$GCdescr);
             self->$class = &B_SliceableG_methods;
             return self;
         }
@@ -3015,6 +3127,7 @@ B_Sliceable B_SliceableD___deserialize__ (B_Sliceable self, $Serial$state state)
     return self;
 }
 struct B_SliceableG_class B_SliceableG_methods;
+GC_word B_SliceableD_gcbm[GC_BITMAP_SIZE(struct B_Sliceable)];
 B_NoneType B_CollectionD___init__ (B_Collection W_self) {
     ((B_NoneType (*) (B_Iterable))B_IterableG_methods.__init__)(((B_Iterable)W_self));
     return B_None;
@@ -3024,7 +3137,7 @@ void B_CollectionD___serialize__ (B_Collection self, $Serial$state state) {
 B_Collection B_CollectionD___deserialize__ (B_Collection self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct B_Collection));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_Collection), B_CollectionG_methods.$GCdescr);
             self->$class = &B_CollectionG_methods;
             return self;
         }
@@ -3033,6 +3146,7 @@ B_Collection B_CollectionD___deserialize__ (B_Collection self, $Serial$state sta
     return self;
 }
 struct B_CollectionG_class B_CollectionG_methods;
+GC_word B_CollectionD_gcbm[GC_BITMAP_SIZE(struct B_Collection)];
 B_NoneType B_ContainerD___init__ (B_Container W_self, B_Eq W_EqD_A) {
     ((B_NoneType (*) (B_Collection))B_CollectionG_methods.__init__)(((B_Collection)W_self));
     W_self->W_EqD_AD_Container = W_EqD_A;
@@ -3044,7 +3158,7 @@ void B_ContainerD___serialize__ (B_Container self, $Serial$state state) {
 B_Container B_ContainerD___deserialize__ (B_Container self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct B_Container));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_Container), B_ContainerG_methods.$GCdescr);
             self->$class = &B_ContainerG_methods;
             return self;
         }
@@ -3054,6 +3168,7 @@ B_Container B_ContainerD___deserialize__ (B_Container self, $Serial$state state)
     return self;
 }
 struct B_ContainerG_class B_ContainerG_methods;
+GC_word B_ContainerD_gcbm[GC_BITMAP_SIZE(struct B_Container)];
 B_NoneType B_SequenceD___init__ (B_Sequence W_self, B_Collection W_Collection, B_Times W_Times) {
     ((B_NoneType (*) (B_Sliceable))B_SliceableG_methods.__init__)(((B_Sliceable)W_self));
     W_self->W_Collection = W_Collection;
@@ -3068,7 +3183,7 @@ void B_SequenceD___serialize__ (B_Sequence self, $Serial$state state) {
 B_Sequence B_SequenceD___deserialize__ (B_Sequence self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct B_Sequence));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_Sequence), B_SequenceG_methods.$GCdescr);
             self->$class = &B_SequenceG_methods;
             return self;
         }
@@ -3080,6 +3195,7 @@ B_Sequence B_SequenceD___deserialize__ (B_Sequence self, $Serial$state state) {
     return self;
 }
 struct B_SequenceG_class B_SequenceG_methods;
+GC_word B_SequenceD_gcbm[GC_BITMAP_SIZE(struct B_Sequence)];
 B_NoneType B_CollectionD_SequenceD___init__ (B_CollectionD_Sequence W_self, B_Sequence W_Sequence) {
     ((B_NoneType (*) (B_Collection))B_CollectionG_methods.__init__)(((B_Collection)W_self));
     W_self->W_Sequence = W_Sequence;
@@ -3091,7 +3207,7 @@ void B_CollectionD_SequenceD___serialize__ (B_CollectionD_Sequence self, $Serial
 B_CollectionD_Sequence B_CollectionD_SequenceD___deserialize__ (B_CollectionD_Sequence self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct B_CollectionD_Sequence));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_CollectionD_Sequence), B_CollectionD_SequenceG_methods.$GCdescr);
             self->$class = &B_CollectionD_SequenceG_methods;
             return self;
         }
@@ -3101,6 +3217,7 @@ B_CollectionD_Sequence B_CollectionD_SequenceD___deserialize__ (B_CollectionD_Se
     return self;
 }
 struct B_CollectionD_SequenceG_class B_CollectionD_SequenceG_methods;
+GC_word B_CollectionD_SequenceD_gcbm[GC_BITMAP_SIZE(struct B_CollectionD_Sequence)];
 B_NoneType B_TimesD_SequenceD___init__ (B_TimesD_Sequence W_self, B_Sequence W_Sequence) {
     ((B_NoneType (*) (B_Times))B_TimesG_methods.__init__)(((B_Times)W_self));
     W_self->W_Sequence = W_Sequence;
@@ -3112,7 +3229,7 @@ void B_TimesD_SequenceD___serialize__ (B_TimesD_Sequence self, $Serial$state sta
 B_TimesD_Sequence B_TimesD_SequenceD___deserialize__ (B_TimesD_Sequence self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct B_TimesD_Sequence));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_TimesD_Sequence), B_TimesD_SequenceG_methods.$GCdescr);
             self->$class = &B_TimesD_SequenceG_methods;
             return self;
         }
@@ -3122,6 +3239,7 @@ B_TimesD_Sequence B_TimesD_SequenceD___deserialize__ (B_TimesD_Sequence self, $S
     return self;
 }
 struct B_TimesD_SequenceG_class B_TimesD_SequenceG_methods;
+GC_word B_TimesD_SequenceD_gcbm[GC_BITMAP_SIZE(struct B_TimesD_Sequence)];
 B_NoneType B_MappingD___init__ (B_Mapping W_self, B_Eq W_EqD_A, B_Indexed W_Indexed) {
     ((B_NoneType (*) (B_Container, B_Eq))B_ContainerG_methods.__init__)(((B_Container)W_self), W_EqD_A);
     W_self->W_EqD_AD_Mapping = W_EqD_A;
@@ -3136,7 +3254,7 @@ void B_MappingD___serialize__ (B_Mapping self, $Serial$state state) {
 B_Mapping B_MappingD___deserialize__ (B_Mapping self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct B_Mapping));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_Mapping), B_MappingG_methods.$GCdescr);
             self->$class = &B_MappingG_methods;
             return self;
         }
@@ -3148,6 +3266,7 @@ B_Mapping B_MappingD___deserialize__ (B_Mapping self, $Serial$state state) {
     return self;
 }
 struct B_MappingG_class B_MappingG_methods;
+GC_word B_MappingD_gcbm[GC_BITMAP_SIZE(struct B_Mapping)];
 B_NoneType B_IndexedD_MappingD___init__ (B_IndexedD_Mapping W_self, B_Eq W_EqD_A, B_Mapping W_Mapping) {
     ((B_NoneType (*) (B_Indexed, B_Eq))B_IndexedG_methods.__init__)(((B_Indexed)W_self), W_EqD_A);
     W_self->W_EqD_AD_Mapping = W_EqD_A;
@@ -3162,7 +3281,7 @@ void B_IndexedD_MappingD___serialize__ (B_IndexedD_Mapping self, $Serial$state s
 B_IndexedD_Mapping B_IndexedD_MappingD___deserialize__ (B_IndexedD_Mapping self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct B_IndexedD_Mapping));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_IndexedD_Mapping), B_IndexedD_MappingG_methods.$GCdescr);
             self->$class = &B_IndexedD_MappingG_methods;
             return self;
         }
@@ -3174,6 +3293,7 @@ B_IndexedD_Mapping B_IndexedD_MappingD___deserialize__ (B_IndexedD_Mapping self,
     return self;
 }
 struct B_IndexedD_MappingG_class B_IndexedD_MappingG_methods;
+GC_word B_IndexedD_MappingD_gcbm[GC_BITMAP_SIZE(struct B_IndexedD_Mapping)];
 B_NoneType B_SetD___init__ (B_Set W_self, B_Eq W_EqD_A, B_Ord W_Ord, B_Logical W_Logical, B_Minus W_Minus) {
     ((B_NoneType (*) (B_Container, B_Eq))B_ContainerG_methods.__init__)(((B_Container)W_self), W_EqD_A);
     W_self->W_EqD_AD_Set = W_EqD_A;
@@ -3192,7 +3312,7 @@ void B_SetD___serialize__ (B_Set self, $Serial$state state) {
 B_Set B_SetD___deserialize__ (B_Set self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct B_Set));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_Set), B_SetG_methods.$GCdescr);
             self->$class = &B_SetG_methods;
             return self;
         }
@@ -3206,6 +3326,7 @@ B_Set B_SetD___deserialize__ (B_Set self, $Serial$state state) {
     return self;
 }
 struct B_SetG_class B_SetG_methods;
+GC_word B_SetD_gcbm[GC_BITMAP_SIZE(struct B_Set)];
 B_NoneType B_OrdD_SetD___init__ (B_OrdD_Set W_self, B_Eq W_EqD_A, B_Set W_Set) {
     ((B_NoneType (*) (B_Ord))B_OrdG_methods.__init__)(((B_Ord)W_self));
     W_self->W_EqD_AD_Set = W_EqD_A;
@@ -3219,7 +3340,7 @@ void B_OrdD_SetD___serialize__ (B_OrdD_Set self, $Serial$state state) {
 B_OrdD_Set B_OrdD_SetD___deserialize__ (B_OrdD_Set self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct B_OrdD_Set));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_OrdD_Set), B_OrdD_SetG_methods.$GCdescr);
             self->$class = &B_OrdD_SetG_methods;
             return self;
         }
@@ -3230,6 +3351,7 @@ B_OrdD_Set B_OrdD_SetD___deserialize__ (B_OrdD_Set self, $Serial$state state) {
     return self;
 }
 struct B_OrdD_SetG_class B_OrdD_SetG_methods;
+GC_word B_OrdD_SetD_gcbm[GC_BITMAP_SIZE(struct B_OrdD_Set)];
 B_NoneType B_LogicalD_SetD___init__ (B_LogicalD_Set W_self, B_Eq W_EqD_A, B_Set W_Set) {
     ((B_NoneType (*) (B_Logical))B_LogicalG_methods.__init__)(((B_Logical)W_self));
     W_self->W_EqD_AD_Set = W_EqD_A;
@@ -3243,7 +3365,7 @@ void B_LogicalD_SetD___serialize__ (B_LogicalD_Set self, $Serial$state state) {
 B_LogicalD_Set B_LogicalD_SetD___deserialize__ (B_LogicalD_Set self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct B_LogicalD_Set));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_LogicalD_Set), B_LogicalD_SetG_methods.$GCdescr);
             self->$class = &B_LogicalD_SetG_methods;
             return self;
         }
@@ -3254,6 +3376,7 @@ B_LogicalD_Set B_LogicalD_SetD___deserialize__ (B_LogicalD_Set self, $Serial$sta
     return self;
 }
 struct B_LogicalD_SetG_class B_LogicalD_SetG_methods;
+GC_word B_LogicalD_SetD_gcbm[GC_BITMAP_SIZE(struct B_LogicalD_Set)];
 B_NoneType B_MinusD_SetD___init__ (B_MinusD_Set W_self, B_Eq W_EqD_A, B_Set W_Set) {
     ((B_NoneType (*) (B_Minus))B_MinusG_methods.__init__)(((B_Minus)W_self));
     W_self->W_EqD_AD_Set = W_EqD_A;
@@ -3267,7 +3390,7 @@ void B_MinusD_SetD___serialize__ (B_MinusD_Set self, $Serial$state state) {
 B_MinusD_Set B_MinusD_SetD___deserialize__ (B_MinusD_Set self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct B_MinusD_Set));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_MinusD_Set), B_MinusD_SetG_methods.$GCdescr);
             self->$class = &B_MinusD_SetG_methods;
             return self;
         }
@@ -3278,6 +3401,7 @@ B_MinusD_Set B_MinusD_SetD___deserialize__ (B_MinusD_Set self, $Serial$state sta
     return self;
 }
 struct B_MinusD_SetG_class B_MinusD_SetG_methods;
+GC_word B_MinusD_SetD_gcbm[GC_BITMAP_SIZE(struct B_MinusD_Set)];
 B_NoneType B_SequenceD_listD___init__ (B_SequenceD_list W_self) {
     ((B_NoneType (*) (B_Sequence, B_Collection, B_Times))B_SequenceG_methods.__init__)(((B_Sequence)W_self), ((B_Collection)B_CollectionD_SequenceD_listG_new(((B_Sequence)W_self))), ((B_Times)B_TimesD_SequenceD_listG_new(((B_Sequence)W_self))));
     return B_None;
@@ -3300,7 +3424,7 @@ void B_SequenceD_listD___serialize__ (B_SequenceD_list self, $Serial$state state
 B_SequenceD_list B_SequenceD_listD___deserialize__ (B_SequenceD_list self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct B_SequenceD_list));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_SequenceD_list), B_SequenceD_listG_methods.$GCdescr);
             self->$class = &B_SequenceD_listG_methods;
             return self;
         }
@@ -3312,12 +3436,13 @@ B_SequenceD_list B_SequenceD_listD___deserialize__ (B_SequenceD_list self, $Seri
     return self;
 }
 B_SequenceD_list B_SequenceD_listG_new() {
-    B_SequenceD_list $tmp = malloc(sizeof(struct B_SequenceD_list));
+    B_SequenceD_list $tmp = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_SequenceD_list), B_SequenceD_listG_methods.$GCdescr);
     $tmp->$class = &B_SequenceD_listG_methods;
     B_SequenceD_listG_methods.__init__($tmp);
     return $tmp;
 }
 struct B_SequenceD_listG_class B_SequenceD_listG_methods;
+GC_word B_SequenceD_listD_gcbm[GC_BITMAP_SIZE(struct B_SequenceD_list)];
 B_NoneType B_CollectionD_SequenceD_listD___init__ (B_CollectionD_SequenceD_list W_self, B_Sequence W_Sequence) {
     ((B_NoneType (*) (B_CollectionD_Sequence, B_Sequence))B_CollectionD_SequenceG_methods.__init__)(((B_CollectionD_Sequence)W_self), ((B_Sequence)W_Sequence));
     return B_None;
@@ -3331,7 +3456,7 @@ void B_CollectionD_SequenceD_listD___serialize__ (B_CollectionD_SequenceD_list s
 B_CollectionD_SequenceD_list B_CollectionD_SequenceD_listD___deserialize__ (B_CollectionD_SequenceD_list self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct B_CollectionD_SequenceD_list));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_CollectionD_SequenceD_list), B_CollectionD_SequenceD_listG_methods.$GCdescr);
             self->$class = &B_CollectionD_SequenceD_listG_methods;
             return self;
         }
@@ -3341,12 +3466,13 @@ B_CollectionD_SequenceD_list B_CollectionD_SequenceD_listD___deserialize__ (B_Co
     return self;
 }
 B_CollectionD_SequenceD_list B_CollectionD_SequenceD_listG_new(B_Sequence G_1) {
-    B_CollectionD_SequenceD_list $tmp = malloc(sizeof(struct B_CollectionD_SequenceD_list));
+    B_CollectionD_SequenceD_list $tmp = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_CollectionD_SequenceD_list), B_CollectionD_SequenceD_listG_methods.$GCdescr);
     $tmp->$class = &B_CollectionD_SequenceD_listG_methods;
     B_CollectionD_SequenceD_listG_methods.__init__($tmp, G_1);
     return $tmp;
 }
 struct B_CollectionD_SequenceD_listG_class B_CollectionD_SequenceD_listG_methods;
+GC_word B_CollectionD_SequenceD_listD_gcbm[GC_BITMAP_SIZE(struct B_CollectionD_SequenceD_list)];
 B_NoneType B_TimesD_SequenceD_listD___init__ (B_TimesD_SequenceD_list W_self, B_Sequence W_Sequence) {
     ((B_NoneType (*) (B_TimesD_Sequence, B_Sequence))B_TimesD_SequenceG_methods.__init__)(((B_TimesD_Sequence)W_self), ((B_Sequence)W_Sequence));
     return B_None;
@@ -3359,7 +3485,7 @@ void B_TimesD_SequenceD_listD___serialize__ (B_TimesD_SequenceD_list self, $Seri
 B_TimesD_SequenceD_list B_TimesD_SequenceD_listD___deserialize__ (B_TimesD_SequenceD_list self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct B_TimesD_SequenceD_list));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_TimesD_SequenceD_list), B_TimesD_SequenceD_listG_methods.$GCdescr);
             self->$class = &B_TimesD_SequenceD_listG_methods;
             return self;
         }
@@ -3369,12 +3495,13 @@ B_TimesD_SequenceD_list B_TimesD_SequenceD_listD___deserialize__ (B_TimesD_Seque
     return self;
 }
 B_TimesD_SequenceD_list B_TimesD_SequenceD_listG_new(B_Sequence G_1) {
-    B_TimesD_SequenceD_list $tmp = malloc(sizeof(struct B_TimesD_SequenceD_list));
+    B_TimesD_SequenceD_list $tmp = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_TimesD_SequenceD_list), B_TimesD_SequenceD_listG_methods.$GCdescr);
     $tmp->$class = &B_TimesD_SequenceD_listG_methods;
     B_TimesD_SequenceD_listG_methods.__init__($tmp, G_1);
     return $tmp;
 }
 struct B_TimesD_SequenceD_listG_class B_TimesD_SequenceD_listG_methods;
+GC_word B_TimesD_SequenceD_listD_gcbm[GC_BITMAP_SIZE(struct B_TimesD_SequenceD_list)];
 B_NoneType B_ContainerD_listD___init__ (B_ContainerD_list W_self, B_Eq W_EqD_A) {
     ((B_NoneType (*) (B_Container, B_Eq))B_ContainerG_methods.__init__)(((B_Container)W_self), W_EqD_A);
     W_self->W_EqD_AD_ContainerD_list = W_EqD_A;
@@ -3389,7 +3516,7 @@ void B_ContainerD_listD___serialize__ (B_ContainerD_list self, $Serial$state sta
 B_ContainerD_list B_ContainerD_listD___deserialize__ (B_ContainerD_list self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct B_ContainerD_list));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_ContainerD_list), B_ContainerD_listG_methods.$GCdescr);
             self->$class = &B_ContainerD_listG_methods;
             return self;
         }
@@ -3403,6 +3530,7 @@ B_ContainerD_list B_ContainerD_listG_new(B_Eq w) { // Why is this not generated 
     return $NEW(B_ContainerD_list,w);              //
 }                                                  //
 struct B_ContainerD_listG_class B_ContainerD_listG_methods;
+GC_word B_ContainerD_listD_gcbm[GC_BITMAP_SIZE(struct B_ContainerD_list)];
 B_NoneType B_OrdD_listD___init__ (B_OrdD_list W_self, B_Ord W_OrdD_A) {
     ((B_NoneType (*) (B_Ord))B_OrdG_methods.__init__)(((B_Ord)W_self));
     W_self->W_OrdD_AD_OrdD_list = W_OrdD_A;
@@ -3416,7 +3544,7 @@ void B_OrdD_listD___serialize__ (B_OrdD_list self, $Serial$state state) {
 B_OrdD_list B_OrdD_listD___deserialize__ (B_OrdD_list self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct B_OrdD_list));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_OrdD_list), B_OrdD_listG_methods.$GCdescr);
             self->$class = &B_OrdD_listG_methods;
             return self;
         }
@@ -3426,12 +3554,13 @@ B_OrdD_list B_OrdD_listD___deserialize__ (B_OrdD_list self, $Serial$state state)
     return self;
 }
 B_OrdD_list B_OrdD_listG_new(B_Ord G_1) {
-    B_OrdD_list $tmp = malloc(sizeof(struct B_OrdD_list));
+    B_OrdD_list $tmp = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_OrdD_list), B_OrdD_listG_methods.$GCdescr);
     $tmp->$class = &B_OrdD_listG_methods;
     B_OrdD_listG_methods.__init__($tmp, G_1);
     return $tmp;
 }
 struct B_OrdD_listG_class B_OrdD_listG_methods;
+GC_word B_OrdD_listD_gcbm[GC_BITMAP_SIZE(struct B_OrdD_list)];
 B_NoneType B_MappingD_dictD___init__ (B_MappingD_dict W_self, B_Hashable W_HashableD_A) {
     ((B_NoneType (*) (B_Mapping, B_Eq, B_Indexed))B_MappingG_methods.__init__)(((B_Mapping)W_self), ((B_Eq)W_HashableD_A), ((B_Indexed)B_IndexedD_MappingD_dictG_new(W_HashableD_A, ((B_Mapping)W_self))));
     W_self->W_HashableD_AD_MappingD_dict = W_HashableD_A;
@@ -3458,7 +3587,7 @@ void B_MappingD_dictD___serialize__ (B_MappingD_dict self, $Serial$state state) 
 B_MappingD_dict B_MappingD_dictD___deserialize__ (B_MappingD_dict self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct B_MappingD_dict));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_MappingD_dict), B_MappingD_dictG_methods.$GCdescr);
             self->$class = &B_MappingD_dictG_methods;
             return self;
         }
@@ -3471,12 +3600,13 @@ B_MappingD_dict B_MappingD_dictD___deserialize__ (B_MappingD_dict self, $Serial$
     return self;
 }
 B_MappingD_dict B_MappingD_dictG_new(B_Hashable G_1) {
-    B_MappingD_dict $tmp = malloc(sizeof(struct B_MappingD_dict));
+    B_MappingD_dict $tmp = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_MappingD_dict), B_MappingD_dictG_methods.$GCdescr);
     $tmp->$class = &B_MappingD_dictG_methods;
     B_MappingD_dictG_methods.__init__($tmp, G_1);
     return $tmp;
 }
 struct B_MappingD_dictG_class B_MappingD_dictG_methods;
+GC_word B_MappingD_dictD_gcbm[GC_BITMAP_SIZE(struct B_MappingD_dict)];
 B_NoneType B_IndexedD_MappingD_dictD___init__ (B_IndexedD_MappingD_dict W_self, B_Hashable W_HashableD_A, B_Mapping W_Mapping) {
     ((B_NoneType (*) (B_IndexedD_Mapping, B_Eq, B_Mapping))B_IndexedD_MappingG_methods.__init__)(((B_IndexedD_Mapping)W_self), ((B_Eq)W_HashableD_A), ((B_Mapping)W_Mapping));
     W_self->W_HashableD_AD_MappingD_dict = W_HashableD_A;
@@ -3494,7 +3624,7 @@ void B_IndexedD_MappingD_dictD___serialize__ (B_IndexedD_MappingD_dict self, $Se
 B_IndexedD_MappingD_dict B_IndexedD_MappingD_dictD___deserialize__ (B_IndexedD_MappingD_dict self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct B_IndexedD_MappingD_dict));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_IndexedD_MappingD_dict), B_IndexedD_MappingD_dictG_methods.$GCdescr);
             self->$class = &B_IndexedD_MappingD_dictG_methods;
             return self;
         }
@@ -3507,12 +3637,13 @@ B_IndexedD_MappingD_dict B_IndexedD_MappingD_dictD___deserialize__ (B_IndexedD_M
     return self;
 }
 B_IndexedD_MappingD_dict B_IndexedD_MappingD_dictG_new(B_Hashable G_1, B_Mapping G_2) {
-    B_IndexedD_MappingD_dict $tmp = malloc(sizeof(struct B_IndexedD_MappingD_dict));
+    B_IndexedD_MappingD_dict $tmp = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_IndexedD_MappingD_dict), B_IndexedD_MappingD_dictG_methods.$GCdescr);
     $tmp->$class = &B_IndexedD_MappingD_dictG_methods;
     B_IndexedD_MappingD_dictG_methods.__init__($tmp, G_1, G_2);
     return $tmp;
 }
 struct B_IndexedD_MappingD_dictG_class B_IndexedD_MappingD_dictG_methods;
+GC_word B_IndexedD_MappingD_dictD_gcbm[GC_BITMAP_SIZE(struct B_IndexedD_MappingD_dict)];
 B_NoneType B_OrdD_dictD___init__ (B_OrdD_dict W_self, B_Hashable W_HashableD_A, B_Eq W_EqD_B) {
     ((B_NoneType (*) (B_Ord))B_OrdG_methods.__init__)(((B_Ord)W_self));
     W_self->W_HashableD_AD_OrdD_dict = W_HashableD_A;
@@ -3528,7 +3659,7 @@ void B_OrdD_dictD___serialize__ (B_OrdD_dict self, $Serial$state state) {
 B_OrdD_dict B_OrdD_dictD___deserialize__ (B_OrdD_dict self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct B_OrdD_dict));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_OrdD_dict), B_OrdD_dictG_methods.$GCdescr);
             self->$class = &B_OrdD_dictG_methods;
             return self;
         }
@@ -3539,12 +3670,13 @@ B_OrdD_dict B_OrdD_dictD___deserialize__ (B_OrdD_dict self, $Serial$state state)
     return self;
 }
 B_OrdD_dict B_OrdD_dictG_new(B_Hashable G_1, B_Eq G_2) {
-    B_OrdD_dict $tmp = malloc(sizeof(struct B_OrdD_dict));
+    B_OrdD_dict $tmp = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_OrdD_dict), B_OrdD_dictG_methods.$GCdescr);
     $tmp->$class = &B_OrdD_dictG_methods;
     B_OrdD_dictG_methods.__init__($tmp, G_1, G_2);
     return $tmp;
 }
 struct B_OrdD_dictG_class B_OrdD_dictG_methods;
+GC_word B_OrdD_dictD_gcbm[GC_BITMAP_SIZE(struct B_OrdD_dict)];
 B_NoneType B_SetD_setD___init__ (B_SetD_set W_self, B_Hashable W_HashableD_A) {
     ((B_NoneType (*) (B_Set, B_Eq, B_Ord, B_Logical, B_Minus))B_SetG_methods.__init__)(((B_Set)W_self), ((B_Eq)W_HashableD_A), ((B_Ord)B_OrdD_SetD_setG_new(W_HashableD_A, ((B_Set)W_self))), ((B_Logical)B_LogicalD_SetD_setG_new(W_HashableD_A, ((B_Set)W_self))), ((B_Minus)B_MinusD_SetD_setG_new(W_HashableD_A, ((B_Set)W_self))));
     W_self->W_HashableD_AD_SetD_set = W_HashableD_A;
@@ -3570,7 +3702,7 @@ void B_SetD_setD___serialize__ (B_SetD_set self, $Serial$state state) {
 B_SetD_set B_SetD_setD___deserialize__ (B_SetD_set self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct B_SetD_set));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_SetD_set), B_SetD_setG_methods.$GCdescr);
             self->$class = &B_SetD_setG_methods;
             return self;
         }
@@ -3585,12 +3717,13 @@ B_SetD_set B_SetD_setD___deserialize__ (B_SetD_set self, $Serial$state state) {
     return self;
 }
 B_SetD_set B_SetD_setG_new(B_Hashable G_1) {
-    B_SetD_set $tmp = malloc(sizeof(struct B_SetD_set));
+    B_SetD_set $tmp = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_SetD_set), B_SetD_setG_methods.$GCdescr);
     $tmp->$class = &B_SetD_setG_methods;
     B_SetD_setG_methods.__init__($tmp, G_1);
     return $tmp;
 }
 struct B_SetD_setG_class B_SetD_setG_methods;
+GC_word B_SetD_setD_gcbm[GC_BITMAP_SIZE(struct B_SetD_set)];
 B_NoneType B_OrdD_SetD_setD___init__ (B_OrdD_SetD_set W_self, B_Hashable W_HashableD_A, B_Set W_Set) {
     ((B_NoneType (*) (B_OrdD_Set, B_Eq, B_Set))B_OrdD_SetG_methods.__init__)(((B_OrdD_Set)W_self), ((B_Eq)W_HashableD_A), ((B_Set)W_Set));
     W_self->W_HashableD_AD_SetD_set = W_HashableD_A;
@@ -3606,7 +3739,7 @@ void B_OrdD_SetD_setD___serialize__ (B_OrdD_SetD_set self, $Serial$state state) 
 B_OrdD_SetD_set B_OrdD_SetD_setD___deserialize__ (B_OrdD_SetD_set self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct B_OrdD_SetD_set));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_OrdD_SetD_set), B_OrdD_SetD_setG_methods.$GCdescr);
             self->$class = &B_OrdD_SetD_setG_methods;
             return self;
         }
@@ -3618,12 +3751,13 @@ B_OrdD_SetD_set B_OrdD_SetD_setD___deserialize__ (B_OrdD_SetD_set self, $Serial$
     return self;
 }
 B_OrdD_SetD_set B_OrdD_SetD_setG_new(B_Hashable G_1, B_Set G_2) {
-    B_OrdD_SetD_set $tmp = malloc(sizeof(struct B_OrdD_SetD_set));
+    B_OrdD_SetD_set $tmp = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_OrdD_SetD_set), B_OrdD_SetD_setG_methods.$GCdescr);
     $tmp->$class = &B_OrdD_SetD_setG_methods;
     B_OrdD_SetD_setG_methods.__init__($tmp, G_1, G_2);
     return $tmp;
 }
 struct B_OrdD_SetD_setG_class B_OrdD_SetD_setG_methods;
+GC_word B_OrdD_SetD_setD_gcbm[GC_BITMAP_SIZE(struct B_OrdD_SetD_set)];
 B_NoneType B_LogicalD_SetD_setD___init__ (B_LogicalD_SetD_set W_self, B_Hashable W_HashableD_A, B_Set W_Set) {
     ((B_NoneType (*) (B_LogicalD_Set, B_Eq, B_Set))B_LogicalD_SetG_methods.__init__)(((B_LogicalD_Set)W_self), ((B_Eq)W_HashableD_A), ((B_Set)W_Set));
     W_self->W_HashableD_AD_SetD_set = W_HashableD_A;
@@ -3640,7 +3774,7 @@ void B_LogicalD_SetD_setD___serialize__ (B_LogicalD_SetD_set self, $Serial$state
 B_LogicalD_SetD_set B_LogicalD_SetD_setD___deserialize__ (B_LogicalD_SetD_set self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct B_LogicalD_SetD_set));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_LogicalD_SetD_set), B_LogicalD_SetD_setG_methods.$GCdescr);
             self->$class = &B_LogicalD_SetD_setG_methods;
             return self;
         }
@@ -3652,12 +3786,13 @@ B_LogicalD_SetD_set B_LogicalD_SetD_setD___deserialize__ (B_LogicalD_SetD_set se
     return self;
 }
 B_LogicalD_SetD_set B_LogicalD_SetD_setG_new(B_Hashable G_1, B_Set G_2) {
-    B_LogicalD_SetD_set $tmp = malloc(sizeof(struct B_LogicalD_SetD_set));
+    B_LogicalD_SetD_set $tmp = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_LogicalD_SetD_set), B_LogicalD_SetD_setG_methods.$GCdescr);
     $tmp->$class = &B_LogicalD_SetD_setG_methods;
     B_LogicalD_SetD_setG_methods.__init__($tmp, G_1, G_2);
     return $tmp;
 }
 struct B_LogicalD_SetD_setG_class B_LogicalD_SetD_setG_methods;
+GC_word B_LogicalD_SetD_setD_gcbm[GC_BITMAP_SIZE(struct B_LogicalD_SetD_set)];
 B_NoneType B_MinusD_SetD_setD___init__ (B_MinusD_SetD_set W_self, B_Hashable W_HashableD_A, B_Set W_Set) {
     ((B_NoneType (*) (B_MinusD_Set, B_Eq, B_Set))B_MinusD_SetG_methods.__init__)(((B_MinusD_Set)W_self), ((B_Eq)W_HashableD_A), ((B_Set)W_Set));
     W_self->W_HashableD_AD_SetD_set = W_HashableD_A;
@@ -3672,7 +3807,7 @@ void B_MinusD_SetD_setD___serialize__ (B_MinusD_SetD_set self, $Serial$state sta
 B_MinusD_SetD_set B_MinusD_SetD_setD___deserialize__ (B_MinusD_SetD_set self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct B_MinusD_SetD_set));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_MinusD_SetD_set), B_MinusD_SetD_setG_methods.$GCdescr);
             self->$class = &B_MinusD_SetD_setG_methods;
             return self;
         }
@@ -3684,12 +3819,13 @@ B_MinusD_SetD_set B_MinusD_SetD_setD___deserialize__ (B_MinusD_SetD_set self, $S
     return self;
 }
 B_MinusD_SetD_set B_MinusD_SetD_setG_new(B_Hashable G_1, B_Set G_2) {
-    B_MinusD_SetD_set $tmp = malloc(sizeof(struct B_MinusD_SetD_set));
+    B_MinusD_SetD_set $tmp = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_MinusD_SetD_set), B_MinusD_SetD_setG_methods.$GCdescr);
     $tmp->$class = &B_MinusD_SetD_setG_methods;
     B_MinusD_SetD_setG_methods.__init__($tmp, G_1, G_2);
     return $tmp;
 }
 struct B_MinusD_SetD_setG_class B_MinusD_SetD_setG_methods;
+GC_word B_MinusD_SetD_setD_gcbm[GC_BITMAP_SIZE(struct B_MinusD_SetD_set)];
 B_NoneType B_IterableD_IteratorD___init__ (B_IterableD_Iterator W_self) {
     ((B_NoneType (*) (B_Iterable))B_IterableG_methods.__init__)(((B_Iterable)W_self));
     return B_None;
@@ -3700,7 +3836,7 @@ void B_IterableD_IteratorD___serialize__ (B_IterableD_Iterator self, $Serial$sta
 B_IterableD_Iterator B_IterableD_IteratorD___deserialize__ (B_IterableD_Iterator self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct B_IterableD_Iterator));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_IterableD_Iterator), B_IterableD_IteratorG_methods.$GCdescr);
             self->$class = &B_IterableD_IteratorG_methods;
             return self;
         }
@@ -3709,12 +3845,13 @@ B_IterableD_Iterator B_IterableD_IteratorD___deserialize__ (B_IterableD_Iterator
     return self;
 }
 B_IterableD_Iterator B_IterableD_IteratorG_new() {
-    B_IterableD_Iterator $tmp = malloc(sizeof(struct B_IterableD_Iterator));
+    B_IterableD_Iterator $tmp = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_IterableD_Iterator), B_IterableD_IteratorG_methods.$GCdescr);
     $tmp->$class = &B_IterableD_IteratorG_methods;
     B_IterableD_IteratorG_methods.__init__($tmp);
     return $tmp;
 }
 struct B_IterableD_IteratorG_class B_IterableD_IteratorG_methods;
+GC_word B_IterableD_IteratorD_gcbm[GC_BITMAP_SIZE(struct B_IterableD_Iterator)];
 B_NoneType B_IterableD_rangeD___init__ (B_IterableD_range W_self) {
     ((B_NoneType (*) (B_Iterable))B_IterableG_methods.__init__)(((B_Iterable)W_self));
     return B_None;
@@ -3725,7 +3862,7 @@ void B_IterableD_rangeD___serialize__ (B_IterableD_range self, $Serial$state sta
 B_IterableD_range B_IterableD_rangeD___deserialize__ (B_IterableD_range self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct B_IterableD_range));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_IterableD_range), B_IterableD_rangeG_methods.$GCdescr);
             self->$class = &B_IterableD_rangeG_methods;
             return self;
         }
@@ -3734,12 +3871,13 @@ B_IterableD_range B_IterableD_rangeD___deserialize__ (B_IterableD_range self, $S
     return self;
 }
 B_IterableD_range B_IterableD_rangeG_new() {
-    B_IterableD_range $tmp = malloc(sizeof(struct B_IterableD_range));
+    B_IterableD_range $tmp = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_IterableD_range), B_IterableD_rangeG_methods.$GCdescr);
     $tmp->$class = &B_IterableD_rangeG_methods;
     B_IterableD_rangeG_methods.__init__($tmp);
     return $tmp;
 }
 struct B_IterableD_rangeG_class B_IterableD_rangeG_methods;
+GC_word B_IterableD_rangeD_gcbm[GC_BITMAP_SIZE(struct B_IterableD_range)];
 B_NoneType B_OrdD_strD___init__ (B_OrdD_str W_self) {
     ((B_NoneType (*) (B_Ord))B_OrdG_methods.__init__)(((B_Ord)W_self));
     return B_None;
@@ -3751,7 +3889,7 @@ void B_OrdD_strD___serialize__ (B_OrdD_str self, $Serial$state state) {
 B_OrdD_str B_OrdD_strD___deserialize__ (B_OrdD_str self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct B_OrdD_str));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_OrdD_str), B_OrdD_strG_methods.$GCdescr);
             self->$class = &B_OrdD_strG_methods;
             return self;
         }
@@ -3760,12 +3898,13 @@ B_OrdD_str B_OrdD_strD___deserialize__ (B_OrdD_str self, $Serial$state state) {
     return self;
 }
 B_OrdD_str B_OrdD_strG_new() {
-    B_OrdD_str $tmp = malloc(sizeof(struct B_OrdD_str));
+    B_OrdD_str $tmp = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_OrdD_str), B_OrdD_strG_methods.$GCdescr);
     $tmp->$class = &B_OrdD_strG_methods;
     B_OrdD_strG_methods.__init__($tmp);
     return $tmp;
 }
 struct B_OrdD_strG_class B_OrdD_strG_methods;
+GC_word B_OrdD_strD_gcbm[GC_BITMAP_SIZE(struct B_OrdD_str)];
 B_NoneType B_ContainerD_strD___init__ (B_ContainerD_str W_self) {
     B_Eq W_395 = ((B_Eq)B_OrdD_strG_new());
     ((B_NoneType (*) (B_Container, B_Eq))B_ContainerG_methods.__init__)(((B_Container)W_self), W_395);
@@ -3782,7 +3921,7 @@ void B_ContainerD_strD___serialize__ (B_ContainerD_str self, $Serial$state state
 B_ContainerD_str B_ContainerD_strD___deserialize__ (B_ContainerD_str self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct B_ContainerD_str));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_ContainerD_str), B_ContainerD_strG_methods.$GCdescr);
             self->$class = &B_ContainerD_strG_methods;
             return self;
         }
@@ -3792,12 +3931,13 @@ B_ContainerD_str B_ContainerD_strD___deserialize__ (B_ContainerD_str self, $Seri
     return self;
 }
 B_ContainerD_str B_ContainerD_strG_new() {
-    B_ContainerD_str $tmp = malloc(sizeof(struct B_ContainerD_str));
+    B_ContainerD_str $tmp = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_ContainerD_str), B_ContainerD_strG_methods.$GCdescr);
     $tmp->$class = &B_ContainerD_strG_methods;
     B_ContainerD_strG_methods.__init__($tmp);
     return $tmp;
 }
 struct B_ContainerD_strG_class B_ContainerD_strG_methods;
+GC_word B_ContainerD_strD_gcbm[GC_BITMAP_SIZE(struct B_ContainerD_str)];
 B_NoneType B_SliceableD_strD___init__ (B_SliceableD_str W_self) {
     ((B_NoneType (*) (B_Sliceable))B_SliceableG_methods.__init__)(((B_Sliceable)W_self));
     return B_None;
@@ -3814,7 +3954,7 @@ void B_SliceableD_strD___serialize__ (B_SliceableD_str self, $Serial$state state
 B_SliceableD_str B_SliceableD_strD___deserialize__ (B_SliceableD_str self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct B_SliceableD_str));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_SliceableD_str), B_SliceableD_strG_methods.$GCdescr);
             self->$class = &B_SliceableD_strG_methods;
             return self;
         }
@@ -3824,12 +3964,13 @@ B_SliceableD_str B_SliceableD_strD___deserialize__ (B_SliceableD_str self, $Seri
     return self;
 }
 B_SliceableD_str B_SliceableD_strG_new() {
-    B_SliceableD_str $tmp = malloc(sizeof(struct B_SliceableD_str));
+    B_SliceableD_str $tmp = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_SliceableD_str), B_SliceableD_strG_methods.$GCdescr);
     $tmp->$class = &B_SliceableD_strG_methods;
     B_SliceableD_strG_methods.__init__($tmp);
     return $tmp;
 }
 struct B_SliceableD_strG_class B_SliceableD_strG_methods;
+GC_word B_SliceableD_strD_gcbm[GC_BITMAP_SIZE(struct B_SliceableD_str)];
 B_NoneType B_TimesD_strD___init__ (B_TimesD_str W_self) {
     ((B_NoneType (*) (B_Times))B_TimesG_methods.__init__)(((B_Times)W_self));
     return B_None;
@@ -3841,7 +3982,7 @@ void B_TimesD_strD___serialize__ (B_TimesD_str self, $Serial$state state) {
 B_TimesD_str B_TimesD_strD___deserialize__ (B_TimesD_str self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct B_TimesD_str));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_TimesD_str), B_TimesD_strG_methods.$GCdescr);
             self->$class = &B_TimesD_strG_methods;
             return self;
         }
@@ -3850,12 +3991,13 @@ B_TimesD_str B_TimesD_strD___deserialize__ (B_TimesD_str self, $Serial$state sta
     return self;
 }
 B_TimesD_str B_TimesD_strG_new() {
-    B_TimesD_str $tmp = malloc(sizeof(struct B_TimesD_str));
+    B_TimesD_str $tmp = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_TimesD_str), B_TimesD_strG_methods.$GCdescr);
     $tmp->$class = &B_TimesD_strG_methods;
     B_TimesD_strG_methods.__init__($tmp);
     return $tmp;
 }
 struct B_TimesD_strG_class B_TimesD_strG_methods;
+GC_word B_TimesD_strD_gcbm[GC_BITMAP_SIZE(struct B_TimesD_str)];
 B_NoneType B_HashableD_strD___init__ (B_HashableD_str W_self) {
     ((B_NoneType (*) (B_Hashable))B_HashableG_methods.__init__)(((B_Hashable)W_self));
     return B_None;
@@ -3866,7 +4008,7 @@ void B_HashableD_strD___serialize__ (B_HashableD_str self, $Serial$state state) 
 B_HashableD_str B_HashableD_strD___deserialize__ (B_HashableD_str self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct B_HashableD_str));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_HashableD_str), B_HashableD_strG_methods.$GCdescr);
             self->$class = &B_HashableD_strG_methods;
             return self;
         }
@@ -3878,6 +4020,7 @@ B_HashableD_str B_HashableD_strG_new() {   // Manually added.
     return $NEW(B_HashableD_str);          //
 }                                          //
 struct B_HashableD_strG_class B_HashableD_strG_methods;
+GC_word B_HashableD_strD_gcbm[GC_BITMAP_SIZE(struct B_HashableD_str)];
 B_NoneType B_OrdD_bytearrayD___init__ (B_OrdD_bytearray W_self) {
     ((B_NoneType (*) (B_Ord))B_OrdG_methods.__init__)(((B_Ord)W_self));
     return B_None;
@@ -3889,7 +4032,7 @@ void B_OrdD_bytearrayD___serialize__ (B_OrdD_bytearray self, $Serial$state state
 B_OrdD_bytearray B_OrdD_bytearrayD___deserialize__ (B_OrdD_bytearray self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct B_OrdD_bytearray));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_OrdD_bytearray), B_OrdD_bytearrayG_methods.$GCdescr);
             self->$class = &B_OrdD_bytearrayG_methods;
             return self;
         }
@@ -3898,12 +4041,13 @@ B_OrdD_bytearray B_OrdD_bytearrayD___deserialize__ (B_OrdD_bytearray self, $Seri
     return self;
 }
 B_OrdD_bytearray B_OrdD_bytearrayG_new() {
-    B_OrdD_bytearray $tmp = malloc(sizeof(struct B_OrdD_bytearray));
+    B_OrdD_bytearray $tmp = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_OrdD_bytearray), B_OrdD_bytearrayG_methods.$GCdescr);
     $tmp->$class = &B_OrdD_bytearrayG_methods;
     B_OrdD_bytearrayG_methods.__init__($tmp);
     return $tmp;
 }
 struct B_OrdD_bytearrayG_class B_OrdD_bytearrayG_methods;
+GC_word B_OrdD_bytearrayD_gcbm[GC_BITMAP_SIZE(struct B_OrdD_bytearray)];
 B_NoneType B_SequenceD_bytearrayD___init__ (B_SequenceD_bytearray W_self) {
     ((B_NoneType (*) (B_Sequence, B_Collection, B_Times))B_SequenceG_methods.__init__)(((B_Sequence)W_self), ((B_Collection)B_CollectionD_SequenceD_bytearrayG_new(((B_Sequence)W_self))), ((B_Times)B_TimesD_SequenceD_bytearrayG_new(((B_Sequence)W_self))));
     return B_None;
@@ -3926,7 +4070,7 @@ void B_SequenceD_bytearrayD___serialize__ (B_SequenceD_bytearray self, $Serial$s
 B_SequenceD_bytearray B_SequenceD_bytearrayD___deserialize__ (B_SequenceD_bytearray self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct B_SequenceD_bytearray));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_SequenceD_bytearray), B_SequenceD_bytearrayG_methods.$GCdescr);
             self->$class = &B_SequenceD_bytearrayG_methods;
             return self;
         }
@@ -3938,12 +4082,13 @@ B_SequenceD_bytearray B_SequenceD_bytearrayD___deserialize__ (B_SequenceD_bytear
     return self;
 }
 B_SequenceD_bytearray B_SequenceD_bytearrayG_new() {
-    B_SequenceD_bytearray $tmp = malloc(sizeof(struct B_SequenceD_bytearray));
+    B_SequenceD_bytearray $tmp = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_SequenceD_bytearray), B_SequenceD_bytearrayG_methods.$GCdescr);
     $tmp->$class = &B_SequenceD_bytearrayG_methods;
     B_SequenceD_bytearrayG_methods.__init__($tmp);
     return $tmp;
 }
 struct B_SequenceD_bytearrayG_class B_SequenceD_bytearrayG_methods;
+GC_word B_SequenceD_bytearrayD_gcbm[GC_BITMAP_SIZE(struct B_SequenceD_bytearray)];
 B_NoneType B_CollectionD_SequenceD_bytearrayD___init__ (B_CollectionD_SequenceD_bytearray W_self, B_Sequence W_Sequence) {
     ((B_NoneType (*) (B_CollectionD_Sequence, B_Sequence))B_CollectionD_SequenceG_methods.__init__)(((B_CollectionD_Sequence)W_self), ((B_Sequence)W_Sequence));
     return B_None;
@@ -3957,7 +4102,7 @@ void B_CollectionD_SequenceD_bytearrayD___serialize__ (B_CollectionD_SequenceD_b
 B_CollectionD_SequenceD_bytearray B_CollectionD_SequenceD_bytearrayD___deserialize__ (B_CollectionD_SequenceD_bytearray self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct B_CollectionD_SequenceD_bytearray));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_CollectionD_SequenceD_bytearray), B_CollectionD_SequenceD_bytearrayG_methods.$GCdescr);
             self->$class = &B_CollectionD_SequenceD_bytearrayG_methods;
             return self;
         }
@@ -3967,12 +4112,13 @@ B_CollectionD_SequenceD_bytearray B_CollectionD_SequenceD_bytearrayD___deseriali
     return self;
 }
 B_CollectionD_SequenceD_bytearray B_CollectionD_SequenceD_bytearrayG_new(B_Sequence G_1) {
-    B_CollectionD_SequenceD_bytearray $tmp = malloc(sizeof(struct B_CollectionD_SequenceD_bytearray));
+    B_CollectionD_SequenceD_bytearray $tmp = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_CollectionD_SequenceD_bytearray), B_CollectionD_SequenceD_bytearrayG_methods.$GCdescr);
     $tmp->$class = &B_CollectionD_SequenceD_bytearrayG_methods;
     B_CollectionD_SequenceD_bytearrayG_methods.__init__($tmp, G_1);
     return $tmp;
 }
 struct B_CollectionD_SequenceD_bytearrayG_class B_CollectionD_SequenceD_bytearrayG_methods;
+GC_word B_CollectionD_SequenceD_bytearrayD_gcbm[GC_BITMAP_SIZE(struct B_CollectionD_SequenceD_bytearray)];
 B_NoneType B_TimesD_SequenceD_bytearrayD___init__ (B_TimesD_SequenceD_bytearray W_self, B_Sequence W_Sequence) {
     ((B_NoneType (*) (B_TimesD_Sequence, B_Sequence))B_TimesD_SequenceG_methods.__init__)(((B_TimesD_Sequence)W_self), ((B_Sequence)W_Sequence));
     return B_None;
@@ -3985,7 +4131,7 @@ void B_TimesD_SequenceD_bytearrayD___serialize__ (B_TimesD_SequenceD_bytearray s
 B_TimesD_SequenceD_bytearray B_TimesD_SequenceD_bytearrayD___deserialize__ (B_TimesD_SequenceD_bytearray self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct B_TimesD_SequenceD_bytearray));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_TimesD_SequenceD_bytearray), B_TimesD_SequenceD_bytearrayG_methods.$GCdescr);
             self->$class = &B_TimesD_SequenceD_bytearrayG_methods;
             return self;
         }
@@ -3995,12 +4141,13 @@ B_TimesD_SequenceD_bytearray B_TimesD_SequenceD_bytearrayD___deserialize__ (B_Ti
     return self;
 }
 B_TimesD_SequenceD_bytearray B_TimesD_SequenceD_bytearrayG_new(B_Sequence G_1) {
-    B_TimesD_SequenceD_bytearray $tmp = malloc(sizeof(struct B_TimesD_SequenceD_bytearray));
+    B_TimesD_SequenceD_bytearray $tmp = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_TimesD_SequenceD_bytearray), B_TimesD_SequenceD_bytearrayG_methods.$GCdescr);
     $tmp->$class = &B_TimesD_SequenceD_bytearrayG_methods;
     B_TimesD_SequenceD_bytearrayG_methods.__init__($tmp, G_1);
     return $tmp;
 }
 struct B_TimesD_SequenceD_bytearrayG_class B_TimesD_SequenceD_bytearrayG_methods;
+GC_word B_TimesD_SequenceD_bytearrayD_gcbm[GC_BITMAP_SIZE(struct B_TimesD_SequenceD_bytearray)];
 B_NoneType B_ContainerD_bytearrayD___init__ (B_ContainerD_bytearray W_self) {
     B_Eq W_427 = ((B_Eq)B_OrdD_intG_new());
     ((B_NoneType (*) (B_Container, B_Eq))B_ContainerG_methods.__init__)(((B_Container)W_self), W_427);
@@ -4014,7 +4161,7 @@ void B_ContainerD_bytearrayD___serialize__ (B_ContainerD_bytearray self, $Serial
 B_ContainerD_bytearray B_ContainerD_bytearrayD___deserialize__ (B_ContainerD_bytearray self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct B_ContainerD_bytearray));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_ContainerD_bytearray), B_ContainerD_bytearrayG_methods.$GCdescr);
             self->$class = &B_ContainerD_bytearrayG_methods;
             return self;
         }
@@ -4024,6 +4171,7 @@ B_ContainerD_bytearray B_ContainerD_bytearrayD___deserialize__ (B_ContainerD_byt
     return self;
 }
 struct B_ContainerD_bytearrayG_class B_ContainerD_bytearrayG_methods;
+GC_word B_ContainerD_bytearrayD_gcbm[GC_BITMAP_SIZE(struct B_ContainerD_bytearray)];
 B_NoneType B_OrdD_bytesD___init__ (B_OrdD_bytes W_self) {
     ((B_NoneType (*) (B_Ord))B_OrdG_methods.__init__)(((B_Ord)W_self));
     return B_None;
@@ -4035,7 +4183,7 @@ void B_OrdD_bytesD___serialize__ (B_OrdD_bytes self, $Serial$state state) {
 B_OrdD_bytes B_OrdD_bytesD___deserialize__ (B_OrdD_bytes self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct B_OrdD_bytes));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_OrdD_bytes), B_OrdD_bytesG_methods.$GCdescr);
             self->$class = &B_OrdD_bytesG_methods;
             return self;
         }
@@ -4044,12 +4192,13 @@ B_OrdD_bytes B_OrdD_bytesD___deserialize__ (B_OrdD_bytes self, $Serial$state sta
     return self;
 }
 B_OrdD_bytes B_OrdD_bytesG_new() {
-    B_OrdD_bytes $tmp = malloc(sizeof(struct B_OrdD_bytes));
+    B_OrdD_bytes $tmp = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_OrdD_bytes), B_OrdD_bytesG_methods.$GCdescr);
     $tmp->$class = &B_OrdD_bytesG_methods;
     B_OrdD_bytesG_methods.__init__($tmp);
     return $tmp;
 }
 struct B_OrdD_bytesG_class B_OrdD_bytesG_methods;
+GC_word B_OrdD_bytesD_gcbm[GC_BITMAP_SIZE(struct B_OrdD_bytes)];
 B_NoneType B_SliceableD_bytesD___init__ (B_SliceableD_bytes W_self) {
     ((B_NoneType (*) (B_Sliceable))B_SliceableG_methods.__init__)(((B_Sliceable)W_self));
     return B_None;
@@ -4066,7 +4215,7 @@ void B_SliceableD_bytesD___serialize__ (B_SliceableD_bytes self, $Serial$state s
 B_SliceableD_bytes B_SliceableD_bytesD___deserialize__ (B_SliceableD_bytes self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct B_SliceableD_bytes));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_SliceableD_bytes), B_SliceableD_bytesG_methods.$GCdescr);
             self->$class = &B_SliceableD_bytesG_methods;
             return self;
         }
@@ -4076,12 +4225,13 @@ B_SliceableD_bytes B_SliceableD_bytesD___deserialize__ (B_SliceableD_bytes self,
     return self;
 }
 B_SliceableD_bytes B_SliceableD_bytesG_new() {
-    B_SliceableD_bytes $tmp = malloc(sizeof(struct B_SliceableD_bytes));
+    B_SliceableD_bytes $tmp = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_SliceableD_bytes), B_SliceableD_bytesG_methods.$GCdescr);
     $tmp->$class = &B_SliceableD_bytesG_methods;
     B_SliceableD_bytesG_methods.__init__($tmp);
     return $tmp;
 }
 struct B_SliceableD_bytesG_class B_SliceableD_bytesG_methods;
+GC_word B_SliceableD_bytesD_gcbm[GC_BITMAP_SIZE(struct B_SliceableD_bytes)];
 B_NoneType B_ContainerD_bytesD___init__ (B_ContainerD_bytes W_self) {
     B_Eq W_438 = ((B_Eq)B_OrdD_intG_new());
     ((B_NoneType (*) (B_Container, B_Eq))B_ContainerG_methods.__init__)(((B_Container)W_self), W_438);
@@ -4098,7 +4248,7 @@ void B_ContainerD_bytesD___serialize__ (B_ContainerD_bytes self, $Serial$state s
 B_ContainerD_bytes B_ContainerD_bytesD___deserialize__ (B_ContainerD_bytes self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct B_ContainerD_bytes));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_ContainerD_bytes), B_ContainerD_bytesG_methods.$GCdescr);
             self->$class = &B_ContainerD_bytesG_methods;
             return self;
         }
@@ -4108,12 +4258,13 @@ B_ContainerD_bytes B_ContainerD_bytesD___deserialize__ (B_ContainerD_bytes self,
     return self;
 }
 B_ContainerD_bytes B_ContainerD_bytesG_new() {
-    B_ContainerD_bytes $tmp = malloc(sizeof(struct B_ContainerD_bytes));
+    B_ContainerD_bytes $tmp = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_ContainerD_bytes), B_ContainerD_bytesG_methods.$GCdescr);
     $tmp->$class = &B_ContainerD_bytesG_methods;
     B_ContainerD_bytesG_methods.__init__($tmp);
     return $tmp;
 }
 struct B_ContainerD_bytesG_class B_ContainerD_bytesG_methods;
+GC_word B_ContainerD_bytesD_gcbm[GC_BITMAP_SIZE(struct B_ContainerD_bytes)];
 B_NoneType B_TimesD_bytesD___init__ (B_TimesD_bytes W_self) {
     ((B_NoneType (*) (B_Times))B_TimesG_methods.__init__)(((B_Times)W_self));
     return B_None;
@@ -4125,7 +4276,7 @@ void B_TimesD_bytesD___serialize__ (B_TimesD_bytes self, $Serial$state state) {
 B_TimesD_bytes B_TimesD_bytesD___deserialize__ (B_TimesD_bytes self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct B_TimesD_bytes));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_TimesD_bytes), B_TimesD_bytesG_methods.$GCdescr);
             self->$class = &B_TimesD_bytesG_methods;
             return self;
         }
@@ -4134,12 +4285,13 @@ B_TimesD_bytes B_TimesD_bytesD___deserialize__ (B_TimesD_bytes self, $Serial$sta
     return self;
 }
 B_TimesD_bytes B_TimesD_bytesG_new() {
-    B_TimesD_bytes $tmp = malloc(sizeof(struct B_TimesD_bytes));
+    B_TimesD_bytes $tmp = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_TimesD_bytes), B_TimesD_bytesG_methods.$GCdescr);
     $tmp->$class = &B_TimesD_bytesG_methods;
     B_TimesD_bytesG_methods.__init__($tmp);
     return $tmp;
 }
 struct B_TimesD_bytesG_class B_TimesD_bytesG_methods;
+GC_word B_TimesD_bytesD_gcbm[GC_BITMAP_SIZE(struct B_TimesD_bytes)];
 B_NoneType B_HashableD_bytesD___init__ (B_HashableD_bytes W_self) {
     ((B_NoneType (*) (B_Hashable))B_HashableG_methods.__init__)(((B_Hashable)W_self));
     return B_None;
@@ -4150,7 +4302,7 @@ void B_HashableD_bytesD___serialize__ (B_HashableD_bytes self, $Serial$state sta
 B_HashableD_bytes B_HashableD_bytesD___deserialize__ (B_HashableD_bytes self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct B_HashableD_bytes));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_HashableD_bytes), B_HashableD_bytesG_methods.$GCdescr);
             self->$class = &B_HashableD_bytesG_methods;
             return self;
         }
@@ -4159,6 +4311,7 @@ B_HashableD_bytes B_HashableD_bytesD___deserialize__ (B_HashableD_bytes self, $S
     return self;
 }
 struct B_HashableD_bytesG_class B_HashableD_bytesG_methods;
+GC_word B_HashableD_bytesD_gcbm[GC_BITMAP_SIZE(struct B_HashableD_bytes)];
 $WORD B_abs (B_Real W_RealE_768, B_Number W_NumberE_767, $WORD x) {
     return (($WORD (*) (B_Number, $WORD, B_Real))W_NumberE_767->$class->__abs__)(W_NumberE_767, x, W_RealE_768);
 }
@@ -4254,7 +4407,7 @@ void B_L_1procD___serialize__ (B_L_1proc self, $Serial$state state) {
 B_L_1proc B_L_1procD___deserialize__ (B_L_1proc self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct B_L_1proc));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_L_1proc), B_L_1procG_methods.$GCdescr);
             self->$class = &B_L_1procG_methods;
             return self;
         }
@@ -4265,12 +4418,13 @@ B_L_1proc B_L_1procD___deserialize__ (B_L_1proc self, $Serial$state state) {
     return self;
 }
 B_L_1proc B_L_1procG_new(B_Env G_1, B_str G_2) {
-    B_L_1proc $tmp = malloc(sizeof(struct B_L_1proc));
+    B_L_1proc $tmp = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_L_1proc), B_L_1procG_methods.$GCdescr);
     $tmp->$class = &B_L_1procG_methods;
     B_L_1procG_methods.__init__($tmp, G_1, G_2);
     return $tmp;
 }
 struct B_L_1procG_class B_L_1procG_methods;
+GC_word B_L_1procD_gcbm[GC_BITMAP_SIZE(struct B_L_1proc)];
 B_NoneType B_L_2procD___init__ (B_L_2proc L_self, B_Env self, $action cb) {
     L_self->self = self;
     L_self->cb = cb;
@@ -4291,7 +4445,7 @@ void B_L_2procD___serialize__ (B_L_2proc self, $Serial$state state) {
 B_L_2proc B_L_2procD___deserialize__ (B_L_2proc self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct B_L_2proc));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_L_2proc), B_L_2procG_methods.$GCdescr);
             self->$class = &B_L_2procG_methods;
             return self;
         }
@@ -4302,12 +4456,13 @@ B_L_2proc B_L_2procD___deserialize__ (B_L_2proc self, $Serial$state state) {
     return self;
 }
 B_L_2proc B_L_2procG_new(B_Env G_1, $action G_2) {
-    B_L_2proc $tmp = malloc(sizeof(struct B_L_2proc));
+    B_L_2proc $tmp = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_L_2proc), B_L_2procG_methods.$GCdescr);
     $tmp->$class = &B_L_2procG_methods;
     B_L_2procG_methods.__init__($tmp, G_1, G_2);
     return $tmp;
 }
 struct B_L_2procG_class B_L_2procG_methods;
+GC_word B_L_2procD_gcbm[GC_BITMAP_SIZE(struct B_L_2proc)];
 B_NoneType B_L_3procD___init__ (B_L_3proc L_self, B_Env self, B_int n) {
     L_self->self = self;
     L_self->n = n;
@@ -4328,7 +4483,7 @@ void B_L_3procD___serialize__ (B_L_3proc self, $Serial$state state) {
 B_L_3proc B_L_3procD___deserialize__ (B_L_3proc self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct B_L_3proc));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_L_3proc), B_L_3procG_methods.$GCdescr);
             self->$class = &B_L_3procG_methods;
             return self;
         }
@@ -4339,12 +4494,13 @@ B_L_3proc B_L_3procD___deserialize__ (B_L_3proc self, $Serial$state state) {
     return self;
 }
 B_L_3proc B_L_3procG_new(B_Env G_1, B_int G_2) {
-    B_L_3proc $tmp = malloc(sizeof(struct B_L_3proc));
+    B_L_3proc $tmp = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_L_3proc), B_L_3procG_methods.$GCdescr);
     $tmp->$class = &B_L_3procG_methods;
     B_L_3procG_methods.__init__($tmp, G_1, G_2);
     return $tmp;
 }
 struct B_L_3procG_class B_L_3procG_methods;
+GC_word B_L_3procD_gcbm[GC_BITMAP_SIZE(struct B_L_3proc)];
 $R B_L_4C_1cont (B_Env G_act, $Cont C_cont, B_NoneType C_2res) {
     return $RU_CONT(C_cont, G_act);
 }
@@ -4365,7 +4521,7 @@ void B_L_5ContD___serialize__ (B_L_5Cont self, $Serial$state state) {
 B_L_5Cont B_L_5ContD___deserialize__ (B_L_5Cont self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct B_L_5Cont));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_L_5Cont), B_L_5ContG_methods.$GCdescr);
             self->$class = &B_L_5ContG_methods;
             return self;
         }
@@ -4376,12 +4532,13 @@ B_L_5Cont B_L_5ContD___deserialize__ (B_L_5Cont self, $Serial$state state) {
     return self;
 }
 B_L_5Cont B_L_5ContG_new(B_Env G_1, $Cont G_2) {
-    B_L_5Cont $tmp = malloc(sizeof(struct B_L_5Cont));
+    B_L_5Cont $tmp = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_L_5Cont), B_L_5ContG_methods.$GCdescr);
     $tmp->$class = &B_L_5ContG_methods;
     B_L_5ContG_methods.__init__($tmp, G_1, G_2);
     return $tmp;
 }
 struct B_L_5ContG_class B_L_5ContG_methods;
+GC_word B_L_5ContD_gcbm[GC_BITMAP_SIZE(struct B_L_5Cont)];
 B_NoneType B_L_6procD___init__ (B_L_6proc L_self, B_Env G_act, B_WorldAuth token, B_list args) {
     L_self->G_act = G_act;
     L_self->token = token;
@@ -4405,7 +4562,7 @@ void B_L_6procD___serialize__ (B_L_6proc self, $Serial$state state) {
 B_L_6proc B_L_6procD___deserialize__ (B_L_6proc self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct B_L_6proc));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_L_6proc), B_L_6procG_methods.$GCdescr);
             self->$class = &B_L_6procG_methods;
             return self;
         }
@@ -4417,18 +4574,19 @@ B_L_6proc B_L_6procD___deserialize__ (B_L_6proc self, $Serial$state state) {
     return self;
 }
 B_L_6proc B_L_6procG_new(B_Env G_1, B_WorldAuth G_2, B_list G_3) {
-    B_L_6proc $tmp = malloc(sizeof(struct B_L_6proc));
+    B_L_6proc $tmp = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_L_6proc), B_L_6procG_methods.$GCdescr);
     $tmp->$class = &B_L_6procG_methods;
     B_L_6procG_methods.__init__($tmp, G_1, G_2, G_3);
     return $tmp;
 }
 struct B_L_6procG_class B_L_6procG_methods;
+GC_word B_L_6procD_gcbm[GC_BITMAP_SIZE(struct B_L_6proc)];
 void B_WorldAuthD___serialize__ (B_WorldAuth self, $Serial$state state) {
 }
 B_WorldAuth B_WorldAuthD___deserialize__ (B_WorldAuth self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct B_WorldAuth));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_WorldAuth), B_WorldAuthG_methods.$GCdescr);
             self->$class = &B_WorldAuthG_methods;
             return self;
         }
@@ -4437,6 +4595,7 @@ B_WorldAuth B_WorldAuthD___deserialize__ (B_WorldAuth self, $Serial$state state)
     return self;
 }
 struct B_WorldAuthG_class B_WorldAuthG_methods;
+GC_word B_WorldAuthD_gcbm[GC_BITMAP_SIZE(struct B_WorldAuth)];
 $R B_EnvD___init__ (B_Env self, $Cont C_cont, B_WorldAuth token, B_list args) {
     self->token = token;
     self->args = args;
@@ -4466,7 +4625,7 @@ void B_EnvD___serialize__ (B_Env self, $Serial$state state) {
 B_Env B_EnvD___deserialize__ (B_Env self, $Serial$state state) {
     if (!self) {
         if (!state) {
-            self = malloc(sizeof(struct B_Env));
+            self = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_Env), B_EnvG_methods.$GCdescr);
             self->$class = &B_EnvG_methods;
             return self;
         }
@@ -4480,11 +4639,12 @@ B_Env B_EnvD___deserialize__ (B_Env self, $Serial$state state) {
     return self;
 }
 $R B_EnvG_new($Cont G_1, B_WorldAuth G_2, B_list G_3) {
-    B_Env $tmp = malloc(sizeof(struct B_Env));
+    B_Env $tmp = GC_MALLOC_EXPLICITLY_TYPED(sizeof(struct B_Env), B_EnvG_methods.$GCdescr);
     $tmp->$class = &B_EnvG_methods;
     return B_EnvG_methods.__init__($tmp, G_1, G_2, $CONSTCONT(G_3, $tmp));
 }
 struct B_EnvG_class B_EnvG_methods;
+GC_word B_EnvD_gcbm[GC_BITMAP_SIZE(struct B_Env)];
 $R B_EnvG_newact ($Cont C_cont, B_WorldAuth token, B_list args) {
     B_Env G_act = $NEWACTOR(B_Env);
     return $AWAIT((($Cont)B_L_5ContG_new(G_act, C_cont)), $ASYNC((($Actor)G_act), (($Cont)B_L_6procG_new(G_act, token, args))));
@@ -4496,7 +4656,9 @@ void B___init__ () {
     B_done$ = 1;
     //    B___ext_init__ ();
     {
-        B_valueG_methods.$GCINFO = "B_value";
+        memset(B_valueD_gcbm, 0xFF, sizeof(B_valueD_gcbm));
+        B_valueG_methods.$GCdescr = GC_make_descriptor(B_valueD_gcbm, GC_WORD_LEN(struct B_value));
+        B_valueG_methods.$name = "B_value";
         B_valueG_methods.$superclass = NULL;
         B_valueG_methods.__init__ = B_valueD___init__;
         B_valueG_methods.__bool__ = B_valueD___bool__;
@@ -4506,7 +4668,9 @@ void B___init__ () {
         B_valueG_methods.__deserialize__ = B_valueD___deserialize__;
     }
     {
-        B_objectG_methods.$GCINFO = "B_object";
+        memset(B_objectD_gcbm, 0xFF, sizeof(B_objectD_gcbm));
+        B_objectG_methods.$GCdescr = GC_make_descriptor(B_objectD_gcbm, GC_WORD_LEN(struct B_object));
+        B_objectG_methods.$name = "B_object";
         B_objectG_methods.$superclass = ($SuperG_class)&B_valueG_methods;
         B_objectG_methods.__init__ = (B_NoneType (*) (B_object))B_valueG_methods.__init__;
         B_objectG_methods.__bool__ = (B_bool (*) (B_object))B_valueG_methods.__bool__;
@@ -4516,7 +4680,9 @@ void B___init__ () {
         B_objectG_methods.__deserialize__ = B_objectD___deserialize__;
     }
     {
-        B_atomG_methods.$GCINFO = "B_atom";
+        memset(B_atomD_gcbm, 0xFF, sizeof(B_atomD_gcbm));
+        B_atomG_methods.$GCdescr = GC_make_descriptor(B_atomD_gcbm, GC_WORD_LEN(struct B_atom));
+        B_atomG_methods.$name = "B_atom";
         B_atomG_methods.$superclass = ($SuperG_class)&B_valueG_methods;
         B_atomG_methods.__init__ = (B_NoneType (*) (B_atom))B_valueG_methods.__init__;
         B_atomG_methods.__bool__ = (B_bool (*) (B_atom))B_valueG_methods.__bool__;
@@ -4526,7 +4692,9 @@ void B___init__ () {
         B_atomG_methods.__deserialize__ = B_atomD___deserialize__;
     }
     {
-        B_intG_methods.$GCINFO = "B_int";
+        memset(B_intD_gcbm, 0xFF, sizeof(B_intD_gcbm));
+        B_intG_methods.$GCdescr = GC_make_descriptor(B_intD_gcbm, GC_WORD_LEN(struct B_int));
+        B_intG_methods.$name = "B_int";
         B_intG_methods.$superclass = ($SuperG_class)&B_atomG_methods;
         B_intG_methods.__bool__ = B_intD___bool__;
         B_intG_methods.__str__ = B_intD___str__;
@@ -4536,7 +4704,9 @@ void B___init__ () {
         B_intG_methods.__deserialize__ = B_intD___deserialize__;
     }
     {
-        B_i64G_methods.$GCINFO = "B_i64";
+        memset(B_i64D_gcbm, 0xFF, sizeof(B_i64D_gcbm));
+        B_i64G_methods.$GCdescr = GC_make_descriptor(B_i64D_gcbm, GC_WORD_LEN(struct B_i64));
+        B_i64G_methods.$name = "B_i64";
         B_i64G_methods.$superclass = ($SuperG_class)&B_atomG_methods;
         B_i64G_methods.__bool__ = B_i64D___bool__;
         B_i64G_methods.__str__ = B_i64D___str__;  
@@ -4546,7 +4716,9 @@ void B___init__ () {
         B_i64G_methods.__deserialize__ = B_i64D___deserialize__;
     }
      {
-        B_i32G_methods.$GCINFO = "B_i32";
+        memset(B_i32D_gcbm, 0xFF, sizeof(B_i32D_gcbm));
+        B_i32G_methods.$GCdescr = GC_make_descriptor(B_i32D_gcbm, GC_WORD_LEN(struct B_i32));
+        B_i32G_methods.$name = "B_i32";
         B_i32G_methods.$superclass = ($SuperG_class)&B_atomG_methods;
         B_i32G_methods.__bool__ = B_i32D___bool__;
         B_i32G_methods.__str__ = B_i32D___str__;  
@@ -4556,7 +4728,9 @@ void B___init__ () {
         B_i32G_methods.__deserialize__ = B_i32D___deserialize__;
     }
      {
-        B_i16G_methods.$GCINFO = "B_i16";
+        memset(B_i16D_gcbm, 0xFF, sizeof(B_i16D_gcbm));
+        B_i16G_methods.$GCdescr = GC_make_descriptor(B_i16D_gcbm, GC_WORD_LEN(struct B_i16));
+        B_i16G_methods.$name = "B_i16";
         B_i16G_methods.$superclass = ($SuperG_class)&B_atomG_methods;
         B_i16G_methods.__bool__ = B_i16D___bool__;
         B_i16G_methods.__str__ = B_i16D___str__;  
@@ -4566,7 +4740,9 @@ void B___init__ () {
         B_i16G_methods.__deserialize__ = B_i16D___deserialize__;
     }
     {
-        B_u64G_methods.$GCINFO = "B_u64";
+        memset(B_u64D_gcbm, 0xFF, sizeof(B_u64D_gcbm));
+        B_u64G_methods.$GCdescr = GC_make_descriptor(B_u64D_gcbm, GC_WORD_LEN(struct B_u64));
+        B_u64G_methods.$name = "B_u64";
         B_u64G_methods.$superclass = ($SuperG_class)&B_atomG_methods;
         B_u64G_methods.__bool__ = B_u64D___bool__;
         B_u64G_methods.__str__ = B_u64D___str__;  
@@ -4576,7 +4752,9 @@ void B___init__ () {
         B_u64G_methods.__deserialize__ = B_u64D___deserialize__;
     }
     {
-        B_u32G_methods.$GCINFO = "B_u32";
+        memset(B_u32D_gcbm, 0xFF, sizeof(B_u32D_gcbm));
+        B_u32G_methods.$GCdescr = GC_make_descriptor(B_u32D_gcbm, GC_WORD_LEN(struct B_u32));
+        B_u32G_methods.$name = "B_u32";
         B_u32G_methods.$superclass = ($SuperG_class)&B_atomG_methods;
         B_u32G_methods.__bool__ = B_u32D___bool__;
         B_u32G_methods.__str__ = B_u32D___str__;  
@@ -4586,7 +4764,9 @@ void B___init__ () {
         B_u32G_methods.__deserialize__ = B_u32D___deserialize__;
     }
     {
-        B_u16G_methods.$GCINFO = "B_u16";
+        memset(B_u16D_gcbm, 0xFF, sizeof(B_u16D_gcbm));
+        B_u16G_methods.$GCdescr = GC_make_descriptor(B_u16D_gcbm, GC_WORD_LEN(struct B_u16));
+        B_u16G_methods.$name = "B_u16";
         B_u16G_methods.$superclass = ($SuperG_class)&B_atomG_methods;
         B_u16G_methods.__bool__ = B_u16D___bool__;
         B_u16G_methods.__str__ = B_u16D___str__;  
@@ -4596,7 +4776,9 @@ void B___init__ () {
         B_u16G_methods.__deserialize__ = B_u16D___deserialize__;
     }
     {
-        B_floatG_methods.$GCINFO = "B_float";
+        memset(B_floatD_gcbm, 0xFF, sizeof(B_floatD_gcbm));
+        B_floatG_methods.$GCdescr = GC_make_descriptor(B_floatD_gcbm, GC_WORD_LEN(struct B_float));
+        B_floatG_methods.$name = "B_float";
         B_floatG_methods.$superclass = ($SuperG_class)&B_atomG_methods;
         B_floatG_methods.__bool__ = B_floatD___bool__;
         B_floatG_methods.__str__ = B_floatD___str__;
@@ -4606,7 +4788,9 @@ void B___init__ () {
         B_floatG_methods.__deserialize__ = B_floatD___deserialize__;
     }
     {
-        B_boolG_methods.$GCINFO = "B_bool";
+        memset(B_boolD_gcbm, 0xFF, sizeof(B_boolD_gcbm));
+        B_boolG_methods.$GCdescr = GC_make_descriptor(B_boolD_gcbm, GC_WORD_LEN(struct B_bool));
+        B_boolG_methods.$name = "B_bool";
         B_boolG_methods.$superclass = ($SuperG_class)&B_atomG_methods;
         B_boolG_methods.__bool__ = B_boolD___bool__;
         B_boolG_methods.__str__ = B_boolD___str__;
@@ -4616,7 +4800,9 @@ void B___init__ () {
         B_boolG_methods.__deserialize__ = B_boolD___deserialize__;
     }
     {
-        B_sliceG_methods.$GCINFO = "B_slice";
+        memset(B_sliceD_gcbm, 0xFF, sizeof(B_sliceD_gcbm));
+        B_sliceG_methods.$GCdescr = GC_make_descriptor(B_sliceD_gcbm, GC_WORD_LEN(struct B_slice));
+        B_sliceG_methods.$name = "B_slice";
         B_sliceG_methods.$superclass = ($SuperG_class)&B_valueG_methods;
         B_sliceG_methods.__bool__ = (B_bool (*) (B_slice))B_valueG_methods.__bool__;
         B_sliceG_methods.__str__ = (B_str (*) (B_slice))B_valueG_methods.__str__;
@@ -4626,7 +4812,9 @@ void B___init__ () {
         B_sliceG_methods.__deserialize__ = B_sliceD___deserialize__;
     }
     {
-        B_listG_methods.$GCINFO = "B_list";
+        memset(B_listD_gcbm, 0xFF, sizeof(B_listD_gcbm));
+        B_listG_methods.$GCdescr = GC_make_descriptor(B_listD_gcbm, GC_WORD_LEN(struct B_list));
+        B_listG_methods.$name = "B_list";
         B_listG_methods.$superclass = ($SuperG_class)&B_objectG_methods;
         B_listG_methods.__bool__ = B_listD___bool__;
         B_listG_methods.__str__ = B_listD___str__;
@@ -4640,7 +4828,9 @@ void B___init__ () {
         B_listG_methods.pop = B_listD_pop;
     }
     {
-        B_rangeG_methods.$GCINFO = "B_range";
+        memset(B_rangeD_gcbm, 0xFF, sizeof(B_rangeD_gcbm));
+        B_rangeG_methods.$GCdescr = GC_make_descriptor(B_rangeD_gcbm, GC_WORD_LEN(struct B_range));
+        B_rangeG_methods.$name = "B_range";
         B_rangeG_methods.$superclass = ($SuperG_class)&B_valueG_methods;
         B_rangeG_methods.__bool__ = (B_bool (*) (B_range))B_valueG_methods.__bool__;
         B_rangeG_methods.__str__ = (B_str (*) (B_range))B_valueG_methods.__str__;
@@ -4650,7 +4840,9 @@ void B___init__ () {
         B_rangeG_methods.__deserialize__ = B_rangeD___deserialize__;
     }
     {
-        B_IteratorG_methods.$GCINFO = "B_Iterator";
+        memset(B_IteratorD_gcbm, 0xFF, sizeof(B_IteratorD_gcbm));
+        B_IteratorG_methods.$GCdescr = GC_make_descriptor(B_IteratorD_gcbm, GC_WORD_LEN(struct B_Iterator));
+        B_IteratorG_methods.$name = "B_Iterator";
         B_IteratorG_methods.$superclass = ($SuperG_class)&B_objectG_methods;
         B_IteratorG_methods.__bool__ = (B_bool (*) (B_Iterator))B_valueG_methods.__bool__;
         B_IteratorG_methods.__str__ = (B_str (*) (B_Iterator))B_valueG_methods.__str__;
@@ -4659,7 +4851,9 @@ void B___init__ () {
         B_IteratorG_methods.__deserialize__ = B_IteratorD___deserialize__;
     }
     {
-        B_IterableG_methods.$GCINFO = "B_Iterable";
+        memset(B_IterableD_gcbm, 0xFF, sizeof(B_IterableD_gcbm));
+        B_IterableG_methods.$GCdescr = GC_make_descriptor(B_IterableD_gcbm, GC_WORD_LEN(struct B_Iterable));
+        B_IterableG_methods.$name = "B_Iterable";
         B_IterableG_methods.$superclass = ($SuperG_class)&B_valueG_methods;
         B_IterableG_methods.__bool__ = (B_bool (*) (B_Iterable))B_valueG_methods.__bool__;
         B_IterableG_methods.__str__ = (B_str (*) (B_Iterable))B_valueG_methods.__str__;
@@ -4670,7 +4864,9 @@ void B___init__ () {
         $register(&B_IterableG_methods);
     }
     {
-        B_strG_methods.$GCINFO = "B_str";
+        memset(B_strD_gcbm, 0xFF, sizeof(B_strD_gcbm));
+        B_strG_methods.$GCdescr = GC_make_descriptor(B_strD_gcbm, GC_WORD_LEN(struct B_str));
+        B_strG_methods.$name = "B_str";
         B_strG_methods.$superclass = ($SuperG_class)&B_atomG_methods;
         B_strG_methods.__bool__ = (B_bool (*) (B_str))B_valueG_methods.__bool__;
         B_strG_methods.__str__ = B_strD___str__;
@@ -4714,7 +4910,9 @@ void B___init__ () {
         B_strG_methods.__deserialize__ = B_strD___deserialize__;
     }
     {
-        B_bytesG_methods.$GCINFO = "B_bytes";
+        memset(B_bytesD_gcbm, 0xFF, sizeof(B_bytesD_gcbm));
+        B_bytesG_methods.$GCdescr = GC_make_descriptor(B_bytesD_gcbm, GC_WORD_LEN(struct B_bytes));
+        B_bytesG_methods.$name = "B_bytes";
         B_bytesG_methods.$superclass = ($SuperG_class)&B_valueG_methods;
         B_bytesG_methods.__bool__ = (B_bool (*) (B_bytes))B_valueG_methods.__bool__;
         B_bytesG_methods.__str__ = B_bytesD___str__;
@@ -4757,7 +4955,9 @@ void B___init__ () {
         B_bytesG_methods.__deserialize__ = B_bytesD___deserialize__;
     }
     {
-        B_bytearrayG_methods.$GCINFO = "B_bytearray";
+        memset(B_bytearrayD_gcbm, 0xFF, sizeof(B_bytearrayD_gcbm));
+        B_bytearrayG_methods.$GCdescr = GC_make_descriptor(B_bytearrayD_gcbm, GC_WORD_LEN(struct B_bytearray));
+        B_bytearrayG_methods.$name = "B_bytearray";
         B_bytearrayG_methods.$superclass = ($SuperG_class)&B_objectG_methods;
         B_bytearrayG_methods.__bool__ = (B_bool (*) (B_bytearray))B_valueG_methods.__bool__;
         B_bytearrayG_methods.__str__ = B_bytearrayD___str__;
@@ -4801,7 +5001,9 @@ void B___init__ () {
     }
     /*
     {
-        B_MsgG_methods.$GCINFO = "B_Msg";
+        memset(B_MsgD_gcbm, 0xFF, sizeof(B_MsgD_gcbm));
+        B_MsgG_methods.$GCdescr = GC_make_descriptor(B_MsgD_gcbm, GC_WORD_LEN(struct B_Msg));
+        B_MsgG_methods.$name = "B_Msg";
         B_MsgG_methods.$superclass = ($SuperG_class)&B_valueG_methods;
         B_MsgG_methods.__bool__ = (B_bool (*) (B_Msg))B_valueG_methods.__bool__;
         B_MsgG_methods.__str__ = (B_str (*) (B_Msg))B_valueG_methods.__str__;
@@ -4812,7 +5014,9 @@ void B___init__ () {
     }
     */
     {
-        B_BaseExceptionG_methods.$GCINFO = "B_BaseException";
+        memset(B_BaseExceptionD_gcbm, 0xFF, sizeof(B_BaseExceptionD_gcbm));
+        B_BaseExceptionG_methods.$GCdescr = GC_make_descriptor(B_BaseExceptionD_gcbm, GC_WORD_LEN(struct B_BaseException));
+        B_BaseExceptionG_methods.$name = "B_BaseException";
         B_BaseExceptionG_methods.$superclass = ($SuperG_class)&B_valueG_methods;
         B_BaseExceptionG_methods.__bool__ = (B_bool (*) (B_BaseException))B_valueG_methods.__bool__;
         B_BaseExceptionG_methods.__str__ = B_BaseExceptionD___str__;
@@ -4822,7 +5026,9 @@ void B___init__ () {
         B_BaseExceptionG_methods.__deserialize__ = B_BaseExceptionD___deserialize__; 
     }
     {
-        B_SystemExitG_methods.$GCINFO = "B_SystemExit";
+        memset(B_SystemExitD_gcbm, 0xFF, sizeof(B_SystemExitD_gcbm));
+        B_SystemExitG_methods.$GCdescr = GC_make_descriptor(B_SystemExitD_gcbm, GC_WORD_LEN(struct B_SystemExit));
+        B_SystemExitG_methods.$name = "B_SystemExit";
         B_SystemExitG_methods.$superclass = ($SuperG_class)&B_BaseExceptionG_methods;
         B_SystemExitG_methods.__init__ = (B_NoneType (*) (B_SystemExit, B_str))B_BaseExceptionG_methods.__init__;
         B_SystemExitG_methods.__bool__ = (B_bool (*) (B_SystemExit))B_valueG_methods.__bool__;
@@ -4832,7 +5038,9 @@ void B___init__ () {
         B_SystemExitG_methods.__deserialize__ = B_SystemExitD___deserialize__;
     }
     {
-        B_KeyboardInterruptG_methods.$GCINFO = "B_KeyboardInterrupt";
+        memset(B_KeyboardInterruptD_gcbm, 0xFF, sizeof(B_KeyboardInterruptD_gcbm));
+        B_KeyboardInterruptG_methods.$GCdescr = GC_make_descriptor(B_KeyboardInterruptD_gcbm, GC_WORD_LEN(struct B_KeyboardInterrupt));
+        B_KeyboardInterruptG_methods.$name = "B_KeyboardInterrupt";
         B_KeyboardInterruptG_methods.$superclass = ($SuperG_class)&B_BaseExceptionG_methods;
         B_KeyboardInterruptG_methods.__init__ = (B_NoneType (*) (B_KeyboardInterrupt, B_str))B_BaseExceptionG_methods.__init__;
         B_KeyboardInterruptG_methods.__bool__ = (B_bool (*) (B_KeyboardInterrupt))B_valueG_methods.__bool__;
@@ -4842,7 +5050,9 @@ void B___init__ () {
         B_KeyboardInterruptG_methods.__deserialize__ = B_KeyboardInterruptD___deserialize__;
     }
     {
-        B_ExceptionG_methods.$GCINFO = "B_Exception";
+        memset(B_ExceptionD_gcbm, 0xFF, sizeof(B_ExceptionD_gcbm));
+        B_ExceptionG_methods.$GCdescr = GC_make_descriptor(B_ExceptionD_gcbm, GC_WORD_LEN(struct B_Exception));
+        B_ExceptionG_methods.$name = "B_Exception";
         B_ExceptionG_methods.$superclass = ($SuperG_class)&B_BaseExceptionG_methods;
         B_ExceptionG_methods.__init__ = (B_NoneType (*) (B_Exception, B_str))B_BaseExceptionG_methods.__init__;
         B_ExceptionG_methods.__bool__ = (B_bool (*) (B_Exception))B_valueG_methods.__bool__;
@@ -4852,7 +5062,9 @@ void B___init__ () {
         B_ExceptionG_methods.__deserialize__ = B_ExceptionD___deserialize__;
     }
     {
-        B_AssertionErrorG_methods.$GCINFO = "B_AssertionError";
+        memset(B_AssertionErrorD_gcbm, 0xFF, sizeof(B_AssertionErrorD_gcbm));
+        B_AssertionErrorG_methods.$GCdescr = GC_make_descriptor(B_AssertionErrorD_gcbm, GC_WORD_LEN(struct B_AssertionError));
+        B_AssertionErrorG_methods.$name = "B_AssertionError";
         B_AssertionErrorG_methods.$superclass = ($SuperG_class)&B_ExceptionG_methods;
         B_AssertionErrorG_methods.__init__ = (B_NoneType (*) (B_AssertionError, B_str))B_BaseExceptionG_methods.__init__;
         B_AssertionErrorG_methods.__bool__ = (B_bool (*) (B_AssertionError))B_valueG_methods.__bool__;
@@ -4862,7 +5074,9 @@ void B___init__ () {
         B_AssertionErrorG_methods.__deserialize__ = B_AssertionErrorD___deserialize__;
     }
     {
-        B_LookupErrorG_methods.$GCINFO = "B_LookupError";
+        memset(B_LookupErrorD_gcbm, 0xFF, sizeof(B_LookupErrorD_gcbm));
+        B_LookupErrorG_methods.$GCdescr = GC_make_descriptor(B_LookupErrorD_gcbm, GC_WORD_LEN(struct B_LookupError));
+        B_LookupErrorG_methods.$name = "B_LookupError";
         B_LookupErrorG_methods.$superclass = ($SuperG_class)&B_ExceptionG_methods;
         B_LookupErrorG_methods.__init__ = (B_NoneType (*) (B_LookupError, B_str))B_BaseExceptionG_methods.__init__;
         B_LookupErrorG_methods.__bool__ = (B_bool (*) (B_LookupError))B_valueG_methods.__bool__;
@@ -4872,7 +5086,9 @@ void B___init__ () {
         B_LookupErrorG_methods.__deserialize__ = B_LookupErrorD___deserialize__;
     }
     {
-        B_IndexErrorG_methods.$GCINFO = "B_IndexError";
+        memset(B_IndexErrorD_gcbm, 0xFF, sizeof(B_IndexErrorD_gcbm));
+        B_IndexErrorG_methods.$GCdescr = GC_make_descriptor(B_IndexErrorD_gcbm, GC_WORD_LEN(struct B_IndexError));
+        B_IndexErrorG_methods.$name = "B_IndexError";
         B_IndexErrorG_methods.$superclass = ($SuperG_class)&B_LookupErrorG_methods;
         B_IndexErrorG_methods.__init__ = (B_NoneType (*) (B_IndexError, B_str))B_BaseExceptionG_methods.__init__;
         B_IndexErrorG_methods.__bool__ = (B_bool (*) (B_IndexError))B_valueG_methods.__bool__;
@@ -4882,7 +5098,9 @@ void B___init__ () {
         B_IndexErrorG_methods.__deserialize__ = B_IndexErrorD___deserialize__;
     }
     {
-        B_KeyErrorG_methods.$GCINFO = "B_KeyError";
+        memset(B_KeyErrorD_gcbm, 0xFF, sizeof(B_KeyErrorD_gcbm));
+        B_KeyErrorG_methods.$GCdescr = GC_make_descriptor(B_KeyErrorD_gcbm, GC_WORD_LEN(struct B_KeyError));
+        B_KeyErrorG_methods.$name = "B_KeyError";
         B_KeyErrorG_methods.$superclass = ($SuperG_class)&B_LookupErrorG_methods;
         B_KeyErrorG_methods.__init__ = (B_NoneType (*) (B_KeyError, B_str))B_BaseExceptionG_methods.__init__;
         B_KeyErrorG_methods.__bool__ = (B_bool (*) (B_KeyError))B_valueG_methods.__bool__;
@@ -4892,7 +5110,9 @@ void B___init__ () {
         B_KeyErrorG_methods.__deserialize__ = B_KeyErrorD___deserialize__;
     }
     {
-        B_MemoryErrorG_methods.$GCINFO = "B_MemoryError";
+        memset(B_MemoryErrorD_gcbm, 0xFF, sizeof(B_MemoryErrorD_gcbm));
+        B_MemoryErrorG_methods.$GCdescr = GC_make_descriptor(B_MemoryErrorD_gcbm, GC_WORD_LEN(struct B_MemoryError));
+        B_MemoryErrorG_methods.$name = "B_MemoryError";
         B_MemoryErrorG_methods.$superclass = ($SuperG_class)&B_ExceptionG_methods;
         B_MemoryErrorG_methods.__init__ = (B_NoneType (*) (B_MemoryError, B_str))B_BaseExceptionG_methods.__init__;
         B_MemoryErrorG_methods.__bool__ = (B_bool (*) (B_MemoryError))B_valueG_methods.__bool__;
@@ -4902,7 +5122,9 @@ void B___init__ () {
         B_MemoryErrorG_methods.__deserialize__ = B_MemoryErrorD___deserialize__;
     }
     {
-        B_OSErrorG_methods.$GCINFO = "B_OSError";
+        memset(B_OSErrorD_gcbm, 0xFF, sizeof(B_OSErrorD_gcbm));
+        B_OSErrorG_methods.$GCdescr = GC_make_descriptor(B_OSErrorD_gcbm, GC_WORD_LEN(struct B_OSError));
+        B_OSErrorG_methods.$name = "B_OSError";
         B_OSErrorG_methods.$superclass = ($SuperG_class)&B_ExceptionG_methods;
         B_OSErrorG_methods.__init__ = (B_NoneType (*) (B_OSError, B_str))B_BaseExceptionG_methods.__init__;
         B_OSErrorG_methods.__bool__ = (B_bool (*) (B_OSError))B_valueG_methods.__bool__;
@@ -4912,7 +5134,9 @@ void B___init__ () {
         B_OSErrorG_methods.__deserialize__ = B_OSErrorD___deserialize__;
     }
     {
-        B_RuntimeErrorG_methods.$GCINFO = "B_RuntimeError";
+        memset(B_RuntimeErrorD_gcbm, 0xFF, sizeof(B_RuntimeErrorD_gcbm));
+        B_RuntimeErrorG_methods.$GCdescr = GC_make_descriptor(B_RuntimeErrorD_gcbm, GC_WORD_LEN(struct B_RuntimeError));
+        B_RuntimeErrorG_methods.$name = "B_RuntimeError";
         B_RuntimeErrorG_methods.$superclass = ($SuperG_class)&B_ExceptionG_methods;
         B_RuntimeErrorG_methods.__init__ = (B_NoneType (*) (B_RuntimeError, B_str))B_BaseExceptionG_methods.__init__;
         B_RuntimeErrorG_methods.__bool__ = (B_bool (*) (B_RuntimeError))B_valueG_methods.__bool__;
@@ -4922,7 +5146,9 @@ void B___init__ () {
         B_RuntimeErrorG_methods.__deserialize__ = B_RuntimeErrorD___deserialize__;
     }
     {
-        B_NotImplementedErrorG_methods.$GCINFO = "B_NotImplementedError";
+        memset(B_NotImplementedErrorD_gcbm, 0xFF, sizeof(B_NotImplementedErrorD_gcbm));
+        B_NotImplementedErrorG_methods.$GCdescr = GC_make_descriptor(B_NotImplementedErrorD_gcbm, GC_WORD_LEN(struct B_NotImplementedError));
+        B_NotImplementedErrorG_methods.$name = "B_NotImplementedError";
         B_NotImplementedErrorG_methods.$superclass = ($SuperG_class)&B_RuntimeErrorG_methods;
         B_NotImplementedErrorG_methods.__init__ = (B_NoneType (*) (B_NotImplementedError, B_str))B_BaseExceptionG_methods.__init__;
         B_NotImplementedErrorG_methods.__bool__ = (B_bool (*) (B_NotImplementedError))B_valueG_methods.__bool__;
@@ -4932,7 +5158,9 @@ void B___init__ () {
         B_NotImplementedErrorG_methods.__deserialize__ = B_NotImplementedErrorD___deserialize__;
     }
     {
-        B_ValueErrorG_methods.$GCINFO = "B_ValueError";
+        memset(B_ValueErrorD_gcbm, 0xFF, sizeof(B_ValueErrorD_gcbm));
+        B_ValueErrorG_methods.$GCdescr = GC_make_descriptor(B_ValueErrorD_gcbm, GC_WORD_LEN(struct B_ValueError));
+        B_ValueErrorG_methods.$name = "B_ValueError";
         B_ValueErrorG_methods.$superclass = ($SuperG_class)&B_ExceptionG_methods;
         B_ValueErrorG_methods.__init__ = (B_NoneType (*) (B_ValueError, B_str))B_BaseExceptionG_methods.__init__;
         B_ValueErrorG_methods.__bool__ = (B_bool (*) (B_ValueError))B_valueG_methods.__bool__;
@@ -4942,7 +5170,9 @@ void B___init__ () {
         B_ValueErrorG_methods.__deserialize__ = B_ValueErrorD___deserialize__;
     }
     {
-        B_IdentityG_methods.$GCINFO = "B_Identity";
+        memset(B_IdentityD_gcbm, 0xFF, sizeof(B_IdentityD_gcbm));
+        B_IdentityG_methods.$GCdescr = GC_make_descriptor(B_IdentityD_gcbm, GC_WORD_LEN(struct B_Identity));
+        B_IdentityG_methods.$name = "B_Identity";
         B_IdentityG_methods.$superclass = ($SuperG_class)&B_valueG_methods;
         B_IdentityG_methods.__bool__ = (B_bool (*) (B_Identity))B_valueG_methods.__bool__;
         B_IdentityG_methods.__str__ = (B_str (*) (B_Identity))B_valueG_methods.__str__;
@@ -4953,7 +5183,9 @@ void B___init__ () {
         $register(&B_IdentityG_methods);
     }
     {
-        B_EqG_methods.$GCINFO = "B_Eq";
+        memset(B_EqD_gcbm, 0xFF, sizeof(B_EqD_gcbm));
+        B_EqG_methods.$GCdescr = GC_make_descriptor(B_EqD_gcbm, GC_WORD_LEN(struct B_Eq));
+        B_EqG_methods.$name = "B_Eq";
         B_EqG_methods.$superclass = ($SuperG_class)&B_valueG_methods;
         B_EqG_methods.__bool__ = (B_bool (*) (B_Eq))B_valueG_methods.__bool__;
         B_EqG_methods.__str__ = (B_str (*) (B_Eq))B_valueG_methods.__str__;
@@ -4965,7 +5197,9 @@ void B___init__ () {
         $register(&B_EqG_methods);
     }
     {
-        B_OrdG_methods.$GCINFO = "B_Ord";
+        memset(B_OrdD_gcbm, 0xFF, sizeof(B_OrdD_gcbm));
+        B_OrdG_methods.$GCdescr = GC_make_descriptor(B_OrdD_gcbm, GC_WORD_LEN(struct B_Ord));
+        B_OrdG_methods.$name = "B_Ord";
         B_OrdG_methods.$superclass = ($SuperG_class)&B_EqG_methods;
         B_OrdG_methods.__bool__ = (B_bool (*) (B_Ord))B_valueG_methods.__bool__;
         B_OrdG_methods.__str__ = (B_str (*) (B_Ord))B_valueG_methods.__str__;
@@ -4980,7 +5214,9 @@ void B___init__ () {
         $register(&B_OrdG_methods);
     }
     {
-        B_LogicalG_methods.$GCINFO = "B_Logical";
+        memset(B_LogicalD_gcbm, 0xFF, sizeof(B_LogicalD_gcbm));
+        B_LogicalG_methods.$GCdescr = GC_make_descriptor(B_LogicalD_gcbm, GC_WORD_LEN(struct B_Logical));
+        B_LogicalG_methods.$name = "B_Logical";
         B_LogicalG_methods.$superclass = ($SuperG_class)&B_valueG_methods;
         B_LogicalG_methods.__bool__ = (B_bool (*) (B_Logical))B_valueG_methods.__bool__;
         B_LogicalG_methods.__str__ = (B_str (*) (B_Logical))B_valueG_methods.__str__;
@@ -4994,7 +5230,9 @@ void B___init__ () {
         $register(&B_LogicalG_methods);
     }
     {
-        B_PlusG_methods.$GCINFO = "B_Plus";
+        memset(B_PlusD_gcbm, 0xFF, sizeof(B_PlusD_gcbm));
+        B_PlusG_methods.$GCdescr = GC_make_descriptor(B_PlusD_gcbm, GC_WORD_LEN(struct B_Plus));
+        B_PlusG_methods.$name = "B_Plus";
         B_PlusG_methods.$superclass = ($SuperG_class)&B_valueG_methods;
         B_PlusG_methods.__bool__ = (B_bool (*) (B_Plus))B_valueG_methods.__bool__;
         B_PlusG_methods.__str__ = (B_str (*) (B_Plus))B_valueG_methods.__str__;
@@ -5006,7 +5244,9 @@ void B___init__ () {
         $register(&B_PlusG_methods);
     }
     {
-        B_MinusG_methods.$GCINFO = "B_Minus";
+        memset(B_MinusD_gcbm, 0xFF, sizeof(B_MinusD_gcbm));
+        B_MinusG_methods.$GCdescr = GC_make_descriptor(B_MinusD_gcbm, GC_WORD_LEN(struct B_Minus));
+        B_MinusG_methods.$name = "B_Minus";
         B_MinusG_methods.$superclass = ($SuperG_class)&B_valueG_methods;
         B_MinusG_methods.__bool__ = (B_bool (*) (B_Minus))B_valueG_methods.__bool__;
         B_MinusG_methods.__str__ = (B_str (*) (B_Minus))B_valueG_methods.__str__;
@@ -5018,7 +5258,9 @@ void B___init__ () {
         $register(&B_MinusG_methods);
     }
     {
-        B_TimesG_methods.$GCINFO = "B_Times";
+        memset(B_TimesD_gcbm, 0xFF, sizeof(B_TimesD_gcbm));
+        B_TimesG_methods.$GCdescr = GC_make_descriptor(B_TimesD_gcbm, GC_WORD_LEN(struct B_Times));
+        B_TimesG_methods.$name = "B_Times";
         B_TimesG_methods.$superclass = ($SuperG_class)&B_PlusG_methods;
         B_TimesG_methods.__bool__ = (B_bool (*) (B_Times))B_valueG_methods.__bool__;
         B_TimesG_methods.__str__ = (B_str (*) (B_Times))B_valueG_methods.__str__;
@@ -5031,7 +5273,9 @@ void B___init__ () {
         $register(&B_TimesG_methods);
     }
     {
-        B_DivG_methods.$GCINFO = "B_Div";
+        memset(B_DivD_gcbm, 0xFF, sizeof(B_DivD_gcbm));
+        B_DivG_methods.$GCdescr = GC_make_descriptor(B_DivD_gcbm, GC_WORD_LEN(struct B_Div));
+        B_DivG_methods.$name = "B_Div";
         B_DivG_methods.$superclass = ($SuperG_class)&B_valueG_methods;
         B_DivG_methods.__bool__ = (B_bool (*) (B_Div))B_valueG_methods.__bool__;
         B_DivG_methods.__str__ = (B_str (*) (B_Div))B_valueG_methods.__str__;
@@ -5043,7 +5287,9 @@ void B___init__ () {
         $register(&B_DivG_methods);
     }
     {
-        B_HashableG_methods.$GCINFO = "B_Hashable";
+        memset(B_HashableD_gcbm, 0xFF, sizeof(B_HashableD_gcbm));
+        B_HashableG_methods.$GCdescr = GC_make_descriptor(B_HashableD_gcbm, GC_WORD_LEN(struct B_Hashable));
+        B_HashableG_methods.$name = "B_Hashable";
         B_HashableG_methods.$superclass = ($SuperG_class)&B_EqG_methods;
         B_HashableG_methods.__bool__ = (B_bool (*) (B_Hashable))B_valueG_methods.__bool__;
         B_HashableG_methods.__str__ = (B_str (*) (B_Hashable))B_valueG_methods.__str__;
@@ -5055,7 +5301,9 @@ void B___init__ () {
         $register(&B_HashableG_methods);
     }
     {
-        B_complexG_methods.$GCINFO = "B_complex";
+        memset(B_complexD_gcbm, 0xFF, sizeof(B_complexD_gcbm));
+        B_complexG_methods.$GCdescr = GC_make_descriptor(B_complexD_gcbm, GC_WORD_LEN(struct B_complex));
+        B_complexG_methods.$name = "B_complex";
         B_complexG_methods.$superclass = ($SuperG_class)&B_valueG_methods;
         B_complexG_methods.__bool__ = (B_bool (*) (B_complex))B_valueG_methods.__bool__;
         B_complexG_methods.__str__ = B_complexD___str__;
@@ -5065,7 +5313,9 @@ void B___init__ () {
         B_complexG_methods.__deserialize__ = B_complexD___deserialize__;
     }
     {
-        B_dictG_methods.$GCINFO = "B_dict";
+        memset(B_dictD_gcbm, 0xFF, sizeof(B_dictD_gcbm));
+        B_dictG_methods.$GCdescr = GC_make_descriptor(B_dictD_gcbm, GC_WORD_LEN(struct B_dict));
+        B_dictG_methods.$name = "B_dict";
         B_dictG_methods.$superclass = ($SuperG_class)&B_objectG_methods;
         B_dictG_methods.__bool__ = (B_bool (*) (B_dict))B_valueG_methods.__bool__;
         B_dictG_methods.__str__ = B_dictD___str__;
@@ -5075,7 +5325,9 @@ void B___init__ () {
         B_dictG_methods.__deserialize__ = B_dictD___deserialize__;
     }
     {
-        B_setG_methods.$GCINFO = "B_set";
+        memset(B_setD_gcbm, 0xFF, sizeof(B_setD_gcbm));
+        B_setG_methods.$GCdescr = GC_make_descriptor(B_setD_gcbm, GC_WORD_LEN(struct B_set));
+        B_setG_methods.$name = "B_set";
         B_setG_methods.$superclass = ($SuperG_class)&B_objectG_methods;
         B_setG_methods.__bool__ = (B_bool (*) (B_set))B_valueG_methods.__bool__;
         B_setG_methods.__str__ = B_setD___str__;
@@ -5085,7 +5337,9 @@ void B___init__ () {
         B_setG_methods.__deserialize__ = B_setD___deserialize__;
     }
     {
-        B_NumberG_methods.$GCINFO = "B_Number";
+        memset(B_NumberD_gcbm, 0xFF, sizeof(B_NumberD_gcbm));
+        B_NumberG_methods.$GCdescr = GC_make_descriptor(B_NumberD_gcbm, GC_WORD_LEN(struct B_Number));
+        B_NumberG_methods.$name = "B_Number";
         B_NumberG_methods.$superclass = ($SuperG_class)&B_TimesG_methods;
         B_NumberG_methods.__bool__ = (B_bool (*) (B_Number))B_valueG_methods.__bool__;
         B_NumberG_methods.__str__ = (B_str (*) (B_Number))B_valueG_methods.__str__;
@@ -5099,7 +5353,9 @@ void B___init__ () {
         $register(&B_NumberG_methods);
     }
     {
-        B_MinusD_NumberG_methods.$GCINFO = "B_MinusD_Number";
+        memset(B_MinusD_NumberD_gcbm, 0xFF, sizeof(B_MinusD_NumberD_gcbm));
+        B_MinusD_NumberG_methods.$GCdescr = GC_make_descriptor(B_MinusD_NumberD_gcbm, GC_WORD_LEN(struct B_MinusD_Number));
+        B_MinusD_NumberG_methods.$name = "B_MinusD_Number";
         B_MinusD_NumberG_methods.$superclass = ($SuperG_class)&B_MinusG_methods;
         B_MinusD_NumberG_methods.__bool__ = (B_bool (*) (B_MinusD_Number))B_valueG_methods.__bool__;
         B_MinusD_NumberG_methods.__str__ = (B_str (*) (B_MinusD_Number))B_valueG_methods.__str__;
@@ -5111,7 +5367,9 @@ void B___init__ () {
         $register(&B_MinusD_NumberG_methods);
     }
     {
-        B_RealG_methods.$GCINFO = "B_Real";
+        memset(B_RealD_gcbm, 0xFF, sizeof(B_RealD_gcbm));
+        B_RealG_methods.$GCdescr = GC_make_descriptor(B_RealD_gcbm, GC_WORD_LEN(struct B_Real));
+        B_RealG_methods.$name = "B_Real";
         B_RealG_methods.$superclass = ($SuperG_class)&B_NumberG_methods;
         B_RealG_methods.__bool__ = (B_bool (*) (B_Real))B_valueG_methods.__bool__;
         B_RealG_methods.__str__ = (B_str (*) (B_Real))B_valueG_methods.__str__;
@@ -5125,7 +5383,9 @@ void B___init__ () {
         $register(&B_RealG_methods);
     }
     {
-        B_MinusD_RealG_methods.$GCINFO = "B_MinusD_Real";
+        memset(B_MinusD_RealD_gcbm, 0xFF, sizeof(B_MinusD_RealD_gcbm));
+        B_MinusD_RealG_methods.$GCdescr = GC_make_descriptor(B_MinusD_RealD_gcbm, GC_WORD_LEN(struct B_MinusD_Real));
+        B_MinusD_RealG_methods.$name = "B_MinusD_Real";
         B_MinusD_RealG_methods.$superclass = ($SuperG_class)&B_MinusD_NumberG_methods;
         B_MinusD_RealG_methods.__bool__ = (B_bool (*) (B_MinusD_Real))B_valueG_methods.__bool__;
         B_MinusD_RealG_methods.__str__ = (B_str (*) (B_MinusD_Real))B_valueG_methods.__str__;
@@ -5137,7 +5397,9 @@ void B___init__ () {
         $register(&B_MinusD_RealG_methods);
     }
     {
-        B_RealFloatG_methods.$GCINFO = "B_RealFloat";
+        memset(B_RealFloatD_gcbm, 0xFF, sizeof(B_RealFloatD_gcbm));
+        B_RealFloatG_methods.$GCdescr = GC_make_descriptor(B_RealFloatD_gcbm, GC_WORD_LEN(struct B_RealFloat));
+        B_RealFloatG_methods.$name = "B_RealFloat";
         B_RealFloatG_methods.$superclass = ($SuperG_class)&B_RealG_methods;
         B_RealFloatG_methods.__bool__ = (B_bool (*) (B_RealFloat))B_valueG_methods.__bool__;
         B_RealFloatG_methods.__str__ = (B_str (*) (B_RealFloat))B_valueG_methods.__str__;
@@ -5151,7 +5413,9 @@ void B___init__ () {
         $register(&B_RealFloatG_methods);
     }
     {
-        B_MinusD_RealFloatG_methods.$GCINFO = "B_MinusD_RealFloat";
+        memset(B_MinusD_RealFloatD_gcbm, 0xFF, sizeof(B_MinusD_RealFloatD_gcbm));
+        B_MinusD_RealFloatG_methods.$GCdescr = GC_make_descriptor(B_MinusD_RealFloatD_gcbm, GC_WORD_LEN(struct B_MinusD_RealFloat));
+        B_MinusD_RealFloatG_methods.$name = "B_MinusD_RealFloat";
         B_MinusD_RealFloatG_methods.$superclass = ($SuperG_class)&B_MinusD_RealG_methods;
         B_MinusD_RealFloatG_methods.__bool__ = (B_bool (*) (B_MinusD_RealFloat))B_valueG_methods.__bool__;
         B_MinusD_RealFloatG_methods.__str__ = (B_str (*) (B_MinusD_RealFloat))B_valueG_methods.__str__;
@@ -5163,7 +5427,9 @@ void B___init__ () {
         $register(&B_MinusD_RealFloatG_methods);
     }
     {
-        B_RationalG_methods.$GCINFO = "B_Rational";
+        memset(B_RationalD_gcbm, 0xFF, sizeof(B_RationalD_gcbm));
+        B_RationalG_methods.$GCdescr = GC_make_descriptor(B_RationalD_gcbm, GC_WORD_LEN(struct B_Rational));
+        B_RationalG_methods.$name = "B_Rational";
         B_RationalG_methods.$superclass = ($SuperG_class)&B_RealG_methods;
         B_RationalG_methods.__bool__ = (B_bool (*) (B_Rational))B_valueG_methods.__bool__;
         B_RationalG_methods.__str__ = (B_str (*) (B_Rational))B_valueG_methods.__str__;
@@ -5177,7 +5443,9 @@ void B___init__ () {
         $register(&B_RationalG_methods);
     }
     {
-        B_MinusD_RationalG_methods.$GCINFO = "B_MinusD_Rational";
+        memset(B_MinusD_RationalD_gcbm, 0xFF, sizeof(B_MinusD_RationalD_gcbm));
+        B_MinusD_RationalG_methods.$GCdescr = GC_make_descriptor(B_MinusD_RationalD_gcbm, GC_WORD_LEN(struct B_MinusD_Rational));
+        B_MinusD_RationalG_methods.$name = "B_MinusD_Rational";
         B_MinusD_RationalG_methods.$superclass = ($SuperG_class)&B_MinusD_RealG_methods;
         B_MinusD_RationalG_methods.__bool__ = (B_bool (*) (B_MinusD_Rational))B_valueG_methods.__bool__;
         B_MinusD_RationalG_methods.__str__ = (B_str (*) (B_MinusD_Rational))B_valueG_methods.__str__;
@@ -5189,7 +5457,9 @@ void B___init__ () {
         $register(&B_MinusD_RationalG_methods);
     }
     {
-        B_IntegralG_methods.$GCINFO = "B_Integral";
+        memset(B_IntegralD_gcbm, 0xFF, sizeof(B_IntegralD_gcbm));
+        B_IntegralG_methods.$GCdescr = GC_make_descriptor(B_IntegralD_gcbm, GC_WORD_LEN(struct B_Integral));
+        B_IntegralG_methods.$name = "B_Integral";
         B_IntegralG_methods.$superclass = ($SuperG_class)&B_RationalG_methods;
         B_IntegralG_methods.__bool__ = (B_bool (*) (B_Integral))B_valueG_methods.__bool__;
         B_IntegralG_methods.__str__ = (B_str (*) (B_Integral))B_valueG_methods.__str__;
@@ -5207,7 +5477,9 @@ void B___init__ () {
         $register(&B_IntegralG_methods);
     }
     {
-        B_MinusD_IntegralG_methods.$GCINFO = "B_MinusD_Integral";
+        memset(B_MinusD_IntegralD_gcbm, 0xFF, sizeof(B_MinusD_IntegralD_gcbm));
+        B_MinusD_IntegralG_methods.$GCdescr = GC_make_descriptor(B_MinusD_IntegralD_gcbm, GC_WORD_LEN(struct B_MinusD_Integral));
+        B_MinusD_IntegralG_methods.$name = "B_MinusD_Integral";
         B_MinusD_IntegralG_methods.$superclass = ($SuperG_class)&B_MinusD_RationalG_methods;
         B_MinusD_IntegralG_methods.__bool__ = (B_bool (*) (B_MinusD_Integral))B_valueG_methods.__bool__;
         B_MinusD_IntegralG_methods.__str__ = (B_str (*) (B_MinusD_Integral))B_valueG_methods.__str__;
@@ -5219,7 +5491,9 @@ void B___init__ () {
         $register(&B_MinusD_IntegralG_methods);
     }
     {
-        B_LogicalD_IntegralG_methods.$GCINFO = "B_LogicalD_Integral";
+        memset(B_LogicalD_IntegralD_gcbm, 0xFF, sizeof(B_LogicalD_IntegralD_gcbm));
+        B_LogicalD_IntegralG_methods.$GCdescr = GC_make_descriptor(B_LogicalD_IntegralD_gcbm, GC_WORD_LEN(struct B_LogicalD_Integral));
+        B_LogicalD_IntegralG_methods.$name = "B_LogicalD_Integral";
         B_LogicalD_IntegralG_methods.$superclass = ($SuperG_class)&B_LogicalG_methods;
         B_LogicalD_IntegralG_methods.__bool__ = (B_bool (*) (B_LogicalD_Integral))B_valueG_methods.__bool__;
         B_LogicalD_IntegralG_methods.__str__ = (B_str (*) (B_LogicalD_Integral))B_valueG_methods.__str__;
@@ -5233,7 +5507,9 @@ void B___init__ () {
         $register(&B_LogicalD_IntegralG_methods);
     }
     {
-        B_HashableD_boolG_methods.$GCINFO = "B_HashableD_bool";
+        memset(B_HashableD_boolD_gcbm, 0xFF, sizeof(B_HashableD_boolD_gcbm));
+        B_HashableD_boolG_methods.$GCdescr = GC_make_descriptor(B_HashableD_boolD_gcbm, GC_WORD_LEN(struct B_HashableD_bool));
+        B_HashableD_boolG_methods.$name = "B_HashableD_bool";
         B_HashableD_boolG_methods.$superclass = ($SuperG_class)&B_HashableG_methods;
         B_HashableD_boolG_methods.__bool__ = (B_bool (*) (B_HashableD_bool))B_valueG_methods.__bool__;
         B_HashableD_boolG_methods.__str__ = (B_str (*) (B_HashableD_bool))B_valueG_methods.__str__;
@@ -5247,7 +5523,9 @@ void B___init__ () {
         $register(&B_HashableD_boolG_methods);
     }
     {
-        B_IntegralD_intG_methods.$GCINFO = "B_IntegralD_int";
+        memset(B_IntegralD_intD_gcbm, 0xFF, sizeof(B_IntegralD_intD_gcbm));
+        B_IntegralD_intG_methods.$GCdescr = GC_make_descriptor(B_IntegralD_intD_gcbm, GC_WORD_LEN(struct B_IntegralD_int));
+        B_IntegralD_intG_methods.$name = "B_IntegralD_int";
         B_IntegralD_intG_methods.$superclass = ($SuperG_class)&B_IntegralG_methods;
         B_IntegralD_intG_methods.__bool__ = (B_bool (*) (B_IntegralD_int))B_valueG_methods.__bool__;
         B_IntegralD_intG_methods.__str__ = (B_str (*) (B_IntegralD_int))B_valueG_methods.__str__;
@@ -5291,7 +5569,9 @@ void B___init__ () {
         $register(&B_IntegralD_intG_methods);
     }
     {
-        B_MinusD_IntegralD_intG_methods.$GCINFO = "B_MinusD_IntegralD_int";
+        memset(B_MinusD_IntegralD_intD_gcbm, 0xFF, sizeof(B_MinusD_IntegralD_intD_gcbm));
+        B_MinusD_IntegralD_intG_methods.$GCdescr = GC_make_descriptor(B_MinusD_IntegralD_intD_gcbm, GC_WORD_LEN(struct B_MinusD_IntegralD_int));
+        B_MinusD_IntegralD_intG_methods.$name = "B_MinusD_IntegralD_int";
         B_MinusD_IntegralD_intG_methods.$superclass = ($SuperG_class)&B_MinusD_IntegralG_methods;
         B_MinusD_IntegralD_intG_methods.__bool__ = (B_bool (*) (B_MinusD_IntegralD_int))B_valueG_methods.__bool__;
         B_MinusD_IntegralD_intG_methods.__str__ = (B_str (*) (B_MinusD_IntegralD_int))B_valueG_methods.__str__;
@@ -5304,7 +5584,9 @@ void B___init__ () {
         $register(&B_MinusD_IntegralD_intG_methods);
     }
     {
-        B_LogicalD_IntegralD_intG_methods.$GCINFO = "B_LogicalD_IntegralD_int";
+        memset(B_LogicalD_IntegralD_intD_gcbm, 0xFF, sizeof(B_LogicalD_IntegralD_intD_gcbm));
+        B_LogicalD_IntegralD_intG_methods.$GCdescr = GC_make_descriptor(B_LogicalD_IntegralD_intD_gcbm, GC_WORD_LEN(struct B_LogicalD_IntegralD_int));
+        B_LogicalD_IntegralD_intG_methods.$name = "B_LogicalD_IntegralD_int";
         B_LogicalD_IntegralD_intG_methods.$superclass = ($SuperG_class)&B_LogicalD_IntegralG_methods;
         B_LogicalD_IntegralD_intG_methods.__bool__ = (B_bool (*) (B_LogicalD_IntegralD_int))B_valueG_methods.__bool__;
         B_LogicalD_IntegralD_intG_methods.__str__ = (B_str (*) (B_LogicalD_IntegralD_int))B_valueG_methods.__str__;
@@ -5321,7 +5603,9 @@ void B___init__ () {
         $register(&B_LogicalD_IntegralD_intG_methods);
     }
     {
-        B_DivD_intG_methods.$GCINFO = "B_DivD_int";
+        memset(B_DivD_intD_gcbm, 0xFF, sizeof(B_DivD_intD_gcbm));
+        B_DivD_intG_methods.$GCdescr = GC_make_descriptor(B_DivD_intD_gcbm, GC_WORD_LEN(struct B_DivD_int));
+        B_DivD_intG_methods.$name = "B_DivD_int";
         B_DivD_intG_methods.$superclass = ($SuperG_class)&B_DivG_methods;
         B_DivD_intG_methods.__bool__ = (B_bool (*) (B_DivD_int))B_valueG_methods.__bool__;
         B_DivD_intG_methods.__str__ = (B_str (*) (B_DivD_int))B_valueG_methods.__str__;
@@ -5334,7 +5618,9 @@ void B___init__ () {
         $register(&B_DivD_intG_methods);
     }
     {
-        B_OrdD_intG_methods.$GCINFO = "B_OrdD_int";
+        memset(B_OrdD_intD_gcbm, 0xFF, sizeof(B_OrdD_intD_gcbm));
+        B_OrdD_intG_methods.$GCdescr = GC_make_descriptor(B_OrdD_intD_gcbm, GC_WORD_LEN(struct B_OrdD_int));
+        B_OrdD_intG_methods.$name = "B_OrdD_int";
         B_OrdD_intG_methods.$superclass = ($SuperG_class)&B_OrdG_methods;
         B_OrdD_intG_methods.__bool__ = (B_bool (*) (B_OrdD_int))B_valueG_methods.__bool__;
         B_OrdD_intG_methods.__str__ = (B_str (*) (B_OrdD_int))B_valueG_methods.__str__;
@@ -5351,7 +5637,9 @@ void B___init__ () {
         $register(&B_OrdD_intG_methods);
     }
     {
-        B_HashableD_intG_methods.$GCINFO = "B_HashableD_int";
+        memset(B_HashableD_intD_gcbm, 0xFF, sizeof(B_HashableD_intD_gcbm));
+        B_HashableD_intG_methods.$GCdescr = GC_make_descriptor(B_HashableD_intD_gcbm, GC_WORD_LEN(struct B_HashableD_int));
+        B_HashableD_intG_methods.$name = "B_HashableD_int";
         B_HashableD_intG_methods.$superclass = ($SuperG_class)&B_HashableG_methods;
         B_HashableD_intG_methods.__bool__ = (B_bool (*) (B_HashableD_int))B_valueG_methods.__bool__;
         B_HashableD_intG_methods.__str__ = (B_str (*) (B_HashableD_int))B_valueG_methods.__str__;
@@ -5371,7 +5659,9 @@ void B___init__ () {
 
 
     {
-        B_IntegralD_i64G_methods.$GCINFO = "B_IntegralD_i64";
+        memset(B_IntegralD_i64D_gcbm, 0xFF, sizeof(B_IntegralD_i64D_gcbm));
+        B_IntegralD_i64G_methods.$GCdescr = GC_make_descriptor(B_IntegralD_i64D_gcbm, GC_WORD_LEN(struct B_IntegralD_i64));
+        B_IntegralD_i64G_methods.$name = "B_IntegralD_i64";
         B_IntegralD_i64G_methods.$superclass = ($SuperG_class)&B_IntegralG_methods;
         B_IntegralD_i64G_methods.__bool__ = (B_bool (*) (B_IntegralD_i64))B_valueG_methods.__bool__;
         B_IntegralD_i64G_methods.__str__ = (B_str (*) (B_IntegralD_i64))B_valueG_methods.__str__;
@@ -5415,7 +5705,9 @@ void B___init__ () {
         $register(&B_IntegralD_i64G_methods);
     }
     {
-        B_MinusD_IntegralD_i64G_methods.$GCINFO = "B_MinusD_IntegralD_i64";
+        memset(B_MinusD_IntegralD_i64D_gcbm, 0xFF, sizeof(B_MinusD_IntegralD_i64D_gcbm));
+        B_MinusD_IntegralD_i64G_methods.$GCdescr = GC_make_descriptor(B_MinusD_IntegralD_i64D_gcbm, GC_WORD_LEN(struct B_MinusD_IntegralD_i64));
+        B_MinusD_IntegralD_i64G_methods.$name = "B_MinusD_IntegralD_i64";
         B_MinusD_IntegralD_i64G_methods.$superclass = ($SuperG_class)&B_MinusD_IntegralG_methods;
         B_MinusD_IntegralD_i64G_methods.__bool__ = (B_bool (*) (B_MinusD_IntegralD_i64))B_valueG_methods.__bool__;
         B_MinusD_IntegralD_i64G_methods.__str__ = (B_str (*) (B_MinusD_IntegralD_i64))B_valueG_methods.__str__;
@@ -5428,7 +5720,9 @@ void B___init__ () {
         $register(&B_MinusD_IntegralD_i64G_methods);
     }
     {
-        B_LogicalD_IntegralD_i64G_methods.$GCINFO = "B_LogicalD_IntegralD_i64";
+        memset(B_LogicalD_IntegralD_i64D_gcbm, 0xFF, sizeof(B_LogicalD_IntegralD_i64D_gcbm));
+        B_LogicalD_IntegralD_i64G_methods.$GCdescr = GC_make_descriptor(B_LogicalD_IntegralD_i64D_gcbm, GC_WORD_LEN(struct B_LogicalD_IntegralD_i64));
+        B_LogicalD_IntegralD_i64G_methods.$name = "B_LogicalD_IntegralD_i64";
         B_LogicalD_IntegralD_i64G_methods.$superclass = ($SuperG_class)&B_LogicalD_IntegralG_methods;
         B_LogicalD_IntegralD_i64G_methods.__bool__ = (B_bool (*) (B_LogicalD_IntegralD_i64))B_valueG_methods.__bool__;
         B_LogicalD_IntegralD_i64G_methods.__str__ = (B_str (*) (B_LogicalD_IntegralD_i64))B_valueG_methods.__str__;
@@ -5445,7 +5739,9 @@ void B___init__ () {
         $register(&B_LogicalD_IntegralD_i64G_methods);
     }
     {
-        B_DivD_i64G_methods.$GCINFO = "B_DivD_i64";
+        memset(B_DivD_i64D_gcbm, 0xFF, sizeof(B_DivD_i64D_gcbm));
+        B_DivD_i64G_methods.$GCdescr = GC_make_descriptor(B_DivD_i64D_gcbm, GC_WORD_LEN(struct B_DivD_i64));
+        B_DivD_i64G_methods.$name = "B_DivD_i64";
         B_DivD_i64G_methods.$superclass = ($SuperG_class)&B_DivG_methods;
         B_DivD_i64G_methods.__bool__ = (B_bool (*) (B_DivD_i64))B_valueG_methods.__bool__;
         B_DivD_i64G_methods.__str__ = (B_str (*) (B_DivD_i64))B_valueG_methods.__str__;
@@ -5458,7 +5754,9 @@ void B___init__ () {
         $register(&B_DivD_i64G_methods);
     }
     {
-        B_OrdD_i64G_methods.$GCINFO = "B_OrdD_i64";
+        memset(B_OrdD_i64D_gcbm, 0xFF, sizeof(B_OrdD_i64D_gcbm));
+        B_OrdD_i64G_methods.$GCdescr = GC_make_descriptor(B_OrdD_i64D_gcbm, GC_WORD_LEN(struct B_OrdD_i64));
+        B_OrdD_i64G_methods.$name = "B_OrdD_i64";
         B_OrdD_i64G_methods.$superclass = ($SuperG_class)&B_OrdG_methods;
         B_OrdD_i64G_methods.__bool__ = (B_bool (*) (B_OrdD_i64))B_valueG_methods.__bool__;
         B_OrdD_i64G_methods.__str__ = (B_str (*) (B_OrdD_i64))B_valueG_methods.__str__;
@@ -5475,7 +5773,9 @@ void B___init__ () {
         $register(&B_OrdD_i64G_methods);
     }
     {
-        B_HashableD_i64G_methods.$GCINFO = "B_HashableD_i64";
+        memset(B_HashableD_i64D_gcbm, 0xFF, sizeof(B_HashableD_i64D_gcbm));
+        B_HashableD_i64G_methods.$GCdescr = GC_make_descriptor(B_HashableD_i64D_gcbm, GC_WORD_LEN(struct B_HashableD_i64));
+        B_HashableD_i64G_methods.$name = "B_HashableD_i64";
         B_HashableD_i64G_methods.$superclass = ($SuperG_class)&B_HashableG_methods;
         B_HashableD_i64G_methods.__bool__ = (B_bool (*) (B_HashableD_i64))B_valueG_methods.__bool__;
         B_HashableD_i64G_methods.__str__ = (B_str (*) (B_HashableD_i64))B_valueG_methods.__str__;
@@ -5492,7 +5792,9 @@ void B___init__ () {
 
     
     {
-        B_IntegralD_i32G_methods.$GCINFO = "B_IntegralD_i32";
+        memset(B_IntegralD_i32D_gcbm, 0xFF, sizeof(B_IntegralD_i32D_gcbm));
+        B_IntegralD_i32G_methods.$GCdescr = GC_make_descriptor(B_IntegralD_i32D_gcbm, GC_WORD_LEN(struct B_IntegralD_i32));
+        B_IntegralD_i32G_methods.$name = "B_IntegralD_i32";
         B_IntegralD_i32G_methods.$superclass = ($SuperG_class)&B_IntegralG_methods;
         B_IntegralD_i32G_methods.__bool__ = (B_bool (*) (B_IntegralD_i32))B_valueG_methods.__bool__;
         B_IntegralD_i32G_methods.__str__ = (B_str (*) (B_IntegralD_i32))B_valueG_methods.__str__;
@@ -5536,7 +5838,9 @@ void B___init__ () {
         $register(&B_IntegralD_i32G_methods);
     }
     {
-        B_MinusD_IntegralD_i32G_methods.$GCINFO = "B_MinusD_IntegralD_i32";
+        memset(B_MinusD_IntegralD_i32D_gcbm, 0xFF, sizeof(B_MinusD_IntegralD_i32D_gcbm));
+        B_MinusD_IntegralD_i32G_methods.$GCdescr = GC_make_descriptor(B_MinusD_IntegralD_i32D_gcbm, GC_WORD_LEN(struct B_MinusD_IntegralD_i32));
+        B_MinusD_IntegralD_i32G_methods.$name = "B_MinusD_IntegralD_i32";
         B_MinusD_IntegralD_i32G_methods.$superclass = ($SuperG_class)&B_MinusD_IntegralG_methods;
         B_MinusD_IntegralD_i32G_methods.__bool__ = (B_bool (*) (B_MinusD_IntegralD_i32))B_valueG_methods.__bool__;
         B_MinusD_IntegralD_i32G_methods.__str__ = (B_str (*) (B_MinusD_IntegralD_i32))B_valueG_methods.__str__;
@@ -5549,7 +5853,9 @@ void B___init__ () {
         $register(&B_MinusD_IntegralD_i32G_methods);
     }
     {
-        B_LogicalD_IntegralD_i32G_methods.$GCINFO = "B_LogicalD_IntegralD_i32";
+        memset(B_LogicalD_IntegralD_i32D_gcbm, 0xFF, sizeof(B_LogicalD_IntegralD_i32D_gcbm));
+        B_LogicalD_IntegralD_i32G_methods.$GCdescr = GC_make_descriptor(B_LogicalD_IntegralD_i32D_gcbm, GC_WORD_LEN(struct B_LogicalD_IntegralD_i32));
+        B_LogicalD_IntegralD_i32G_methods.$name = "B_LogicalD_IntegralD_i32";
         B_LogicalD_IntegralD_i32G_methods.$superclass = ($SuperG_class)&B_LogicalD_IntegralG_methods;
         B_LogicalD_IntegralD_i32G_methods.__bool__ = (B_bool (*) (B_LogicalD_IntegralD_i32))B_valueG_methods.__bool__;
         B_LogicalD_IntegralD_i32G_methods.__str__ = (B_str (*) (B_LogicalD_IntegralD_i32))B_valueG_methods.__str__;
@@ -5566,7 +5872,9 @@ void B___init__ () {
         $register(&B_LogicalD_IntegralD_i32G_methods);
     }
     {
-        B_DivD_i32G_methods.$GCINFO = "B_DivD_i32";
+        memset(B_DivD_i32D_gcbm, 0xFF, sizeof(B_DivD_i32D_gcbm));
+        B_DivD_i32G_methods.$GCdescr = GC_make_descriptor(B_DivD_i32D_gcbm, GC_WORD_LEN(struct B_DivD_i32));
+        B_DivD_i32G_methods.$name = "B_DivD_i32";
         B_DivD_i32G_methods.$superclass = ($SuperG_class)&B_DivG_methods;
         B_DivD_i32G_methods.__bool__ = (B_bool (*) (B_DivD_i32))B_valueG_methods.__bool__;
         B_DivD_i32G_methods.__str__ = (B_str (*) (B_DivD_i32))B_valueG_methods.__str__;
@@ -5579,7 +5887,9 @@ void B___init__ () {
         $register(&B_DivD_i32G_methods);
     }
     {
-        B_OrdD_i32G_methods.$GCINFO = "B_OrdD_i32";
+        memset(B_OrdD_i32D_gcbm, 0xFF, sizeof(B_OrdD_i32D_gcbm));
+        B_OrdD_i32G_methods.$GCdescr = GC_make_descriptor(B_OrdD_i32D_gcbm, GC_WORD_LEN(struct B_OrdD_i32));
+        B_OrdD_i32G_methods.$name = "B_OrdD_i32";
         B_OrdD_i32G_methods.$superclass = ($SuperG_class)&B_OrdG_methods;
         B_OrdD_i32G_methods.__bool__ = (B_bool (*) (B_OrdD_i32))B_valueG_methods.__bool__;
         B_OrdD_i32G_methods.__str__ = (B_str (*) (B_OrdD_i32))B_valueG_methods.__str__;
@@ -5596,7 +5906,9 @@ void B___init__ () {
         $register(&B_OrdD_i32G_methods);
     }
     {
-        B_HashableD_i32G_methods.$GCINFO = "B_HashableD_i32";
+        memset(B_HashableD_i32D_gcbm, 0xFF, sizeof(B_HashableD_i32D_gcbm));
+        B_HashableD_i32G_methods.$GCdescr = GC_make_descriptor(B_HashableD_i32D_gcbm, GC_WORD_LEN(struct B_HashableD_i32));
+        B_HashableD_i32G_methods.$name = "B_HashableD_i32";
         B_HashableD_i32G_methods.$superclass = ($SuperG_class)&B_HashableG_methods;
         B_HashableD_i32G_methods.__bool__ = (B_bool (*) (B_HashableD_i32))B_valueG_methods.__bool__;
         B_HashableD_i32G_methods.__str__ = (B_str (*) (B_HashableD_i32))B_valueG_methods.__str__;
@@ -5613,7 +5925,9 @@ void B___init__ () {
 
     
     {
-        B_IntegralD_i16G_methods.$GCINFO = "B_IntegralD_i16";
+        memset(B_IntegralD_i16D_gcbm, 0xFF, sizeof(B_IntegralD_i16D_gcbm));
+        B_IntegralD_i16G_methods.$GCdescr = GC_make_descriptor(B_IntegralD_i16D_gcbm, GC_WORD_LEN(struct B_IntegralD_i16));
+        B_IntegralD_i16G_methods.$name = "B_IntegralD_i16";
         B_IntegralD_i16G_methods.$superclass = ($SuperG_class)&B_IntegralG_methods;
         B_IntegralD_i16G_methods.__bool__ = (B_bool (*) (B_IntegralD_i16))B_valueG_methods.__bool__;
         B_IntegralD_i16G_methods.__str__ = (B_str (*) (B_IntegralD_i16))B_valueG_methods.__str__;
@@ -5657,7 +5971,9 @@ void B___init__ () {
         $register(&B_IntegralD_i16G_methods);
     }
     {
-        B_MinusD_IntegralD_i16G_methods.$GCINFO = "B_MinusD_IntegralD_i16";
+        memset(B_MinusD_IntegralD_i16D_gcbm, 0xFF, sizeof(B_MinusD_IntegralD_i16D_gcbm));
+        B_MinusD_IntegralD_i16G_methods.$GCdescr = GC_make_descriptor(B_MinusD_IntegralD_i16D_gcbm, GC_WORD_LEN(struct B_MinusD_IntegralD_i16));
+        B_MinusD_IntegralD_i16G_methods.$name = "B_MinusD_IntegralD_i16";
         B_MinusD_IntegralD_i16G_methods.$superclass = ($SuperG_class)&B_MinusD_IntegralG_methods;
         B_MinusD_IntegralD_i16G_methods.__bool__ = (B_bool (*) (B_MinusD_IntegralD_i16))B_valueG_methods.__bool__;
         B_MinusD_IntegralD_i16G_methods.__str__ = (B_str (*) (B_MinusD_IntegralD_i16))B_valueG_methods.__str__;
@@ -5670,7 +5986,9 @@ void B___init__ () {
         $register(&B_MinusD_IntegralD_i16G_methods);
     }
     {
-        B_LogicalD_IntegralD_i16G_methods.$GCINFO = "B_LogicalD_IntegralD_i16";
+        memset(B_LogicalD_IntegralD_i16D_gcbm, 0xFF, sizeof(B_LogicalD_IntegralD_i16D_gcbm));
+        B_LogicalD_IntegralD_i16G_methods.$GCdescr = GC_make_descriptor(B_LogicalD_IntegralD_i16D_gcbm, GC_WORD_LEN(struct B_LogicalD_IntegralD_i16));
+        B_LogicalD_IntegralD_i16G_methods.$name = "B_LogicalD_IntegralD_i16";
         B_LogicalD_IntegralD_i16G_methods.$superclass = ($SuperG_class)&B_LogicalD_IntegralG_methods;
         B_LogicalD_IntegralD_i16G_methods.__bool__ = (B_bool (*) (B_LogicalD_IntegralD_i16))B_valueG_methods.__bool__;
         B_LogicalD_IntegralD_i16G_methods.__str__ = (B_str (*) (B_LogicalD_IntegralD_i16))B_valueG_methods.__str__;
@@ -5687,7 +6005,9 @@ void B___init__ () {
         $register(&B_LogicalD_IntegralD_i16G_methods);
     }
     {
-        B_DivD_i16G_methods.$GCINFO = "B_DivD_i16";
+        memset(B_DivD_i16D_gcbm, 0xFF, sizeof(B_DivD_i16D_gcbm));
+        B_DivD_i16G_methods.$GCdescr = GC_make_descriptor(B_DivD_i16D_gcbm, GC_WORD_LEN(struct B_DivD_i16));
+        B_DivD_i16G_methods.$name = "B_DivD_i16";
         B_DivD_i16G_methods.$superclass = ($SuperG_class)&B_DivG_methods;
         B_DivD_i16G_methods.__bool__ = (B_bool (*) (B_DivD_i16))B_valueG_methods.__bool__;
         B_DivD_i16G_methods.__str__ = (B_str (*) (B_DivD_i16))B_valueG_methods.__str__;
@@ -5700,7 +6020,9 @@ void B___init__ () {
         $register(&B_DivD_i16G_methods);
     }
     {
-        B_OrdD_i16G_methods.$GCINFO = "B_OrdD_i16";
+        memset(B_OrdD_i16D_gcbm, 0xFF, sizeof(B_OrdD_i16D_gcbm));
+        B_OrdD_i16G_methods.$GCdescr = GC_make_descriptor(B_OrdD_i16D_gcbm, GC_WORD_LEN(struct B_OrdD_i16));
+        B_OrdD_i16G_methods.$name = "B_OrdD_i16";
         B_OrdD_i16G_methods.$superclass = ($SuperG_class)&B_OrdG_methods;
         B_OrdD_i16G_methods.__bool__ = (B_bool (*) (B_OrdD_i16))B_valueG_methods.__bool__;
         B_OrdD_i16G_methods.__str__ = (B_str (*) (B_OrdD_i16))B_valueG_methods.__str__;
@@ -5717,7 +6039,9 @@ void B___init__ () {
         $register(&B_OrdD_i16G_methods);
     }
     {
-        B_HashableD_i16G_methods.$GCINFO = "B_HashableD_i16";
+        memset(B_HashableD_i16D_gcbm, 0xFF, sizeof(B_HashableD_i16D_gcbm));
+        B_HashableD_i16G_methods.$GCdescr = GC_make_descriptor(B_HashableD_i16D_gcbm, GC_WORD_LEN(struct B_HashableD_i16));
+        B_HashableD_i16G_methods.$name = "B_HashableD_i16";
         B_HashableD_i16G_methods.$superclass = ($SuperG_class)&B_HashableG_methods;
         B_HashableD_i16G_methods.__bool__ = (B_bool (*) (B_HashableD_i16))B_valueG_methods.__bool__;
         B_HashableD_i16G_methods.__str__ = (B_str (*) (B_HashableD_i16))B_valueG_methods.__str__;
@@ -5736,7 +6060,9 @@ void B___init__ () {
 
 
     {
-        B_IntegralD_u64G_methods.$GCINFO = "B_IntegralD_u64";
+        memset(B_IntegralD_u64D_gcbm, 0xFF, sizeof(B_IntegralD_u64D_gcbm));
+        B_IntegralD_u64G_methods.$GCdescr = GC_make_descriptor(B_IntegralD_u64D_gcbm, GC_WORD_LEN(struct B_IntegralD_u64));
+        B_IntegralD_u64G_methods.$name = "B_IntegralD_u64";
         B_IntegralD_u64G_methods.$superclass = ($SuperG_class)&B_IntegralG_methods;
         B_IntegralD_u64G_methods.__bool__ = (B_bool (*) (B_IntegralD_u64))B_valueG_methods.__bool__;
         B_IntegralD_u64G_methods.__str__ = (B_str (*) (B_IntegralD_u64))B_valueG_methods.__str__;
@@ -5780,7 +6106,9 @@ void B___init__ () {
         $register(&B_IntegralD_u64G_methods);
     }
     {
-        B_MinusD_IntegralD_u64G_methods.$GCINFO = "B_MinusD_IntegralD_u64";
+        memset(B_MinusD_IntegralD_u64D_gcbm, 0xFF, sizeof(B_MinusD_IntegralD_u64D_gcbm));
+        B_MinusD_IntegralD_u64G_methods.$GCdescr = GC_make_descriptor(B_MinusD_IntegralD_u64D_gcbm, GC_WORD_LEN(struct B_MinusD_IntegralD_u64));
+        B_MinusD_IntegralD_u64G_methods.$name = "B_MinusD_IntegralD_u64";
         B_MinusD_IntegralD_u64G_methods.$superclass = ($SuperG_class)&B_MinusD_IntegralG_methods;
         B_MinusD_IntegralD_u64G_methods.__bool__ = (B_bool (*) (B_MinusD_IntegralD_u64))B_valueG_methods.__bool__;
         B_MinusD_IntegralD_u64G_methods.__str__ = (B_str (*) (B_MinusD_IntegralD_u64))B_valueG_methods.__str__;
@@ -5793,7 +6121,9 @@ void B___init__ () {
         $register(&B_MinusD_IntegralD_u64G_methods);
     }
     {
-        B_LogicalD_IntegralD_u64G_methods.$GCINFO = "B_LogicalD_IntegralD_u64";
+        memset(B_LogicalD_IntegralD_u64D_gcbm, 0xFF, sizeof(B_LogicalD_IntegralD_u64D_gcbm));
+        B_LogicalD_IntegralD_u64G_methods.$GCdescr = GC_make_descriptor(B_LogicalD_IntegralD_u64D_gcbm, GC_WORD_LEN(struct B_LogicalD_IntegralD_u64));
+        B_LogicalD_IntegralD_u64G_methods.$name = "B_LogicalD_IntegralD_u64";
         B_LogicalD_IntegralD_u64G_methods.$superclass = ($SuperG_class)&B_LogicalD_IntegralG_methods;
         B_LogicalD_IntegralD_u64G_methods.__bool__ = (B_bool (*) (B_LogicalD_IntegralD_u64))B_valueG_methods.__bool__;
         B_LogicalD_IntegralD_u64G_methods.__str__ = (B_str (*) (B_LogicalD_IntegralD_u64))B_valueG_methods.__str__;
@@ -5810,7 +6140,9 @@ void B___init__ () {
         $register(&B_LogicalD_IntegralD_u64G_methods);
     }
     {
-        B_DivD_u64G_methods.$GCINFO = "B_DivD_u64";
+        memset(B_DivD_u64D_gcbm, 0xFF, sizeof(B_DivD_u64D_gcbm));
+        B_DivD_u64G_methods.$GCdescr = GC_make_descriptor(B_DivD_u64D_gcbm, GC_WORD_LEN(struct B_DivD_u64));
+        B_DivD_u64G_methods.$name = "B_DivD_u64";
         B_DivD_u64G_methods.$superclass = ($SuperG_class)&B_DivG_methods;
         B_DivD_u64G_methods.__bool__ = (B_bool (*) (B_DivD_u64))B_valueG_methods.__bool__;
         B_DivD_u64G_methods.__str__ = (B_str (*) (B_DivD_u64))B_valueG_methods.__str__;
@@ -5823,7 +6155,9 @@ void B___init__ () {
         $register(&B_DivD_u64G_methods);
     }
     {
-        B_OrdD_u64G_methods.$GCINFO = "B_OrdD_u64";
+        memset(B_OrdD_u64D_gcbm, 0xFF, sizeof(B_OrdD_u64D_gcbm));
+        B_OrdD_u64G_methods.$GCdescr = GC_make_descriptor(B_OrdD_u64D_gcbm, GC_WORD_LEN(struct B_OrdD_u64));
+        B_OrdD_u64G_methods.$name = "B_OrdD_u64";
         B_OrdD_u64G_methods.$superclass = ($SuperG_class)&B_OrdG_methods;
         B_OrdD_u64G_methods.__bool__ = (B_bool (*) (B_OrdD_u64))B_valueG_methods.__bool__;
         B_OrdD_u64G_methods.__str__ = (B_str (*) (B_OrdD_u64))B_valueG_methods.__str__;
@@ -5840,7 +6174,9 @@ void B___init__ () {
         $register(&B_OrdD_u64G_methods);
     }
     {
-        B_HashableD_u64G_methods.$GCINFO = "B_HashableD_u64";
+        memset(B_HashableD_u64D_gcbm, 0xFF, sizeof(B_HashableD_u64D_gcbm));
+        B_HashableD_u64G_methods.$GCdescr = GC_make_descriptor(B_HashableD_u64D_gcbm, GC_WORD_LEN(struct B_HashableD_u64));
+        B_HashableD_u64G_methods.$name = "B_HashableD_u64";
         B_HashableD_u64G_methods.$superclass = ($SuperG_class)&B_HashableG_methods;
         B_HashableD_u64G_methods.__bool__ = (B_bool (*) (B_HashableD_u64))B_valueG_methods.__bool__;
         B_HashableD_u64G_methods.__str__ = (B_str (*) (B_HashableD_u64))B_valueG_methods.__str__;
@@ -5860,7 +6196,9 @@ void B___init__ () {
 
 
     {
-        B_IntegralD_u32G_methods.$GCINFO = "B_IntegralD_u32";
+        memset(B_IntegralD_u32D_gcbm, 0xFF, sizeof(B_IntegralD_u32D_gcbm));
+        B_IntegralD_u32G_methods.$GCdescr = GC_make_descriptor(B_IntegralD_u32D_gcbm, GC_WORD_LEN(struct B_IntegralD_u32));
+        B_IntegralD_u32G_methods.$name = "B_IntegralD_u32";
         B_IntegralD_u32G_methods.$superclass = ($SuperG_class)&B_IntegralG_methods;
         B_IntegralD_u32G_methods.__bool__ = (B_bool (*) (B_IntegralD_u32))B_valueG_methods.__bool__;
         B_IntegralD_u32G_methods.__str__ = (B_str (*) (B_IntegralD_u32))B_valueG_methods.__str__;
@@ -5904,7 +6242,9 @@ void B___init__ () {
         $register(&B_IntegralD_u32G_methods);
     }
     {
-        B_MinusD_IntegralD_u32G_methods.$GCINFO = "B_MinusD_IntegralD_u32";
+        memset(B_MinusD_IntegralD_u32D_gcbm, 0xFF, sizeof(B_MinusD_IntegralD_u32D_gcbm));
+        B_MinusD_IntegralD_u32G_methods.$GCdescr = GC_make_descriptor(B_MinusD_IntegralD_u32D_gcbm, GC_WORD_LEN(struct B_MinusD_IntegralD_u32));
+        B_MinusD_IntegralD_u32G_methods.$name = "B_MinusD_IntegralD_u32";
         B_MinusD_IntegralD_u32G_methods.$superclass = ($SuperG_class)&B_MinusD_IntegralG_methods;
         B_MinusD_IntegralD_u32G_methods.__bool__ = (B_bool (*) (B_MinusD_IntegralD_u32))B_valueG_methods.__bool__;
         B_MinusD_IntegralD_u32G_methods.__str__ = (B_str (*) (B_MinusD_IntegralD_u32))B_valueG_methods.__str__;
@@ -5917,7 +6257,9 @@ void B___init__ () {
         $register(&B_MinusD_IntegralD_u32G_methods);
     }
     {
-        B_LogicalD_IntegralD_u32G_methods.$GCINFO = "B_LogicalD_IntegralD_u32";
+        memset(B_LogicalD_IntegralD_u32D_gcbm, 0xFF, sizeof(B_LogicalD_IntegralD_u32D_gcbm));
+        B_LogicalD_IntegralD_u32G_methods.$GCdescr = GC_make_descriptor(B_LogicalD_IntegralD_u32D_gcbm, GC_WORD_LEN(struct B_LogicalD_IntegralD_u32));
+        B_LogicalD_IntegralD_u32G_methods.$name = "B_LogicalD_IntegralD_u32";
         B_LogicalD_IntegralD_u32G_methods.$superclass = ($SuperG_class)&B_LogicalD_IntegralG_methods;
         B_LogicalD_IntegralD_u32G_methods.__bool__ = (B_bool (*) (B_LogicalD_IntegralD_u32))B_valueG_methods.__bool__;
         B_LogicalD_IntegralD_u32G_methods.__str__ = (B_str (*) (B_LogicalD_IntegralD_u32))B_valueG_methods.__str__;
@@ -5934,7 +6276,9 @@ void B___init__ () {
         $register(&B_LogicalD_IntegralD_u32G_methods);
     }
     {
-        B_DivD_u32G_methods.$GCINFO = "B_DivD_u32";
+        memset(B_DivD_u32D_gcbm, 0xFF, sizeof(B_DivD_u32D_gcbm));
+        B_DivD_u32G_methods.$GCdescr = GC_make_descriptor(B_DivD_u32D_gcbm, GC_WORD_LEN(struct B_DivD_u32));
+        B_DivD_u32G_methods.$name = "B_DivD_u32";
         B_DivD_u32G_methods.$superclass = ($SuperG_class)&B_DivG_methods;
         B_DivD_u32G_methods.__bool__ = (B_bool (*) (B_DivD_u32))B_valueG_methods.__bool__;
         B_DivD_u32G_methods.__str__ = (B_str (*) (B_DivD_u32))B_valueG_methods.__str__;
@@ -5947,7 +6291,9 @@ void B___init__ () {
         $register(&B_DivD_u32G_methods);
     }
     {
-        B_OrdD_u32G_methods.$GCINFO = "B_OrdD_u32";
+        memset(B_OrdD_u32D_gcbm, 0xFF, sizeof(B_OrdD_u32D_gcbm));
+        B_OrdD_u32G_methods.$GCdescr = GC_make_descriptor(B_OrdD_u32D_gcbm, GC_WORD_LEN(struct B_OrdD_u32));
+        B_OrdD_u32G_methods.$name = "B_OrdD_u32";
         B_OrdD_u32G_methods.$superclass = ($SuperG_class)&B_OrdG_methods;
         B_OrdD_u32G_methods.__bool__ = (B_bool (*) (B_OrdD_u32))B_valueG_methods.__bool__;
         B_OrdD_u32G_methods.__str__ = (B_str (*) (B_OrdD_u32))B_valueG_methods.__str__;
@@ -5964,7 +6310,9 @@ void B___init__ () {
         $register(&B_OrdD_u32G_methods);
     }
     {
-        B_HashableD_u32G_methods.$GCINFO = "B_HashableD_u32";
+        memset(B_HashableD_u32D_gcbm, 0xFF, sizeof(B_HashableD_u32D_gcbm));
+        B_HashableD_u32G_methods.$GCdescr = GC_make_descriptor(B_HashableD_u32D_gcbm, GC_WORD_LEN(struct B_HashableD_u32));
+        B_HashableD_u32G_methods.$name = "B_HashableD_u32";
         B_HashableD_u32G_methods.$superclass = ($SuperG_class)&B_HashableG_methods;
         B_HashableD_u32G_methods.__bool__ = (B_bool (*) (B_HashableD_u32))B_valueG_methods.__bool__;
         B_HashableD_u32G_methods.__str__ = (B_str (*) (B_HashableD_u32))B_valueG_methods.__str__;
@@ -5984,7 +6332,9 @@ void B___init__ () {
 
 
     {
-        B_IntegralD_u16G_methods.$GCINFO = "B_IntegralD_u16";
+        memset(B_IntegralD_u16D_gcbm, 0xFF, sizeof(B_IntegralD_u16D_gcbm));
+        B_IntegralD_u16G_methods.$GCdescr = GC_make_descriptor(B_IntegralD_u16D_gcbm, GC_WORD_LEN(struct B_IntegralD_u16));
+        B_IntegralD_u16G_methods.$name = "B_IntegralD_u16";
         B_IntegralD_u16G_methods.$superclass = ($SuperG_class)&B_IntegralG_methods;
         B_IntegralD_u16G_methods.__bool__ = (B_bool (*) (B_IntegralD_u16))B_valueG_methods.__bool__;
         B_IntegralD_u16G_methods.__str__ = (B_str (*) (B_IntegralD_u16))B_valueG_methods.__str__;
@@ -6028,7 +6378,9 @@ void B___init__ () {
         $register(&B_IntegralD_u16G_methods);
     }
     {
-        B_MinusD_IntegralD_u16G_methods.$GCINFO = "B_MinusD_IntegralD_u16";
+        memset(B_MinusD_IntegralD_u16D_gcbm, 0xFF, sizeof(B_MinusD_IntegralD_u16D_gcbm));
+        B_MinusD_IntegralD_u16G_methods.$GCdescr = GC_make_descriptor(B_MinusD_IntegralD_u16D_gcbm, GC_WORD_LEN(struct B_MinusD_IntegralD_u16));
+        B_MinusD_IntegralD_u16G_methods.$name = "B_MinusD_IntegralD_u16";
         B_MinusD_IntegralD_u16G_methods.$superclass = ($SuperG_class)&B_MinusD_IntegralG_methods;
         B_MinusD_IntegralD_u16G_methods.__bool__ = (B_bool (*) (B_MinusD_IntegralD_u16))B_valueG_methods.__bool__;
         B_MinusD_IntegralD_u16G_methods.__str__ = (B_str (*) (B_MinusD_IntegralD_u16))B_valueG_methods.__str__;
@@ -6041,7 +6393,9 @@ void B___init__ () {
         $register(&B_MinusD_IntegralD_u16G_methods);
     }
     {
-        B_LogicalD_IntegralD_u16G_methods.$GCINFO = "B_LogicalD_IntegralD_u16";
+        memset(B_LogicalD_IntegralD_u16D_gcbm, 0xFF, sizeof(B_LogicalD_IntegralD_u16D_gcbm));
+        B_LogicalD_IntegralD_u16G_methods.$GCdescr = GC_make_descriptor(B_LogicalD_IntegralD_u16D_gcbm, GC_WORD_LEN(struct B_LogicalD_IntegralD_u16));
+        B_LogicalD_IntegralD_u16G_methods.$name = "B_LogicalD_IntegralD_u16";
         B_LogicalD_IntegralD_u16G_methods.$superclass = ($SuperG_class)&B_LogicalD_IntegralG_methods;
         B_LogicalD_IntegralD_u16G_methods.__bool__ = (B_bool (*) (B_LogicalD_IntegralD_u16))B_valueG_methods.__bool__;
         B_LogicalD_IntegralD_u16G_methods.__str__ = (B_str (*) (B_LogicalD_IntegralD_u16))B_valueG_methods.__str__;
@@ -6058,7 +6412,9 @@ void B___init__ () {
         $register(&B_LogicalD_IntegralD_u16G_methods);
     }
     {
-        B_DivD_u16G_methods.$GCINFO = "B_DivD_u16";
+        memset(B_DivD_u16D_gcbm, 0xFF, sizeof(B_DivD_u16D_gcbm));
+        B_DivD_u16G_methods.$GCdescr = GC_make_descriptor(B_DivD_u16D_gcbm, GC_WORD_LEN(struct B_DivD_u16));
+        B_DivD_u16G_methods.$name = "B_DivD_u16";
         B_DivD_u16G_methods.$superclass = ($SuperG_class)&B_DivG_methods;
         B_DivD_u16G_methods.__bool__ = (B_bool (*) (B_DivD_u16))B_valueG_methods.__bool__;
         B_DivD_u16G_methods.__str__ = (B_str (*) (B_DivD_u16))B_valueG_methods.__str__;
@@ -6071,7 +6427,9 @@ void B___init__ () {
         $register(&B_DivD_u16G_methods);
     }
     {
-        B_OrdD_u16G_methods.$GCINFO = "B_OrdD_u16";
+        memset(B_OrdD_u16D_gcbm, 0xFF, sizeof(B_OrdD_u16D_gcbm));
+        B_OrdD_u16G_methods.$GCdescr = GC_make_descriptor(B_OrdD_u16D_gcbm, GC_WORD_LEN(struct B_OrdD_u16));
+        B_OrdD_u16G_methods.$name = "B_OrdD_u16";
         B_OrdD_u16G_methods.$superclass = ($SuperG_class)&B_OrdG_methods;
         B_OrdD_u16G_methods.__bool__ = (B_bool (*) (B_OrdD_u16))B_valueG_methods.__bool__;
         B_OrdD_u16G_methods.__str__ = (B_str (*) (B_OrdD_u16))B_valueG_methods.__str__;
@@ -6088,7 +6446,9 @@ void B___init__ () {
         $register(&B_OrdD_u16G_methods);
     }
     {
-        B_HashableD_u16G_methods.$GCINFO = "B_HashableD_u16";
+        memset(B_HashableD_u16D_gcbm, 0xFF, sizeof(B_HashableD_u16D_gcbm));
+        B_HashableD_u16G_methods.$GCdescr = GC_make_descriptor(B_HashableD_u16D_gcbm, GC_WORD_LEN(struct B_HashableD_u16));
+        B_HashableD_u16G_methods.$name = "B_HashableD_u16";
         B_HashableD_u16G_methods.$superclass = ($SuperG_class)&B_HashableG_methods;
         B_HashableD_u16G_methods.__bool__ = (B_bool (*) (B_HashableD_u16))B_valueG_methods.__bool__;
         B_HashableD_u16G_methods.__str__ = (B_str (*) (B_HashableD_u16))B_valueG_methods.__str__;
@@ -6107,7 +6467,9 @@ void B___init__ () {
 
 
     {
-        B_RealFloatD_floatG_methods.$GCINFO = "B_RealFloatD_float";
+        memset(B_RealFloatD_floatD_gcbm, 0xFF, sizeof(B_RealFloatD_floatD_gcbm));
+        B_RealFloatD_floatG_methods.$GCdescr = GC_make_descriptor(B_RealFloatD_floatD_gcbm, GC_WORD_LEN(struct B_RealFloatD_float));
+        B_RealFloatD_floatG_methods.$name = "B_RealFloatD_float";
         B_RealFloatD_floatG_methods.$superclass = ($SuperG_class)&B_RealFloatG_methods;
         B_RealFloatD_floatG_methods.__bool__ = (B_bool (*) (B_RealFloatD_float))B_valueG_methods.__bool__;
         B_RealFloatD_floatG_methods.__str__ = (B_str (*) (B_RealFloatD_float))B_valueG_methods.__str__;
@@ -6137,7 +6499,9 @@ void B___init__ () {
         $register(&B_RealFloatD_floatG_methods);
     }
     {
-        B_MinusD_RealFloatD_floatG_methods.$GCINFO = "B_MinusD_RealFloatD_float";
+        memset(B_MinusD_RealFloatD_floatD_gcbm, 0xFF, sizeof(B_MinusD_RealFloatD_floatD_gcbm));
+        B_MinusD_RealFloatD_floatG_methods.$GCdescr = GC_make_descriptor(B_MinusD_RealFloatD_floatD_gcbm, GC_WORD_LEN(struct B_MinusD_RealFloatD_float));
+        B_MinusD_RealFloatD_floatG_methods.$name = "B_MinusD_RealFloatD_float";
         B_MinusD_RealFloatD_floatG_methods.$superclass = ($SuperG_class)&B_MinusD_RealFloatG_methods;
         B_MinusD_RealFloatD_floatG_methods.__bool__ = (B_bool (*) (B_MinusD_RealFloatD_float))B_valueG_methods.__bool__;
         B_MinusD_RealFloatD_floatG_methods.__str__ = (B_str (*) (B_MinusD_RealFloatD_float))B_valueG_methods.__str__;
@@ -6150,7 +6514,9 @@ void B___init__ () {
         $register(&B_MinusD_RealFloatD_floatG_methods);
     }
     {
-        B_DivD_floatG_methods.$GCINFO = "B_DivD_float";
+        memset(B_DivD_floatD_gcbm, 0xFF, sizeof(B_DivD_floatD_gcbm));
+        B_DivD_floatG_methods.$GCdescr = GC_make_descriptor(B_DivD_floatD_gcbm, GC_WORD_LEN(struct B_DivD_float));
+        B_DivD_floatG_methods.$name = "B_DivD_float";
         B_DivD_floatG_methods.$superclass = ($SuperG_class)&B_DivG_methods;
         B_DivD_floatG_methods.__bool__ = (B_bool (*) (B_DivD_float))B_valueG_methods.__bool__;
         B_DivD_floatG_methods.__str__ = (B_str (*) (B_DivD_float))B_valueG_methods.__str__;
@@ -6163,7 +6529,9 @@ void B___init__ () {
         $register(&B_DivD_floatG_methods);
     }
     {
-        B_OrdD_floatG_methods.$GCINFO = "B_OrdD_float";
+        memset(B_OrdD_floatD_gcbm, 0xFF, sizeof(B_OrdD_floatD_gcbm));
+        B_OrdD_floatG_methods.$GCdescr = GC_make_descriptor(B_OrdD_floatD_gcbm, GC_WORD_LEN(struct B_OrdD_float));
+        B_OrdD_floatG_methods.$name = "B_OrdD_float";
         B_OrdD_floatG_methods.$superclass = ($SuperG_class)&B_OrdG_methods;
         B_OrdD_floatG_methods.__bool__ = (B_bool (*) (B_OrdD_float))B_valueG_methods.__bool__;
         B_OrdD_floatG_methods.__str__ = (B_str (*) (B_OrdD_float))B_valueG_methods.__str__;
@@ -6180,7 +6548,9 @@ void B___init__ () {
         $register(&B_OrdD_floatG_methods);
     }
     {
-        B_HashableD_floatG_methods.$GCINFO = "B_HashableD_float";
+        memset(B_HashableD_floatD_gcbm, 0xFF, sizeof(B_HashableD_floatD_gcbm));
+        B_HashableD_floatG_methods.$GCdescr = GC_make_descriptor(B_HashableD_floatD_gcbm, GC_WORD_LEN(struct B_HashableD_float));
+        B_HashableD_floatG_methods.$name = "B_HashableD_float";
         B_HashableD_floatG_methods.$superclass = ($SuperG_class)&B_HashableG_methods;
         B_HashableD_floatG_methods.__bool__ = (B_bool (*) (B_HashableD_float))B_valueG_methods.__bool__;
         B_HashableD_floatG_methods.__str__ = (B_str (*) (B_HashableD_float))B_valueG_methods.__str__;
@@ -6193,7 +6563,9 @@ void B___init__ () {
         $register(&B_HashableD_floatG_methods);
     }
     {
-        B_NumberD_complexG_methods.$GCINFO = "B_NumberD_complex";
+        memset(B_NumberD_complexD_gcbm, 0xFF, sizeof(B_NumberD_complexD_gcbm));
+        B_NumberD_complexG_methods.$GCdescr = GC_make_descriptor(B_NumberD_complexD_gcbm, GC_WORD_LEN(struct B_NumberD_complex));
+        B_NumberD_complexG_methods.$name = "B_NumberD_complex";
         B_NumberD_complexG_methods.$superclass = ($SuperG_class)&B_NumberG_methods;
         B_NumberD_complexG_methods.__bool__ = (B_bool (*) (B_NumberD_complex))B_valueG_methods.__bool__;
         B_NumberD_complexG_methods.__str__ = (B_str (*) (B_NumberD_complex))B_valueG_methods.__str__;
@@ -6218,7 +6590,9 @@ void B___init__ () {
         $register(&B_NumberD_complexG_methods);
     }
     {
-        B_MinusD_NumberD_complexG_methods.$GCINFO = "B_MinusD_NumberD_complex";
+        memset(B_MinusD_NumberD_complexD_gcbm, 0xFF, sizeof(B_MinusD_NumberD_complexD_gcbm));
+        B_MinusD_NumberD_complexG_methods.$GCdescr = GC_make_descriptor(B_MinusD_NumberD_complexD_gcbm, GC_WORD_LEN(struct B_MinusD_NumberD_complex));
+        B_MinusD_NumberD_complexG_methods.$name = "B_MinusD_NumberD_complex";
         B_MinusD_NumberD_complexG_methods.$superclass = ($SuperG_class)&B_MinusD_NumberG_methods;
         B_MinusD_NumberD_complexG_methods.__bool__ = (B_bool (*) (B_MinusD_NumberD_complex))B_valueG_methods.__bool__;
         B_MinusD_NumberD_complexG_methods.__str__ = (B_str (*) (B_MinusD_NumberD_complex))B_valueG_methods.__str__;
@@ -6231,7 +6605,9 @@ void B___init__ () {
         $register(&B_MinusD_NumberD_complexG_methods);
     }
     {
-        B_DivD_complexG_methods.$GCINFO = "B_DivD_complex";
+        memset(B_DivD_complexD_gcbm, 0xFF, sizeof(B_DivD_complexD_gcbm));
+        B_DivD_complexG_methods.$GCdescr = GC_make_descriptor(B_DivD_complexD_gcbm, GC_WORD_LEN(struct B_DivD_complex));
+        B_DivD_complexG_methods.$name = "B_DivD_complex";
         B_DivD_complexG_methods.$superclass = ($SuperG_class)&B_DivG_methods;
         B_DivD_complexG_methods.__bool__ = (B_bool (*) (B_DivD_complex))B_valueG_methods.__bool__;
         B_DivD_complexG_methods.__str__ = (B_str (*) (B_DivD_complex))B_valueG_methods.__str__;
@@ -6244,7 +6620,9 @@ void B___init__ () {
         $register(&B_DivD_complexG_methods);
     }
     {
-        B_EqD_complexG_methods.$GCINFO = "B_EqD_complex";
+        memset(B_EqD_complexD_gcbm, 0xFF, sizeof(B_EqD_complexD_gcbm));
+        B_EqD_complexG_methods.$GCdescr = GC_make_descriptor(B_EqD_complexD_gcbm, GC_WORD_LEN(struct B_EqD_complex));
+        B_EqD_complexG_methods.$name = "B_EqD_complex";
         B_EqD_complexG_methods.$superclass = ($SuperG_class)&B_EqG_methods;
         B_EqD_complexG_methods.__bool__ = (B_bool (*) (B_EqD_complex))B_valueG_methods.__bool__;
         B_EqD_complexG_methods.__str__ = (B_str (*) (B_EqD_complex))B_valueG_methods.__str__;
@@ -6257,7 +6635,9 @@ void B___init__ () {
         $register(&B_EqD_complexG_methods);
     }
     {
-        B_HashableD_complexG_methods.$GCINFO = "B_HashableD_complex";
+        memset(B_HashableD_complexD_gcbm, 0xFF, sizeof(B_HashableD_complexD_gcbm));
+        B_HashableD_complexG_methods.$GCdescr = GC_make_descriptor(B_HashableD_complexD_gcbm, GC_WORD_LEN(struct B_HashableD_complex));
+        B_HashableD_complexG_methods.$name = "B_HashableD_complex";
         B_HashableD_complexG_methods.$superclass = ($SuperG_class)&B_HashableG_methods;
         B_HashableD_complexG_methods.__bool__ = (B_bool (*) (B_HashableD_complex))B_valueG_methods.__bool__;
         B_HashableD_complexG_methods.__str__ = (B_str (*) (B_HashableD_complex))B_valueG_methods.__str__;
@@ -6270,7 +6650,9 @@ void B___init__ () {
         $register(&B_HashableD_complexG_methods);
     }
     {
-        B_IndexedG_methods.$GCINFO = "B_Indexed";
+        memset(B_IndexedD_gcbm, 0xFF, sizeof(B_IndexedD_gcbm));
+        B_IndexedG_methods.$GCdescr = GC_make_descriptor(B_IndexedD_gcbm, GC_WORD_LEN(struct B_Indexed));
+        B_IndexedG_methods.$name = "B_Indexed";
         B_IndexedG_methods.$superclass = ($SuperG_class)&B_valueG_methods;
         B_IndexedG_methods.__bool__ = (B_bool (*) (B_Indexed))B_valueG_methods.__bool__;
         B_IndexedG_methods.__str__ = (B_str (*) (B_Indexed))B_valueG_methods.__str__;
@@ -6281,7 +6663,9 @@ void B___init__ () {
         $register(&B_IndexedG_methods);
     }
     {
-        B_SliceableG_methods.$GCINFO = "B_Sliceable";
+        memset(B_SliceableD_gcbm, 0xFF, sizeof(B_SliceableD_gcbm));
+        B_SliceableG_methods.$GCdescr = GC_make_descriptor(B_SliceableD_gcbm, GC_WORD_LEN(struct B_Sliceable));
+        B_SliceableG_methods.$name = "B_Sliceable";
         B_SliceableG_methods.$superclass = ($SuperG_class)&B_IndexedG_methods;
         B_SliceableG_methods.__bool__ = (B_bool (*) (B_Sliceable))B_valueG_methods.__bool__;
         B_SliceableG_methods.__str__ = (B_str (*) (B_Sliceable))B_valueG_methods.__str__;
@@ -6292,7 +6676,9 @@ void B___init__ () {
         $register(&B_SliceableG_methods);
     }
     {
-        B_CollectionG_methods.$GCINFO = "B_Collection";
+        memset(B_CollectionD_gcbm, 0xFF, sizeof(B_CollectionD_gcbm));
+        B_CollectionG_methods.$GCdescr = GC_make_descriptor(B_CollectionD_gcbm, GC_WORD_LEN(struct B_Collection));
+        B_CollectionG_methods.$name = "B_Collection";
         B_CollectionG_methods.$superclass = ($SuperG_class)&B_IterableG_methods;
         B_CollectionG_methods.__bool__ = (B_bool (*) (B_Collection))B_valueG_methods.__bool__;
         B_CollectionG_methods.__str__ = (B_str (*) (B_Collection))B_valueG_methods.__str__;
@@ -6303,7 +6689,9 @@ void B___init__ () {
         $register(&B_CollectionG_methods);
     }
     {
-        B_ContainerG_methods.$GCINFO = "B_Container";
+        memset(B_ContainerD_gcbm, 0xFF, sizeof(B_ContainerD_gcbm));
+        B_ContainerG_methods.$GCdescr = GC_make_descriptor(B_ContainerD_gcbm, GC_WORD_LEN(struct B_Container));
+        B_ContainerG_methods.$name = "B_Container";
         B_ContainerG_methods.$superclass = ($SuperG_class)&B_CollectionG_methods;
         B_ContainerG_methods.__bool__ = (B_bool (*) (B_Container))B_valueG_methods.__bool__;
         B_ContainerG_methods.__str__ = (B_str (*) (B_Container))B_valueG_methods.__str__;
@@ -6314,7 +6702,9 @@ void B___init__ () {
         $register(&B_ContainerG_methods);
     }
     {
-        B_SequenceG_methods.$GCINFO = "B_Sequence";
+        memset(B_SequenceD_gcbm, 0xFF, sizeof(B_SequenceD_gcbm));
+        B_SequenceG_methods.$GCdescr = GC_make_descriptor(B_SequenceD_gcbm, GC_WORD_LEN(struct B_Sequence));
+        B_SequenceG_methods.$name = "B_Sequence";
         B_SequenceG_methods.$superclass = ($SuperG_class)&B_SliceableG_methods;
         B_SequenceG_methods.__bool__ = (B_bool (*) (B_Sequence))B_valueG_methods.__bool__;
         B_SequenceG_methods.__str__ = (B_str (*) (B_Sequence))B_valueG_methods.__str__;
@@ -6325,7 +6715,9 @@ void B___init__ () {
         $register(&B_SequenceG_methods);
     }
     {
-        B_CollectionD_SequenceG_methods.$GCINFO = "B_CollectionD_Sequence";
+        memset(B_CollectionD_SequenceD_gcbm, 0xFF, sizeof(B_CollectionD_SequenceD_gcbm));
+        B_CollectionD_SequenceG_methods.$GCdescr = GC_make_descriptor(B_CollectionD_SequenceD_gcbm, GC_WORD_LEN(struct B_CollectionD_Sequence));
+        B_CollectionD_SequenceG_methods.$name = "B_CollectionD_Sequence";
         B_CollectionD_SequenceG_methods.$superclass = ($SuperG_class)&B_CollectionG_methods;
         B_CollectionD_SequenceG_methods.__bool__ = (B_bool (*) (B_CollectionD_Sequence))B_valueG_methods.__bool__;
         B_CollectionD_SequenceG_methods.__str__ = (B_str (*) (B_CollectionD_Sequence))B_valueG_methods.__str__;
@@ -6336,7 +6728,9 @@ void B___init__ () {
         $register(&B_CollectionD_SequenceG_methods);
     }
     {
-        B_TimesD_SequenceG_methods.$GCINFO = "B_TimesD_Sequence";
+        memset(B_TimesD_SequenceD_gcbm, 0xFF, sizeof(B_TimesD_SequenceD_gcbm));
+        B_TimesD_SequenceG_methods.$GCdescr = GC_make_descriptor(B_TimesD_SequenceD_gcbm, GC_WORD_LEN(struct B_TimesD_Sequence));
+        B_TimesD_SequenceG_methods.$name = "B_TimesD_Sequence";
         B_TimesD_SequenceG_methods.$superclass = ($SuperG_class)&B_TimesG_methods;
         B_TimesD_SequenceG_methods.__bool__ = (B_bool (*) (B_TimesD_Sequence))B_valueG_methods.__bool__;
         B_TimesD_SequenceG_methods.__str__ = (B_str (*) (B_TimesD_Sequence))B_valueG_methods.__str__;
@@ -6349,7 +6743,9 @@ void B___init__ () {
         $register(&B_TimesD_SequenceG_methods);
     }
     {
-        B_MappingG_methods.$GCINFO = "B_Mapping";
+        memset(B_MappingD_gcbm, 0xFF, sizeof(B_MappingD_gcbm));
+        B_MappingG_methods.$GCdescr = GC_make_descriptor(B_MappingD_gcbm, GC_WORD_LEN(struct B_Mapping));
+        B_MappingG_methods.$name = "B_Mapping";
         B_MappingG_methods.$superclass = ($SuperG_class)&B_ContainerG_methods;
         B_MappingG_methods.__bool__ = (B_bool (*) (B_Mapping))B_valueG_methods.__bool__;
         B_MappingG_methods.__str__ = (B_str (*) (B_Mapping))B_valueG_methods.__str__;
@@ -6360,7 +6756,9 @@ void B___init__ () {
         $register(&B_MappingG_methods);
     }
     {
-        B_IndexedD_MappingG_methods.$GCINFO = "B_IndexedD_Mapping";
+        memset(B_IndexedD_MappingD_gcbm, 0xFF, sizeof(B_IndexedD_MappingD_gcbm));
+        B_IndexedD_MappingG_methods.$GCdescr = GC_make_descriptor(B_IndexedD_MappingD_gcbm, GC_WORD_LEN(struct B_IndexedD_Mapping));
+        B_IndexedD_MappingG_methods.$name = "B_IndexedD_Mapping";
         B_IndexedD_MappingG_methods.$superclass = ($SuperG_class)&B_IndexedG_methods;
         B_IndexedD_MappingG_methods.__bool__ = (B_bool (*) (B_IndexedD_Mapping))B_valueG_methods.__bool__;
         B_IndexedD_MappingG_methods.__str__ = (B_str (*) (B_IndexedD_Mapping))B_valueG_methods.__str__;
@@ -6371,7 +6769,9 @@ void B___init__ () {
         $register(&B_IndexedD_MappingG_methods);
     }
     {
-        B_SetG_methods.$GCINFO = "B_Set";
+        memset(B_SetD_gcbm, 0xFF, sizeof(B_SetD_gcbm));
+        B_SetG_methods.$GCdescr = GC_make_descriptor(B_SetD_gcbm, GC_WORD_LEN(struct B_Set));
+        B_SetG_methods.$name = "B_Set";
         B_SetG_methods.$superclass = ($SuperG_class)&B_ContainerG_methods;
         B_SetG_methods.__bool__ = (B_bool (*) (B_Set))B_valueG_methods.__bool__;
         B_SetG_methods.__str__ = (B_str (*) (B_Set))B_valueG_methods.__str__;
@@ -6382,7 +6782,9 @@ void B___init__ () {
         $register(&B_SetG_methods);
     }
     {
-        B_OrdD_SetG_methods.$GCINFO = "B_OrdD_Set";
+        memset(B_OrdD_SetD_gcbm, 0xFF, sizeof(B_OrdD_SetD_gcbm));
+        B_OrdD_SetG_methods.$GCdescr = GC_make_descriptor(B_OrdD_SetD_gcbm, GC_WORD_LEN(struct B_OrdD_Set));
+        B_OrdD_SetG_methods.$name = "B_OrdD_Set";
         B_OrdD_SetG_methods.$superclass = ($SuperG_class)&B_OrdG_methods;
         B_OrdD_SetG_methods.__bool__ = (B_bool (*) (B_OrdD_Set))B_valueG_methods.__bool__;
         B_OrdD_SetG_methods.__str__ = (B_str (*) (B_OrdD_Set))B_valueG_methods.__str__;
@@ -6397,7 +6799,9 @@ void B___init__ () {
         $register(&B_OrdD_SetG_methods);
     }
     {
-        B_LogicalD_SetG_methods.$GCINFO = "B_LogicalD_Set";
+        memset(B_LogicalD_SetD_gcbm, 0xFF, sizeof(B_LogicalD_SetD_gcbm));
+        B_LogicalD_SetG_methods.$GCdescr = GC_make_descriptor(B_LogicalD_SetD_gcbm, GC_WORD_LEN(struct B_LogicalD_Set));
+        B_LogicalD_SetG_methods.$name = "B_LogicalD_Set";
         B_LogicalD_SetG_methods.$superclass = ($SuperG_class)&B_LogicalG_methods;
         B_LogicalD_SetG_methods.__bool__ = (B_bool (*) (B_LogicalD_Set))B_valueG_methods.__bool__;
         B_LogicalD_SetG_methods.__str__ = (B_str (*) (B_LogicalD_Set))B_valueG_methods.__str__;
@@ -6411,7 +6815,9 @@ void B___init__ () {
         $register(&B_LogicalD_SetG_methods);
     }
     {
-        B_MinusD_SetG_methods.$GCINFO = "B_MinusD_Set";
+        memset(B_MinusD_SetD_gcbm, 0xFF, sizeof(B_MinusD_SetD_gcbm));
+        B_MinusD_SetG_methods.$GCdescr = GC_make_descriptor(B_MinusD_SetD_gcbm, GC_WORD_LEN(struct B_MinusD_Set));
+        B_MinusD_SetG_methods.$name = "B_MinusD_Set";
         B_MinusD_SetG_methods.$superclass = ($SuperG_class)&B_MinusG_methods;
         B_MinusD_SetG_methods.__bool__ = (B_bool (*) (B_MinusD_Set))B_valueG_methods.__bool__;
         B_MinusD_SetG_methods.__str__ = (B_str (*) (B_MinusD_Set))B_valueG_methods.__str__;
@@ -6423,7 +6829,9 @@ void B___init__ () {
         $register(&B_MinusD_SetG_methods);
     }
     {
-        B_SequenceD_listG_methods.$GCINFO = "B_SequenceD_list";
+        memset(B_SequenceD_listD_gcbm, 0xFF, sizeof(B_SequenceD_listD_gcbm));
+        B_SequenceD_listG_methods.$GCdescr = GC_make_descriptor(B_SequenceD_listD_gcbm, GC_WORD_LEN(struct B_SequenceD_list));
+        B_SequenceD_listG_methods.$name = "B_SequenceD_list";
         B_SequenceD_listG_methods.$superclass = ($SuperG_class)&B_SequenceG_methods;
         B_SequenceD_listG_methods.__bool__ = (B_bool (*) (B_SequenceD_list))B_valueG_methods.__bool__;
         B_SequenceD_listG_methods.__str__ = (B_str (*) (B_SequenceD_list))B_valueG_methods.__str__;
@@ -6444,7 +6852,9 @@ void B___init__ () {
         $register(&B_SequenceD_listG_methods);
     }
     {
-        B_CollectionD_SequenceD_listG_methods.$GCINFO = "B_CollectionD_SequenceD_list";
+        memset(B_CollectionD_SequenceD_listD_gcbm, 0xFF, sizeof(B_CollectionD_SequenceD_listD_gcbm));
+        B_CollectionD_SequenceD_listG_methods.$GCdescr = GC_make_descriptor(B_CollectionD_SequenceD_listD_gcbm, GC_WORD_LEN(struct B_CollectionD_SequenceD_list));
+        B_CollectionD_SequenceD_listG_methods.$name = "B_CollectionD_SequenceD_list";
         B_CollectionD_SequenceD_listG_methods.$superclass = ($SuperG_class)&B_CollectionD_SequenceG_methods;
         B_CollectionD_SequenceD_listG_methods.__bool__ = (B_bool (*) (B_CollectionD_SequenceD_list))B_valueG_methods.__bool__;
         B_CollectionD_SequenceD_listG_methods.__str__ = (B_str (*) (B_CollectionD_SequenceD_list))B_valueG_methods.__str__;
@@ -6458,7 +6868,9 @@ void B___init__ () {
         $register(&B_CollectionD_SequenceD_listG_methods);
     }
     {
-        B_TimesD_SequenceD_listG_methods.$GCINFO = "B_TimesD_SequenceD_list";
+        memset(B_TimesD_SequenceD_listD_gcbm, 0xFF, sizeof(B_TimesD_SequenceD_listD_gcbm));
+        B_TimesD_SequenceD_listG_methods.$GCdescr = GC_make_descriptor(B_TimesD_SequenceD_listD_gcbm, GC_WORD_LEN(struct B_TimesD_SequenceD_list));
+        B_TimesD_SequenceD_listG_methods.$name = "B_TimesD_SequenceD_list";
         B_TimesD_SequenceD_listG_methods.$superclass = ($SuperG_class)&B_TimesD_SequenceG_methods;
         B_TimesD_SequenceD_listG_methods.__bool__ = (B_bool (*) (B_TimesD_SequenceD_list))B_valueG_methods.__bool__;
         B_TimesD_SequenceD_listG_methods.__str__ = (B_str (*) (B_TimesD_SequenceD_list))B_valueG_methods.__str__;
@@ -6473,7 +6885,9 @@ void B___init__ () {
         $register(&B_TimesD_SequenceD_listG_methods);
     }
     {
-        B_ContainerD_listG_methods.$GCINFO = "B_ContainerD_list";
+        memset(B_ContainerD_listD_gcbm, 0xFF, sizeof(B_ContainerD_listD_gcbm));
+        B_ContainerD_listG_methods.$GCdescr = GC_make_descriptor(B_ContainerD_listD_gcbm, GC_WORD_LEN(struct B_ContainerD_list));
+        B_ContainerD_listG_methods.$name = "B_ContainerD_list";
         B_ContainerD_listG_methods.$superclass = ($SuperG_class)&B_ContainerG_methods;
         B_ContainerD_listG_methods.__bool__ = (B_bool (*) (B_ContainerD_list))B_valueG_methods.__bool__;
         B_ContainerD_listG_methods.__str__ = (B_str (*) (B_ContainerD_list))B_valueG_methods.__str__;
@@ -6486,7 +6900,9 @@ void B___init__ () {
         $register(&B_ContainerD_listG_methods);
     }
     {
-        B_OrdD_listG_methods.$GCINFO = "B_OrdD_list";
+        memset(B_OrdD_listD_gcbm, 0xFF, sizeof(B_OrdD_listD_gcbm));
+        B_OrdD_listG_methods.$GCdescr = GC_make_descriptor(B_OrdD_listD_gcbm, GC_WORD_LEN(struct B_OrdD_list));
+        B_OrdD_listG_methods.$name = "B_OrdD_list";
         B_OrdD_listG_methods.$superclass = ($SuperG_class)&B_OrdG_methods;
         B_OrdD_listG_methods.__bool__ = (B_bool (*) (B_OrdD_list))B_valueG_methods.__bool__;
         B_OrdD_listG_methods.__str__ = (B_str (*) (B_OrdD_list))B_valueG_methods.__str__;
@@ -6503,7 +6919,9 @@ void B___init__ () {
         $register(&B_OrdD_listG_methods);
     }
     {
-        B_MappingD_dictG_methods.$GCINFO = "B_MappingD_dict";
+        memset(B_MappingD_dictD_gcbm, 0xFF, sizeof(B_MappingD_dictD_gcbm));
+        B_MappingD_dictG_methods.$GCdescr = GC_make_descriptor(B_MappingD_dictD_gcbm, GC_WORD_LEN(struct B_MappingD_dict));
+        B_MappingD_dictG_methods.$name = "B_MappingD_dict";
         B_MappingD_dictG_methods.$superclass = ($SuperG_class)&B_MappingG_methods;
         B_MappingD_dictG_methods.__bool__ = (B_bool (*) (B_MappingD_dict))B_valueG_methods.__bool__;
         B_MappingD_dictG_methods.__str__ = (B_str (*) (B_MappingD_dict))B_valueG_methods.__str__;
@@ -6526,7 +6944,9 @@ void B___init__ () {
         $register(&B_MappingD_dictG_methods);
     }
     {
-        B_IndexedD_MappingD_dictG_methods.$GCINFO = "B_IndexedD_MappingD_dict";
+        memset(B_IndexedD_MappingD_dictD_gcbm, 0xFF, sizeof(B_IndexedD_MappingD_dictD_gcbm));
+        B_IndexedD_MappingD_dictG_methods.$GCdescr = GC_make_descriptor(B_IndexedD_MappingD_dictD_gcbm, GC_WORD_LEN(struct B_IndexedD_MappingD_dict));
+        B_IndexedD_MappingD_dictG_methods.$name = "B_IndexedD_MappingD_dict";
         B_IndexedD_MappingD_dictG_methods.$superclass = ($SuperG_class)&B_IndexedD_MappingG_methods;
         B_IndexedD_MappingD_dictG_methods.__bool__ = (B_bool (*) (B_IndexedD_MappingD_dict))B_valueG_methods.__bool__;
         B_IndexedD_MappingD_dictG_methods.__str__ = (B_str (*) (B_IndexedD_MappingD_dict))B_valueG_methods.__str__;
@@ -6540,7 +6960,9 @@ void B___init__ () {
         $register(&B_IndexedD_MappingD_dictG_methods);
     }
     {
-        B_OrdD_dictG_methods.$GCINFO = "B_OrdD_dict";
+        memset(B_OrdD_dictD_gcbm, 0xFF, sizeof(B_OrdD_dictD_gcbm));
+        B_OrdD_dictG_methods.$GCdescr = GC_make_descriptor(B_OrdD_dictD_gcbm, GC_WORD_LEN(struct B_OrdD_dict));
+        B_OrdD_dictG_methods.$name = "B_OrdD_dict";
         B_OrdD_dictG_methods.$superclass = ($SuperG_class)&B_OrdG_methods;
         B_OrdD_dictG_methods.__bool__ = (B_bool (*) (B_OrdD_dict))B_valueG_methods.__bool__;
         B_OrdD_dictG_methods.__str__ = (B_str (*) (B_OrdD_dict))B_valueG_methods.__str__;
@@ -6557,7 +6979,9 @@ void B___init__ () {
         $register(&B_OrdD_dictG_methods);
     }
     {
-        B_SetD_setG_methods.$GCINFO = "B_SetD_set";
+        memset(B_SetD_setD_gcbm, 0xFF, sizeof(B_SetD_setD_gcbm));
+        B_SetD_setG_methods.$GCdescr = GC_make_descriptor(B_SetD_setD_gcbm, GC_WORD_LEN(struct B_SetD_set));
+        B_SetD_setG_methods.$name = "B_SetD_set";
         B_SetD_setG_methods.$superclass = ($SuperG_class)&B_SetG_methods;
         B_SetD_setG_methods.__bool__ = (B_bool (*) (B_SetD_set))B_valueG_methods.__bool__;
         B_SetD_setG_methods.__str__ = (B_str (*) (B_SetD_set))B_valueG_methods.__str__;
@@ -6577,7 +7001,9 @@ void B___init__ () {
         $register(&B_SetD_setG_methods);
     }
     {
-        B_OrdD_SetD_setG_methods.$GCINFO = "B_OrdD_SetD_set";
+        memset(B_OrdD_SetD_setD_gcbm, 0xFF, sizeof(B_OrdD_SetD_setD_gcbm));
+        B_OrdD_SetD_setG_methods.$GCdescr = GC_make_descriptor(B_OrdD_SetD_setD_gcbm, GC_WORD_LEN(struct B_OrdD_SetD_set));
+        B_OrdD_SetD_setG_methods.$name = "B_OrdD_SetD_set";
         B_OrdD_SetD_setG_methods.$superclass = ($SuperG_class)&B_OrdD_SetG_methods;
         B_OrdD_SetD_setG_methods.__bool__ = (B_bool (*) (B_OrdD_SetD_set))B_valueG_methods.__bool__;
         B_OrdD_SetD_setG_methods.__str__ = (B_str (*) (B_OrdD_SetD_set))B_valueG_methods.__str__;
@@ -6594,7 +7020,9 @@ void B___init__ () {
         $register(&B_OrdD_SetD_setG_methods);
     }
     {
-        B_LogicalD_SetD_setG_methods.$GCINFO = "B_LogicalD_SetD_set";
+        memset(B_LogicalD_SetD_setD_gcbm, 0xFF, sizeof(B_LogicalD_SetD_setD_gcbm));
+        B_LogicalD_SetD_setG_methods.$GCdescr = GC_make_descriptor(B_LogicalD_SetD_setD_gcbm, GC_WORD_LEN(struct B_LogicalD_SetD_set));
+        B_LogicalD_SetD_setG_methods.$name = "B_LogicalD_SetD_set";
         B_LogicalD_SetD_setG_methods.$superclass = ($SuperG_class)&B_LogicalD_SetG_methods;
         B_LogicalD_SetD_setG_methods.__bool__ = (B_bool (*) (B_LogicalD_SetD_set))B_valueG_methods.__bool__;
         B_LogicalD_SetD_setG_methods.__str__ = (B_str (*) (B_LogicalD_SetD_set))B_valueG_methods.__str__;
@@ -6611,7 +7039,9 @@ void B___init__ () {
         $register(&B_LogicalD_SetD_setG_methods);
     }
     {
-        B_MinusD_SetD_setG_methods.$GCINFO = "B_MinusD_SetD_set";
+        memset(B_MinusD_SetD_setD_gcbm, 0xFF, sizeof(B_MinusD_SetD_setD_gcbm));
+        B_MinusD_SetD_setG_methods.$GCdescr = GC_make_descriptor(B_MinusD_SetD_setD_gcbm, GC_WORD_LEN(struct B_MinusD_SetD_set));
+        B_MinusD_SetD_setG_methods.$name = "B_MinusD_SetD_set";
         B_MinusD_SetD_setG_methods.$superclass = ($SuperG_class)&B_MinusD_SetG_methods;
         B_MinusD_SetD_setG_methods.__bool__ = (B_bool (*) (B_MinusD_SetD_set))B_valueG_methods.__bool__;
         B_MinusD_SetD_setG_methods.__str__ = (B_str (*) (B_MinusD_SetD_set))B_valueG_methods.__str__;
@@ -6624,7 +7054,9 @@ void B___init__ () {
         $register(&B_MinusD_SetD_setG_methods);
     }
     {
-        B_IterableD_IteratorG_methods.$GCINFO = "B_IterableD_Iterator";
+        memset(B_IterableD_IteratorD_gcbm, 0xFF, sizeof(B_IterableD_IteratorD_gcbm));
+        B_IterableD_IteratorG_methods.$GCdescr = GC_make_descriptor(B_IterableD_IteratorD_gcbm, GC_WORD_LEN(struct B_IterableD_Iterator));
+        B_IterableD_IteratorG_methods.$name = "B_IterableD_Iterator";
         B_IterableD_IteratorG_methods.$superclass = ($SuperG_class)&B_IterableG_methods;
         B_IterableD_IteratorG_methods.__bool__ = (B_bool (*) (B_IterableD_Iterator))B_valueG_methods.__bool__;
         B_IterableD_IteratorG_methods.__str__ = (B_str (*) (B_IterableD_Iterator))B_valueG_methods.__str__;
@@ -6636,7 +7068,9 @@ void B___init__ () {
         $register(&B_IterableD_IteratorG_methods);
     }
     {
-        B_IterableD_rangeG_methods.$GCINFO = "B_IterableD_range";
+        memset(B_IterableD_rangeD_gcbm, 0xFF, sizeof(B_IterableD_rangeD_gcbm));
+        B_IterableD_rangeG_methods.$GCdescr = GC_make_descriptor(B_IterableD_rangeD_gcbm, GC_WORD_LEN(struct B_IterableD_range));
+        B_IterableD_rangeG_methods.$name = "B_IterableD_range";
         B_IterableD_rangeG_methods.$superclass = ($SuperG_class)&B_IterableG_methods;
         B_IterableD_rangeG_methods.__bool__ = (B_bool (*) (B_IterableD_range))B_valueG_methods.__bool__;
         B_IterableD_rangeG_methods.__str__ = (B_str (*) (B_IterableD_range))B_valueG_methods.__str__;
@@ -6648,7 +7082,9 @@ void B___init__ () {
         $register(&B_IterableD_rangeG_methods);
     }
     {
-        B_OrdD_strG_methods.$GCINFO = "B_OrdD_str";
+        memset(B_OrdD_strD_gcbm, 0xFF, sizeof(B_OrdD_strD_gcbm));
+        B_OrdD_strG_methods.$GCdescr = GC_make_descriptor(B_OrdD_strD_gcbm, GC_WORD_LEN(struct B_OrdD_str));
+        B_OrdD_strG_methods.$name = "B_OrdD_str";
         B_OrdD_strG_methods.$superclass = ($SuperG_class)&B_OrdG_methods;
         B_OrdD_strG_methods.__bool__ = (B_bool (*) (B_OrdD_str))B_valueG_methods.__bool__;
         B_OrdD_strG_methods.__str__ = (B_str (*) (B_OrdD_str))B_valueG_methods.__str__;
@@ -6665,7 +7101,9 @@ void B___init__ () {
         $register(&B_OrdD_strG_methods);
     }
     {
-        B_ContainerD_strG_methods.$GCINFO = "B_ContainerD_str";
+        memset(B_ContainerD_strD_gcbm, 0xFF, sizeof(B_ContainerD_strD_gcbm));
+        B_ContainerD_strG_methods.$GCdescr = GC_make_descriptor(B_ContainerD_strD_gcbm, GC_WORD_LEN(struct B_ContainerD_str));
+        B_ContainerD_strG_methods.$name = "B_ContainerD_str";
         B_ContainerD_strG_methods.$superclass = ($SuperG_class)&B_ContainerG_methods;
         B_ContainerD_strG_methods.__bool__ = (B_bool (*) (B_ContainerD_str))B_valueG_methods.__bool__;
         B_ContainerD_strG_methods.__str__ = (B_str (*) (B_ContainerD_str))B_valueG_methods.__str__;
@@ -6681,7 +7119,9 @@ void B___init__ () {
         $register(&B_ContainerD_strG_methods);
     }
     {
-        B_SliceableD_strG_methods.$GCINFO = "B_SliceableD_str";
+        memset(B_SliceableD_strD_gcbm, 0xFF, sizeof(B_SliceableD_strD_gcbm));
+        B_SliceableD_strG_methods.$GCdescr = GC_make_descriptor(B_SliceableD_strD_gcbm, GC_WORD_LEN(struct B_SliceableD_str));
+        B_SliceableD_strG_methods.$name = "B_SliceableD_str";
         B_SliceableD_strG_methods.$superclass = ($SuperG_class)&B_SliceableG_methods;
         B_SliceableD_strG_methods.__bool__ = (B_bool (*) (B_SliceableD_str))B_valueG_methods.__bool__;
         B_SliceableD_strG_methods.__str__ = (B_str (*) (B_SliceableD_str))B_valueG_methods.__str__;
@@ -6698,7 +7138,9 @@ void B___init__ () {
         $register(&B_SliceableD_strG_methods);
     }
     {
-        B_TimesD_strG_methods.$GCINFO = "B_TimesD_str";
+        memset(B_TimesD_strD_gcbm, 0xFF, sizeof(B_TimesD_strD_gcbm));
+        B_TimesD_strG_methods.$GCdescr = GC_make_descriptor(B_TimesD_strD_gcbm, GC_WORD_LEN(struct B_TimesD_str));
+        B_TimesD_strG_methods.$name = "B_TimesD_str";
         B_TimesD_strG_methods.$superclass = ($SuperG_class)&B_TimesG_methods;
         B_TimesD_strG_methods.__bool__ = (B_bool (*) (B_TimesD_str))B_valueG_methods.__bool__;
         B_TimesD_strG_methods.__str__ = (B_str (*) (B_TimesD_str))B_valueG_methods.__str__;
@@ -6713,7 +7155,9 @@ void B___init__ () {
         $register(&B_TimesD_strG_methods);
     }
     {
-        B_HashableD_strG_methods.$GCINFO = "B_HashableD_str";
+        memset(B_HashableD_strD_gcbm, 0xFF, sizeof(B_HashableD_strD_gcbm));
+        B_HashableD_strG_methods.$GCdescr = GC_make_descriptor(B_HashableD_strD_gcbm, GC_WORD_LEN(struct B_HashableD_str));
+        B_HashableD_strG_methods.$name = "B_HashableD_str";
         B_HashableD_strG_methods.$superclass = ($SuperG_class)&B_HashableG_methods;
         B_HashableD_strG_methods.__bool__ = (B_bool (*) (B_HashableD_str))B_valueG_methods.__bool__;
         B_HashableD_strG_methods.__str__ = (B_str (*) (B_HashableD_str))B_valueG_methods.__str__;
@@ -6727,7 +7171,9 @@ void B___init__ () {
         $register(&B_HashableD_strG_methods);
     }
     {
-        B_OrdD_bytearrayG_methods.$GCINFO = "B_OrdD_bytearray";
+        memset(B_OrdD_bytearrayD_gcbm, 0xFF, sizeof(B_OrdD_bytearrayD_gcbm));
+        B_OrdD_bytearrayG_methods.$GCdescr = GC_make_descriptor(B_OrdD_bytearrayD_gcbm, GC_WORD_LEN(struct B_OrdD_bytearray));
+        B_OrdD_bytearrayG_methods.$name = "B_OrdD_bytearray";
         B_OrdD_bytearrayG_methods.$superclass = ($SuperG_class)&B_OrdG_methods;
         B_OrdD_bytearrayG_methods.__bool__ = (B_bool (*) (B_OrdD_bytearray))B_valueG_methods.__bool__;
         B_OrdD_bytearrayG_methods.__str__ = (B_str (*) (B_OrdD_bytearray))B_valueG_methods.__str__;
@@ -6744,7 +7190,9 @@ void B___init__ () {
         $register(&B_OrdD_bytearrayG_methods);
     }
     {
-        B_SequenceD_bytearrayG_methods.$GCINFO = "B_SequenceD_bytearray";
+        memset(B_SequenceD_bytearrayD_gcbm, 0xFF, sizeof(B_SequenceD_bytearrayD_gcbm));
+        B_SequenceD_bytearrayG_methods.$GCdescr = GC_make_descriptor(B_SequenceD_bytearrayD_gcbm, GC_WORD_LEN(struct B_SequenceD_bytearray));
+        B_SequenceD_bytearrayG_methods.$name = "B_SequenceD_bytearray";
         B_SequenceD_bytearrayG_methods.$superclass = ($SuperG_class)&B_SequenceG_methods;
         B_SequenceD_bytearrayG_methods.__bool__ = (B_bool (*) (B_SequenceD_bytearray))B_valueG_methods.__bool__;
         B_SequenceD_bytearrayG_methods.__str__ = (B_str (*) (B_SequenceD_bytearray))B_valueG_methods.__str__;
@@ -6765,7 +7213,9 @@ void B___init__ () {
         $register(&B_SequenceD_bytearrayG_methods);
     }
     {
-        B_CollectionD_SequenceD_bytearrayG_methods.$GCINFO = "B_CollectionD_SequenceD_bytearray";
+        memset(B_CollectionD_SequenceD_bytearrayD_gcbm, 0xFF, sizeof(B_CollectionD_SequenceD_bytearrayD_gcbm));
+        B_CollectionD_SequenceD_bytearrayG_methods.$GCdescr = GC_make_descriptor(B_CollectionD_SequenceD_bytearrayD_gcbm, GC_WORD_LEN(struct B_CollectionD_SequenceD_bytearray));
+        B_CollectionD_SequenceD_bytearrayG_methods.$name = "B_CollectionD_SequenceD_bytearray";
         B_CollectionD_SequenceD_bytearrayG_methods.$superclass = ($SuperG_class)&B_CollectionD_SequenceG_methods;
         B_CollectionD_SequenceD_bytearrayG_methods.__bool__ = (B_bool (*) (B_CollectionD_SequenceD_bytearray))B_valueG_methods.__bool__;
         B_CollectionD_SequenceD_bytearrayG_methods.__str__ = (B_str (*) (B_CollectionD_SequenceD_bytearray))B_valueG_methods.__str__;
@@ -6779,7 +7229,9 @@ void B___init__ () {
         $register(&B_CollectionD_SequenceD_bytearrayG_methods);
     }
     {
-        B_TimesD_SequenceD_bytearrayG_methods.$GCINFO = "B_TimesD_SequenceD_bytearray";
+        memset(B_TimesD_SequenceD_bytearrayD_gcbm, 0xFF, sizeof(B_TimesD_SequenceD_bytearrayD_gcbm));
+        B_TimesD_SequenceD_bytearrayG_methods.$GCdescr = GC_make_descriptor(B_TimesD_SequenceD_bytearrayD_gcbm, GC_WORD_LEN(struct B_TimesD_SequenceD_bytearray));
+        B_TimesD_SequenceD_bytearrayG_methods.$name = "B_TimesD_SequenceD_bytearray";
         B_TimesD_SequenceD_bytearrayG_methods.$superclass = ($SuperG_class)&B_TimesD_SequenceG_methods;
         B_TimesD_SequenceD_bytearrayG_methods.__bool__ = (B_bool (*) (B_TimesD_SequenceD_bytearray))B_valueG_methods.__bool__;
         B_TimesD_SequenceD_bytearrayG_methods.__str__ = (B_str (*) (B_TimesD_SequenceD_bytearray))B_valueG_methods.__str__;
@@ -6794,7 +7246,9 @@ void B___init__ () {
         $register(&B_TimesD_SequenceD_bytearrayG_methods);
     }
     {
-        B_ContainerD_bytearrayG_methods.$GCINFO = "B_ContainerD_bytearray";
+        memset(B_ContainerD_bytearrayD_gcbm, 0xFF, sizeof(B_ContainerD_bytearrayD_gcbm));
+        B_ContainerD_bytearrayG_methods.$GCdescr = GC_make_descriptor(B_ContainerD_bytearrayD_gcbm, GC_WORD_LEN(struct B_ContainerD_bytearray));
+        B_ContainerD_bytearrayG_methods.$name = "B_ContainerD_bytearray";
         B_ContainerD_bytearrayG_methods.$superclass = ($SuperG_class)&B_ContainerG_methods;
         B_ContainerD_bytearrayG_methods.__bool__ = (B_bool (*) (B_ContainerD_bytearray))B_valueG_methods.__bool__;
         B_ContainerD_bytearrayG_methods.__str__ = (B_str (*) (B_ContainerD_bytearray))B_valueG_methods.__str__;
@@ -6807,7 +7261,9 @@ void B___init__ () {
         $register(&B_ContainerD_bytearrayG_methods);
     }
     {
-        B_OrdD_bytesG_methods.$GCINFO = "B_OrdD_bytes";
+        memset(B_OrdD_bytesD_gcbm, 0xFF, sizeof(B_OrdD_bytesD_gcbm));
+        B_OrdD_bytesG_methods.$GCdescr = GC_make_descriptor(B_OrdD_bytesD_gcbm, GC_WORD_LEN(struct B_OrdD_bytes));
+        B_OrdD_bytesG_methods.$name = "B_OrdD_bytes";
         B_OrdD_bytesG_methods.$superclass = ($SuperG_class)&B_OrdG_methods;
         B_OrdD_bytesG_methods.__bool__ = (B_bool (*) (B_OrdD_bytes))B_valueG_methods.__bool__;
         B_OrdD_bytesG_methods.__str__ = (B_str (*) (B_OrdD_bytes))B_valueG_methods.__str__;
@@ -6824,7 +7280,9 @@ void B___init__ () {
         $register(&B_OrdD_bytesG_methods);
     }
     {
-        B_SliceableD_bytesG_methods.$GCINFO = "B_SliceableD_bytes";
+        memset(B_SliceableD_bytesD_gcbm, 0xFF, sizeof(B_SliceableD_bytesD_gcbm));
+        B_SliceableD_bytesG_methods.$GCdescr = GC_make_descriptor(B_SliceableD_bytesD_gcbm, GC_WORD_LEN(struct B_SliceableD_bytes));
+        B_SliceableD_bytesG_methods.$name = "B_SliceableD_bytes";
         B_SliceableD_bytesG_methods.$superclass = ($SuperG_class)&B_SliceableG_methods;
         B_SliceableD_bytesG_methods.__bool__ = (B_bool (*) (B_SliceableD_bytes))B_valueG_methods.__bool__;
         B_SliceableD_bytesG_methods.__str__ = (B_str (*) (B_SliceableD_bytes))B_valueG_methods.__str__;
@@ -6841,7 +7299,9 @@ void B___init__ () {
         $register(&B_SliceableD_bytesG_methods);
     }
     {
-        B_ContainerD_bytesG_methods.$GCINFO = "B_ContainerD_bytes";
+        memset(B_ContainerD_bytesD_gcbm, 0xFF, sizeof(B_ContainerD_bytesD_gcbm));
+        B_ContainerD_bytesG_methods.$GCdescr = GC_make_descriptor(B_ContainerD_bytesD_gcbm, GC_WORD_LEN(struct B_ContainerD_bytes));
+        B_ContainerD_bytesG_methods.$name = "B_ContainerD_bytes";
         B_ContainerD_bytesG_methods.$superclass = ($SuperG_class)&B_ContainerG_methods;
         B_ContainerD_bytesG_methods.__bool__ = (B_bool (*) (B_ContainerD_bytes))B_valueG_methods.__bool__;
         B_ContainerD_bytesG_methods.__str__ = (B_str (*) (B_ContainerD_bytes))B_valueG_methods.__str__;
@@ -6857,7 +7317,9 @@ void B___init__ () {
         $register(&B_ContainerD_bytesG_methods);
     }
     {
-        B_TimesD_bytesG_methods.$GCINFO = "B_TimesD_bytes";
+        memset(B_TimesD_bytesD_gcbm, 0xFF, sizeof(B_TimesD_bytesD_gcbm));
+        B_TimesD_bytesG_methods.$GCdescr = GC_make_descriptor(B_TimesD_bytesD_gcbm, GC_WORD_LEN(struct B_TimesD_bytes));
+        B_TimesD_bytesG_methods.$name = "B_TimesD_bytes";
         B_TimesD_bytesG_methods.$superclass = ($SuperG_class)&B_TimesG_methods;
         B_TimesD_bytesG_methods.__bool__ = (B_bool (*) (B_TimesD_bytes))B_valueG_methods.__bool__;
         B_TimesD_bytesG_methods.__str__ = (B_str (*) (B_TimesD_bytes))B_valueG_methods.__str__;
@@ -6872,7 +7334,9 @@ void B___init__ () {
         $register(&B_TimesD_bytesG_methods);
     }
     {
-        B_HashableD_bytesG_methods.$GCINFO = "B_HashableD_bytes";
+        memset(B_HashableD_bytesD_gcbm, 0xFF, sizeof(B_HashableD_bytesD_gcbm));
+        B_HashableD_bytesG_methods.$GCdescr = GC_make_descriptor(B_HashableD_bytesD_gcbm, GC_WORD_LEN(struct B_HashableD_bytes));
+        B_HashableD_bytesG_methods.$name = "B_HashableD_bytes";
         B_HashableD_bytesG_methods.$superclass = ($SuperG_class)&B_HashableG_methods;
         B_HashableD_bytesG_methods.__bool__ = (B_bool (*) (B_HashableD_bytes))B_valueG_methods.__bool__;
         B_HashableD_bytesG_methods.__str__ = (B_str (*) (B_HashableD_bytes))B_valueG_methods.__str__;
@@ -6886,7 +7350,9 @@ void B___init__ () {
     }
     /*
     {
-        B_L_1procG_methods.$GCINFO = "B_L_1proc";
+        memset(B_L_1procD_gcbm, 0xFF, sizeof(B_L_1procD_gcbm));
+        B_L_1procG_methods.$GCdescr = GC_make_descriptor(B_L_1procD_gcbm, GC_WORD_LEN(struct B_L_1proc));
+        B_L_1procG_methods.$name = "B_L_1proc";
         B_L_1procG_methods.$superclass = ($SuperG_class)&$procG_methods;
         B_L_1procG_methods.__bool__ = (B_bool (*) (B_L_1proc))B_valueG_methods.__bool__;
         B_L_1procG_methods.__str__ = (B_str (*) (B_L_1proc))B_valueG_methods.__str__;
@@ -6899,7 +7365,9 @@ void B___init__ () {
         $register(&B_L_1procG_methods);
     }
     {
-        B_L_2procG_methods.$GCINFO = "B_L_2proc";
+        memset(B_L_2procD_gcbm, 0xFF, sizeof(B_L_2procD_gcbm));
+        B_L_2procG_methods.$GCdescr = GC_make_descriptor(B_L_2procD_gcbm, GC_WORD_LEN(struct B_L_2proc));
+        B_L_2procG_methods.$name = "B_L_2proc";
         B_L_2procG_methods.$superclass = ($SuperG_class)&$procG_methods;
         B_L_2procG_methods.__bool__ = (B_bool (*) (B_L_2proc))B_valueG_methods.__bool__;
         B_L_2procG_methods.__str__ = (B_str (*) (B_L_2proc))B_valueG_methods.__str__;
@@ -6912,7 +7380,9 @@ void B___init__ () {
         $register(&B_L_2procG_methods);
     }
     {
-        B_L_3procG_methods.$GCINFO = "B_L_3proc";
+        memset(B_L_3procD_gcbm, 0xFF, sizeof(B_L_3procD_gcbm));
+        B_L_3procG_methods.$GCdescr = GC_make_descriptor(B_L_3procD_gcbm, GC_WORD_LEN(struct B_L_3proc));
+        B_L_3procG_methods.$name = "B_L_3proc";
         B_L_3procG_methods.$superclass = ($SuperG_class)&$procG_methods;
         B_L_3procG_methods.__bool__ = (B_bool (*) (B_L_3proc))B_valueG_methods.__bool__;
         B_L_3procG_methods.__str__ = (B_str (*) (B_L_3proc))B_valueG_methods.__str__;
@@ -6925,7 +7395,9 @@ void B___init__ () {
         $register(&B_L_3procG_methods);
     }
     {
-        B_L_5ContG_methods.$GCINFO = "B_L_5Cont";
+        memset(B_L_5ContD_gcbm, 0xFF, sizeof(B_L_5ContD_gcbm));
+        B_L_5ContG_methods.$GCdescr = GC_make_descriptor(B_L_5ContD_gcbm, GC_WORD_LEN(struct B_L_5Cont));
+        B_L_5ContG_methods.$name = "B_L_5Cont";
         B_L_5ContG_methods.$superclass = ($SuperG_class)&$ContG_methods;
         B_L_5ContG_methods.__bool__ = (B_bool (*) (B_L_5Cont))B_valueG_methods.__bool__;
         B_L_5ContG_methods.__str__ = (B_str (*) (B_L_5Cont))B_valueG_methods.__str__;
@@ -6937,7 +7409,9 @@ void B___init__ () {
         $register(&B_L_5ContG_methods);
     }
     {
-        B_L_6procG_methods.$GCINFO = "B_L_6proc";
+        memset(B_L_6procD_gcbm, 0xFF, sizeof(B_L_6procD_gcbm));
+        B_L_6procG_methods.$GCdescr = GC_make_descriptor(B_L_6procD_gcbm, GC_WORD_LEN(struct B_L_6proc));
+        B_L_6procG_methods.$name = "B_L_6proc";
         B_L_6procG_methods.$superclass = ($SuperG_class)&$procG_methods;
         B_L_6procG_methods.__bool__ = (B_bool (*) (B_L_6proc))B_valueG_methods.__bool__;
         B_L_6procG_methods.__str__ = (B_str (*) (B_L_6proc))B_valueG_methods.__str__;
@@ -6950,7 +7424,9 @@ void B___init__ () {
         $register(&B_L_6procG_methods);
     }
     {
-        B_WorldAuthG_methods.$GCINFO = "B_WorldAuth";
+        memset(B_WorldAuthD_gcbm, 0xFF, sizeof(B_WorldAuthD_gcbm));
+        B_WorldAuthG_methods.$GCdescr = GC_make_descriptor(B_WorldAuthD_gcbm, GC_WORD_LEN(struct B_WorldAuth));
+        B_WorldAuthG_methods.$name = "B_WorldAuth";
         B_WorldAuthG_methods.$superclass = ($SuperG_class)&B_valueG_methods;
         B_WorldAuthG_methods.__bool__ = (B_bool (*) (B_WorldAuth))B_valueG_methods.__bool__;
         B_WorldAuthG_methods.__str__ = (B_str (*) (B_WorldAuth))B_valueG_methods.__str__;
@@ -6961,7 +7437,9 @@ void B___init__ () {
         $register(&B_WorldAuthG_methods);
     }
     {
-        B_EnvG_methods.$GCINFO = "B_Env";
+        memset(B_EnvD_gcbm, 0xFF, sizeof(B_EnvD_gcbm));
+        B_EnvG_methods.$GCdescr = GC_make_descriptor(B_EnvD_gcbm, GC_WORD_LEN(struct B_Env));
+        B_EnvG_methods.$name = "B_Env";
         B_EnvG_methods.$superclass = ($SuperG_class)&$ActorG_methods;
         B_EnvG_methods.__bool__ = (B_bool (*) (B_Env))$ActorG_methods.__bool__;
         B_EnvG_methods.__str__ = (B_str (*) (B_Env))$ActorG_methods.__str__;

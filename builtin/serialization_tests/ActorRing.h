@@ -19,7 +19,8 @@ typedef struct lambda$4 *lambda$4;
 typedef struct Root *Root;
 
 struct lambda$1G_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     void (*__init__)(lambda$1, $Cont);
@@ -33,9 +34,11 @@ struct lambda$1 {
     struct lambda$1G_class *$class;
     $Cont cont$0;    
 };
+extern GC_word lambda$1D_gcbm[GC_BITMAP_SIZE(struct lambda$1)];
 
 struct lambda$2G_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     void (*__init__)(lambda$2, Act, B_int, B_list);
@@ -51,9 +54,11 @@ struct lambda$2 {
     B_int from;
     B_list table;
 };
+extern GC_word lambda$2D_gcbm[GC_BITMAP_SIZE(struct lambda$2)];
 
 struct ActG_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     $R (*__init__)(Act, B_int, $Cont);
@@ -74,9 +79,11 @@ struct Act {
     B_dict rcv_dict;
     B_dict snd_dict;
 };
+extern GC_word ActD_gcbm[GC_BITMAP_SIZE(struct Act)];
 
 struct lambda$3G_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     void (*__init__)(lambda$3, Root, B_Iterator, $Cont);
@@ -92,9 +99,11 @@ struct lambda$3 {
     B_Iterator iter$1;
     $Cont cont$0;
 };
+extern GC_word lambda$3D_gcbm[GC_BITMAP_SIZE(struct lambda$3)];
 
 struct lambda$4G_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     void (*__init__)(lambda$4, $Cont);
@@ -108,9 +117,11 @@ struct lambda$4 {
     struct lambda$4G_class *$class;
     $Cont cont$0;
 };
+extern GC_word lambda$4D_gcbm[GC_BITMAP_SIZE(struct lambda$4)];
 
 struct RootG_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     $R (*__init__)(Root, B_Env, $Cont);
@@ -126,6 +137,7 @@ struct Root {
     };
     B_list table;
 };
+extern GC_word RootD_gcbm[GC_BITMAP_SIZE(struct Root)];
 
 $R loop$1(Root, B_Iterator, $Cont, $WORD);
 $R cont$1(Root, B_Iterator, $Cont, Act);

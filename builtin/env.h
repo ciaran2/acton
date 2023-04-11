@@ -44,7 +44,8 @@ typedef struct $l$3cont *$l$3cont;
 typedef struct B_WorldAuth *B_WorldAuth;
 typedef struct B_Env *B_Env;
 struct $l$1contG_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) ($l$1cont, B_Env, B_str);
@@ -60,8 +61,10 @@ struct $l$1cont {
     B_Env self;
     B_str s;
 };
+extern GC_word $l$1contD_gcbm[GC_BITMAP_SIZE(struct $l$1cont)];
 struct $l$2contG_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) ($l$2cont, B_Env, $action);
@@ -77,8 +80,10 @@ struct $l$2cont {
     B_Env self;
     $action cb;
 };
+extern GC_word $l$2contD_gcbm[GC_BITMAP_SIZE(struct $l$2cont)];
 struct $l$3contG_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) ($l$3cont, B_Env, B_int);
@@ -94,8 +99,10 @@ struct $l$3cont {
     B_Env self;
     B_int n;
 };
+extern GC_word $l$3contD_gcbm[GC_BITMAP_SIZE(struct $l$3cont)];
 struct B_WorldAuthG_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_WorldAuth);
@@ -108,6 +115,7 @@ struct B_WorldAuthG_class {
 struct B_WorldAuth {
     struct B_WorldAuthG_class *$class;
 };
+extern GC_word B_WorldAuthD_gcbm[GC_BITMAP_SIZE(struct B_WorldAuth)];
 B_WorldAuth B_WorldAuthG_new();
 extern struct $l$1contG_class $l$1contG_methods;
 $l$1cont $l$1contG_new(B_Env, B_str);
@@ -120,7 +128,8 @@ extern struct B_WorldAuthG_class B_WorldAuthG_methods;
 ///////////////////////////////////////////////////////////////////////////////////////////
 
 struct B_EnvG_class {
-    char *$GCINFO;
+    GC_descr $GCdescr;
+    char *$name;
     int $class_id;
     $SuperG_class $superclass;
     B_NoneType (*__init__) (B_Env, B_WorldAuth, B_list);
@@ -151,6 +160,7 @@ struct B_Env {
     B_WorldAuth auth;
     B_list argv;
 };
+extern GC_word B_EnvD_gcbm[GC_BITMAP_SIZE(struct B_Env)];
 
 extern struct B_EnvG_class B_EnvG_methods;
 B_Env B_EnvG_newact(B_WorldAuth, B_list);

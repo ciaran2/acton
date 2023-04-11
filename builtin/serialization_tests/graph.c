@@ -38,8 +38,7 @@ $Node $Node__deserialize__(B_NoneType state) {
   return res;                                        
 }
 
-struct $NodeG_class $NodeG_methods = {"",UNASSIGNED,NULL,$Node__init__,$Node__serialize__,$Node__deserialize__,$Node__bool__,$Node__str__};
-
+struct $NodeG_class $NodeG_methods = {0,"",UNASSIGNED,NULL,$Node__init__,$Node__serialize__,$Node__deserialize__,$Node__bool__,$Node__str__};
 // IntNodes (graph vertices) ////////////////////////////////////////////////////////////////////////////
  
 void $IntNode__init__($IntNode self, B_list nbors, B_int ival) {
@@ -67,8 +66,7 @@ $IntNode $IntNode__deserialize__(B_NoneType state) {
   return res;
 }
 
-struct $IntNodeG_class $IntNodeG_methods = {"",UNASSIGNED,NULL,$IntNode__init__,$IntNode__serialize__,$IntNode__deserialize__,$IntNode__bool__,$IntNode__str__};
-
+struct $IntNodeG_class $IntNodeG_methods = {0,"",UNASSIGNED,NULL,$IntNode__init__,$IntNode__serialize__,$IntNode__deserialize__,$IntNode__bool__,$IntNode__str__};
 
 // FloatNodes (graph vertices) ////////////////////////////////////////////////////////////////////////////
 
@@ -97,8 +95,7 @@ $FloatNode $FloatNode__deserialize__(B_NoneType state) {
   return res;
 }
 
-struct $FloatNodeG_class $FloatNodeG_methods = {"",UNASSIGNED,NULL,$FloatNode__init__,$FloatNode__serialize__,$FloatNode__deserialize__,$FloatNode__bool__,$FloatNode__str__};
-
+struct $FloatNodeG_class $FloatNodeG_methods = {0,"",UNASSIGNED,NULL,$FloatNode__init__,$FloatNode__serialize__,$FloatNode__deserialize__,$FloatNode__bool__,$FloatNode__str__};
 
 // Graphs ////////////////////////////////////////////////////////////////////////////
 
@@ -125,8 +122,7 @@ $Graph $Graph__deserialize__(B_NoneType state) {
   return res;
 }
 
-struct $GraphG_class $GraphG_methods = {"",UNASSIGNED,NULL,$Graph__init__,$Graph__serialize__,$Graph__deserialize__,$Graph__bool__,$Graph__str__};
-
+struct $GraphG_class $GraphG_methods = {0,"",UNASSIGNED,NULL,$Graph__init__,$Graph__serialize__,$Graph__deserialize__,$Graph__bool__,$Graph__str__};
 void $register_graph(){
   $register(&$NodeG_methods);
   $register(&$IntNodeG_methods);
