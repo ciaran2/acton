@@ -78,6 +78,10 @@ compilerTests =
         (returnCode, cmdOut, cmdErr) <- readCreateProcessWithExitCode (shell $ "rm -rf ../test/compiler/rebuild-import/out") ""
         testBuild "" ExitSuccess False "../test/compiler/rebuild-import/"
         testBuild "" ExitSuccess False "../test/compiler/rebuild-import/"
+  , testCase "sub-modules and dashes" $ do
+        (returnCode, cmdOut, cmdErr) <- readCreateProcessWithExitCode (shell $ "rm -rf ../test/compiler/subdash/out") ""
+        testBuild "" ExitSuccess False "../test/compiler/subdash/"
+        testBuild "" ExitSuccess False "../test/compiler/subdash/"
   ]
 
 actoncProjTests =
