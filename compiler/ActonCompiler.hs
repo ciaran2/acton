@@ -74,13 +74,14 @@ main                     =  do arg <- C.parseCmdLine
                                case arg of
                                    C.VersionOpt opts       -> printVersion opts
                                    C.CmdOpt (C.New opts)   -> createProject (C.file opts)
-                                   C.CmdOpt (C.Build opts) -> buildProject $ defaultOpts {C.alwaysbuild = C.alwaysB opts, C.autostub = C.autostubB opts, C.dev = C.devB opts, C.root = C.rootB opts, C.quiet = C.quietB opts, C.timing = C.timingB opts, C.cc = C.ccB opts}
+                                   C.CmdOpt (C.Build opts) -> buildProject $ defaultOpts {C.alwaysbuild = C.alwaysB opts, C.autostub = C.autostubB opts, C.dev = C.devB opts, C.root = C.rootB opts, C.ccmd = C.ccmdB opts, C.quiet = C.quietB opts, C.timing = C.timingB opts, C.cc = C.ccB opts, C.zigbuild = C.zigbuildB opts, C.nozigbuild = C.nozigbuildB opts}
                                    C.CmdOpt (C.Cloud opts) -> undefined
                                    C.CmdOpt (C.Doc opts)   -> printDocs opts
                                    C.CompileOpt nms opts   -> compileFiles opts (catMaybes $ map filterActFile nms)
 
 defaultOpts   = C.CompileOptions False False False False False False False False False False False
                                  False False False False False False False False False "" "" "" ""
+                                 False False
 
 
 -- Auxiliary functions ---------------------------------------------------------------------------------------
@@ -275,7 +276,7 @@ compileFiles opts srcFiles = do
         guessMod  = if length rootParts == 1 then modName paths else A.modName rootMod
         binTask   = BinTask False (prstr guessMod) (A.GName guessMod (A.name $ last rootParts))
         preBinTasks
-          | null (C.root opts) = map (\t -> BinTask True (prstr (name t)) (A.GName (name t) (A.name "main"))) (filter (not . stubmode) tasks)
+          | null (C.root opts) = map (\t -> BinTask True (modNameToString (name t)) (A.GName (name t) (A.name "main"))) (filter (not . stubmode) tasks)
           | otherwise        = [binTask]
     compileTasks opts paths tasks preBinTasks
 
@@ -404,6 +405,12 @@ parseActFile opts paths actFile = do
 -- Compilation tasks, chasing imported modules, compilation and building executables -------------------------------------------
 
 data CompileTask        = ActonTask { name :: A.ModName, src :: String, atree:: A.Module, stubmode :: Bool } deriving (Show)
+-- TODO: replace binName String type with ModName just like for CompileTask.
+-- ModName is a array so a hierarchy with submodules is represented, we can then
+-- get it use joinPath (modPath) to get a path or modName to get a string
+-- representation. We need both of BinTask when generating build.zig, so it
+-- would be more robust to use that type rather than a hacky character
+-- replacement (replaceDot in genBuildZigExe)
 data BinTask            = BinTask { isDefaultRoot :: Bool, binName :: String, rootActor :: A.QName } deriving (Show)
 
 -- return modules that have an actor called 'main'
@@ -420,6 +427,11 @@ filterMainActor env opts paths binTask
         qn@(A.GName m n)    = rootActor binTask
         (sc,_)              = Acton.QuickType.schemaOf env (A.eQVar qn)
 
+useZigBuild opts paths =
+  if not (isTmp paths) -- are we in a real project? isTmp=temp project, i.e. single file
+    then not (C.nozigbuild opts)
+    else C.zigbuild opts
+
 importsOf :: CompileTask -> [A.ModName]
 importsOf t = A.importsOf (atree t)
 
@@ -434,7 +446,9 @@ compileTasks opts paths tasks preBinTasks
                              then do env0 <- Acton.Env.initEnv (sysTypes paths) (modName paths == Acton.Builtin.mBuiltin)
                                      env1 <- foldM (doTask opts paths) env0 [t | AcyclicSCC t <- as]
                                      binTasks <- catMaybes <$> mapM (filterMainActor env1 opts paths) preBinTasks
-                                     mapM (buildExecutable env1 opts paths) preBinTasks
+                                     if useZigBuild opts paths
+                                       then zigBuild env1 opts paths tasks binTasks
+                                       else mapM_ (buildExecutable env1 opts paths) preBinTasks
                                      when (rmTmp paths) $ removeDirectoryRecursive (projPath paths)
                                      return ()
                               else printErrorAndExit ("Cyclic imports: "++concatMap showTaskGraph cs)
@@ -670,11 +684,6 @@ runRestPasses opts paths env0 parsed stubMode = do
 
                       iff ((C.cgen opts) || (C.hgen opts)) System.Exit.exitSuccess
 
-                      let pedantArg = if (C.cpedantic opts) then "-Werror" else ""
-
-                      let hFile = outbase ++ ".h"
-                          oFile = joinPath [projLib paths, n ++ ".o"]
-                          aFile = joinPath [projLib paths, "libActonProject.a"]
 
                       iff (not stubMode) (do
                           -- cc is invoked with parent directory of project
@@ -687,6 +696,7 @@ runRestPasses opts paths env0 parsed stubMode = do
                               aFile = joinPath [projLib paths, "libActonProject.a"]
                               buildF = joinPath [projPath paths, "build.sh"]
                               wd = takeFileName (projPath paths)
+                              pedantArg = if (C.cpedantic opts) then "-Werror" else ""
                               ccCmd = (cc paths opts ++
                                        " -Werror=return-type " ++ pedantArg ++
                                        (if (C.dev opts) then " -g " else "") ++
@@ -704,21 +714,24 @@ runRestPasses opts paths env0 parsed stubMode = do
                               arCmd = ar paths ++ " rcs " ++ aFile ++ " " ++ oFile
                           writeFile hFile h
                           writeFile cFile c
-                          iff (C.ccmd opts) $ do
-                              putStrLn ccCmd
-                              putStrLn arCmd
-                          writeFile buildF $ unlines ["#!/bin/sh", "cd ..", ccCmd, arCmd]
-                          (returnCode, ccStdout, ccStderr) <- readCreateProcessWithExitCode (shell $ ccCmd ++ " && " ++ arCmd){ cwd = Just (takeDirectory (projPath paths)) } ""
-                          timeCC <- getTime Monotonic
-                          iff (C.timing opts) $ putStrLn("    Pass: C compilation   : " ++ fmtTime (timeCC - timeCodeWrite))
-                          case returnCode of
-                              ExitSuccess -> return()
-                              ExitFailure _ -> do printIce "compilation of generated C code failed"
-                                                  putStrLn $ "cc stdout:\n" ++ ccStdout
-                                                  putStrLn $ "cc stderr:\n" ++ ccStderr
-                                                  System.Exit.exitFailure
-                                         )
-
+                          -- Only compile here if we are not using zig build.
+                          -- zig build is run for all modules at the end instead
+                          -- of per file.
+                          iff (not (useZigBuild opts paths)) $ do
+                            iff (C.ccmd opts) $ do
+                                putStrLn ccCmd
+                                putStrLn arCmd
+                            writeFile buildF $ unlines ["#!/bin/sh", "cd ..", ccCmd, arCmd]
+                            (returnCode, ccStdout, ccStderr) <- readCreateProcessWithExitCode (shell $ ccCmd ++ " && " ++ arCmd){ cwd = Just (takeDirectory (projPath paths)) } ""
+                            timeCC <- getTime Monotonic
+                            iff (C.timing opts) $ putStrLn("    Pass: C compilation   : " ++ fmtTime (timeCC - timeCodeWrite))
+                            case returnCode of
+                                ExitSuccess -> return()
+                                ExitFailure _ -> do printIce "compilation of generated C code failed"
+                                                    putStrLn $ "cc stdout:\n" ++ ccStdout
+                                                    putStrLn $ "cc stderr:\n" ++ ccStderr
+                                                    System.Exit.exitFailure
+                                           )
                       return $ Acton.Env.addMod mn iface (env0 `Acton.Env.withModulesFrom` env)
 
 handle errKind f src paths mn ex = do putStrLn ("\nERROR: Error when compiling " ++ (prstr mn) ++ " module: " ++ errKind)
@@ -781,3 +794,130 @@ buildExecutable env opts paths binTask
                                libPaths ++
                                libFiles ++
                                "\n")
+
+
+writeRootC :: Acton.Env.Env0 -> C.CompileOptions -> Paths -> BinTask -> IO (Maybe BinTask)
+writeRootC env opts paths binTask
+                         = case lookup n (fromJust (Acton.Env.lookupMod m env)) of
+                               Just (A.NAct [] (A.TRow _ _ _ t A.TNil{}) A.TNil{} _)
+                                   | prstr t == "Env" || prstr t == "None"
+                                      || prstr t == "__builtin__.Env"|| prstr t == "__builtin__.None"-> do   -- !! To do: proper check of parameter type !!
+                                      c <- Acton.CodeGen.genRoot env qn
+                                      writeFile rootFile c
+                                      return (Just binTask)
+                                   | otherwise -> handle "Type error" Acton.Types.typeError "" paths m
+                                     (Acton.Types.TypeError NoLoc ("Illegal type "++ prstr t ++ " of parameter to root actor " ++ prstr qn))
+                               Just t -> handle "Type error" Acton.Types.typeError "" paths m (Acton.Types.TypeError NoLoc (prstr qn ++ " has not actor type."))
+                               Nothing -> return Nothing
+  where mn                  = A.mname qn
+        qn@(A.GName m n)    = rootActor binTask
+        (sc,_)              = Acton.QuickType.schemaOf env (A.eQVar qn)
+        buildF              = joinPath [projPath paths, "build.sh"]
+        outbase             = outBase paths mn
+        rootFile            = outbase ++ ".root.c"
+
+genBuildZigExe t@(BinTask idr bn ra) =
+    -- Generate executable part of build.zig for one executable
+    "    const " ++ en ++ " = b.addExecutable(\"" ++ bn ++ "\", \"out/types/" ++ replaceDot bn ++ ".root.c\");\n" ++
+    "    " ++ en ++ ".setTarget(target);\n" ++
+    "    " ++ en ++ ".setBuildMode(mode);\n" ++
+    "    " ++ en ++ ".addIncludePath(\"out\");\n" ++
+    "    " ++ en ++ ".addIncludePath(syspath);\n" ++
+    "    " ++ en ++ ".addIncludePath(syspath_include);\n" ++
+    "    " ++ en ++ ".addLibraryPath(\"out/rel/lib/\");\n" ++
+    "    " ++ en ++ ".addLibraryPath(syspath_libreldev);\n" ++
+    "    " ++ en ++ ".addLibraryPath(syspath_lib);\n" ++
+    "    " ++ en ++ ".linkSystemLibraryName(\"ActonProject\");\n" ++
+    "    " ++ en ++ ".linkSystemLibraryName(\"Acton\");\n" ++
+    "    " ++ en ++ ".linkSystemLibraryName(\"ActonDeps\");\n" ++
+    "    " ++ en ++ ".linkSystemLibraryName(\"ActonDB\");\n" ++
+    "    " ++ en ++ ".linkSystemLibraryName(\"actongc\");\n" ++
+    "    " ++ en ++ ".linkLibC();\n" ++
+    "    " ++ en ++ ".install();"
+  where replaceDot = map (\c -> if c == '.' then '/' else c)
+        replaceChars = map (\c -> case c of
+                          '.' -> '_'
+                          '-' -> '_'
+                          _   -> c
+                       )
+        en = "exe_" ++ replaceChars bn
+
+
+
+genBuildZig tasks binTasks = do
+    -- Generate build.zig file
+    intercalate "\n" (
+      [
+        "const std = @import(\"std\");",
+        "",
+        "pub fn build(b: *std.build.Builder) void {",
+        "    const target = b.standardTargetOptions(.{});",
+        "    const mode = b.standardReleaseOptions();",
+        "    const syspath = b.option([]const u8, \"syspath\", \"\") orelse \"\";",
+        "    const reldev = b.option([]const u8, \"reldev\", \"\") orelse \"\";",
+        "    var syspath_include_buf: [1024]u8 = undefined;",
+        "    const syspath_include = std.fmt.bufPrint(&syspath_include_buf, \"{s}/include/\", .{ syspath }) catch {",
+        "        std.log.err(\"Error concatenating strings: \", .{});",
+        "        std.os.exit(1);",
+        "    };"
+      ] ++ (if length binTasks > 0 then [
+        "    var syspath_lib_buf: [1024]u8 = undefined;",
+        "    var syspath_libreldev_buf: [1024]u8 = undefined;",
+        "    const syspath_lib = std.fmt.bufPrint(&syspath_lib_buf, \"{s}/lib/\", .{ syspath }) catch {",
+        "        std.log.err(\"Error concatenating strings: \", .{});",
+        "        std.os.exit(1);",
+        "    };",
+        "    const syspath_libreldev = std.fmt.bufPrint(&syspath_libreldev_buf, \"{s}/lib/{s}/\", .{ syspath, reldev }) catch {",
+        "        std.log.err(\"Error concatenating strings: \", .{});",
+        "        std.os.exit(1);",
+        "    };" ] else [
+        "    _ = reldev;"
+                        ]) ++ [
+        "",
+        "    const libActonProjectFiles = [_][]const u8{",
+        intercalate "\n" (map cfile tasks),
+        "    };",
+        "    const libActonProject = b.addStaticLibrary(\"ActonProject\", null);",
+        "    libActonProject.setTarget(target);",
+        "    libActonProject.setBuildMode(mode);",
+        "    libActonProject.addCSourceFiles(&libActonProjectFiles, &.{});",
+        "    libActonProject.addIncludePath(\"out\");",
+        "    libActonProject.addIncludePath(\".\");",
+        "    libActonProject.addIncludePath(syspath);",
+        "    libActonProject.addIncludePath(syspath_include);",
+        "    libActonProject.addIncludePath(\"../deps/instdir/include\"); // hack hack for stdlib", -- TODO: remove this
+        "    libActonProject.linkLibC();",
+        "    libActonProject.install();",
+        ""
+      ] ++ map genBuildZigExe binTasks ++ ["}", ""])
+  where cfile t@(ActonTask mn src m stubMode) = if stubMode then "" else "        \"out/types/" ++ (joinPath $ A.modPath mn) ++ ".c\","
+
+modNameToString :: A.ModName -> String
+modNameToString (A.ModName names) = intercalate "." (map nameToString names)
+
+nameToString :: A.Name -> String
+nameToString (A.Name _ s) = s
+
+
+
+zigBuild :: Acton.Env.Env0 -> C.CompileOptions -> Paths -> [CompileTask] -> [BinTask] -> IO ()
+zigBuild env opts paths tasks binTasks = do
+    -- writeRootC returns the valid binTasks containing a main root actor
+    execs <- catMaybes <$> mapM (writeRootC env opts paths) binTasks
+    writeFile zigFile (genBuildZig tasks execs)
+    iff (not (C.quiet opts)) $ putStrLn("  Final compilation step")
+    timeStart <- getTime Monotonic
+    iff (C.ccmd opts) $ putStrLn zigCmd
+    (returnCode, zigStdout, zigStderr) <- readCreateProcessWithExitCode (shell $ zigCmd){ cwd = Just (projPath paths) } ""
+    timeEnd <- getTime Monotonic
+    case returnCode of
+        ExitSuccess -> do
+          iff (not (C.quiet opts)) $ putStrLn("   Finished final compilation step in  " ++ fmtTime(timeEnd - timeStart))
+          return ()
+        ExitFailure _ -> do printIce "compilation of generated Zig code failed"
+                            putStrLn $ "zig stdout:\n" ++ zigStdout
+                            putStrLn $ "zig stderr:\n" ++ zigStderr
+                            System.Exit.exitFailure
+  where zigFile = joinPath [projPath paths, "build.zig"]
+        reldev = if C.dev opts then "dev" else "rel"
+        zigCmd =  zig paths ++ " build -Dreldev=" ++ reldev ++ " -Dsyspath=" ++ sysPath paths ++ " --prefix out/" ++ reldev

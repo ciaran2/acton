@@ -539,10 +539,10 @@ builtin/ty/out/types/__builtin__.ty: builtin/ty/src/__builtin__.act $(ACTONC)
 
 # Build our standard library
 stdlib/out/dev/lib/libActonProject.a: $(STDLIB_SRCFILES) dist/types/__builtin__.ty $(DIST_HFILES) $(ACTONC) $(DEPSA) $(LIBGC)
-	cd stdlib && ../$(ACTC) build --always-build --auto-stub --dev
+	cd stdlib && ../$(ACTC) build --always-build --auto-stub --no-zigbuild --dev
 
 stdlib/out/rel/lib/libActonProject.a: $(STDLIB_SRCFILES) dist/types/__builtin__.ty $(DIST_HFILES) $(ACTONC) $(DEPSA) $(LIBGC)
-	cd stdlib && ../$(ACTC) build --always-build --auto-stub
+	cd stdlib && ../$(ACTC) build --always-build --auto-stub --no-zigbuild
 	cp -a stdlib/out/types/. dist/types/
 
 
