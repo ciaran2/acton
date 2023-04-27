@@ -1,0 +1,83 @@
+
+import http
+import net
+
+actor HttpGetter(connect_auth, host, batch_size):
+    var count = 0
+    var outstanding = 0
+    var reconnects = 0
+
+    def request_some(conn, n):
+        for i in range(0, n, 1):
+            conn.get("/" + str(i), on_response)
+            outstanding += 1
+
+    def on_response(conn: http.Client, resp: http.Response):
+        count += 1
+        outstanding -= 1
+#        if (count+outstanding) < 1234:
+#            request_some(conn, 1)
+
+    def on_connect(conn):
+        print("Connected")
+        if reconnects == 0:
+            request_some(conn, batch_size)
+        reconnects += 1
+
+
+    def on_error(conn, err):
+        print("Error: " + err)
+
+    def get_stats():
+        return "Count: " + str(count) + " outstanding: " + str(outstanding)
+
+    print("Connecting to http://" + host)
+    client = http.Client(connect_auth, host, 7000, on_connect, on_error)
+
+actor main(env):
+    def test_http_request_parser():
+        tests = [
+            {"query": b"GET / HTTP/1.1\nHost: 127.0.0.1:8000\nUser-Agent: curl/7.85.0\nAccept: */*\n", "parsed": http.Request("get", "/", b"1.1", {"Host": "127.0.0.1:8000", "User-Agent": "curl/7.85.0", "Accept": "*/*"}, b"")}
+        ]
+        for t in tests:
+            pass
+            # Go through query byte by byte, and feed it to the parser one more
+            # byte at a time until we get a complete request
+
+#            for i in range(0, len(t["query"]), 1):
+#                pass
+#                pass
+#                partial_request = t["query"][0:i]
+#                req, rest = http.parse_request(partial_request)
+#                if req is None:
+#                    continue
+#                else:
+#                    if t["parsed"] == req:
+#                        print("PASS")
+#                    else:
+#                        print("BUBU")
+#                        await async env.exit(1)
+#            print("BUBU, no request found")
+#            await async env.exit(1)
+
+#    host = env.argv[1]
+#    connect_auth = net.TCPConnectAuth(net.TCPAuth(net.NetAuth(env.auth)))
+#
+#    var workers = []
+#    for i in range(0, 1, 1):
+#        print("Starting worker " + str(i))
+#        workers.append(HttpGetter(connect_auth, host, 20))
+#
+#    def print_stats():
+#        for w in workers:
+#            print(w.get_stats())
+#        after 1: print_stats()
+#    print_stats()
+#
+#    def _exit():
+#        print_stats()
+#        env.exit(0)
+#
+##    after 5: _exit()
+
+    test_http_request_parser()
